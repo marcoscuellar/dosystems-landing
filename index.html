@@ -175,7 +175,12 @@
       top: 0; left: 0; right: 0; height: 3px;
       background: var(--green);
     }
-    .phase-card.coming { background: #FAFAFA; }
+    .phase-card.coming { background: #FAFAFA; border-color: var(--yellow); }
+    .phase-card.coming::before {
+      content: ''; position: absolute;
+      top: 0; left: 0; right: 0; height: 3px;
+      background: var(--yellow);
+    }
     .phase-tag {
       font-size: 10px; font-weight: 700; letter-spacing: 2px;
       text-transform: uppercase; margin-bottom: 12px;
@@ -240,28 +245,25 @@
       <input type="email" id="emailInput" placeholder="your@email.com" />
       <button onclick="handleSubmit()">Join the Beta →</button>
     </div>
-    <p class="cta-hint">No spam. Just real updates from a real person building this in real time.</p>
+    <p class="cta-hint">No spam. Just real updates from your real tall neurodivergent friend, in real time. Really.</p>
     <p class="success-msg" id="successMsg">✓ You're in! I'll be in touch soon. Thank you. 🌿</p>
   </section>
 
   <hr class="divider" />
 
-  <!-- WHY -->
-  <section class="why">
-    <div class="section-label">The Why</div>
-    <h2>I spent 35 years trying to<br /><strong>work around my own brain.</strong></h2>
-    <p>
-      I lost jobs. I missed deadlines. I sat in front of a blank screen knowing exactly what needed to get done and completely unable to start. Not because I didn't care — because my brain's executive function wasn't showing up.
-    </p>
-    <p>
-      Executive function is the brain's ability to plan, organize, and prioritize. For those of us with ADHD, it's the thing that doesn't always show up when we need it most. And every productivity app I tried assumed I already had it.
-    </p>
-    <div class="highlight">
-      Daily Ops doesn't ask you to be organized. It does the organizing for you. It's not a tool you use — it's a system that runs alongside you.
+  <!-- SYSTEM ORIGIN -->
+  <section style="max-width: 760px; margin: 0 auto; padding: 80px 24px; display: flex; gap: 48px; align-items: flex-start; flex-wrap: wrap;">
+    <div style="flex: 0 0 260px;">
+      <div style="font-size: 11px; font-weight: 600; color: var(--green); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px;">SYSTEM_ORIGIN</div>
+      <img src="./a8c76501-2c25-4d02-ac6a-5578998bd249.jpeg" alt="Marcos Cuellar" style="width: 100%; border-radius: 20px; object-fit: cover;" />
+      <div style="font-size: 11px; color: #ABABAB; letter-spacing: 1.5px; text-transform: uppercase; margin-top: 12px; text-align: center;">[ ARCHITECT_ID: MARCOS_CUELLAR ]</div>
     </div>
-    <p>
-      This isn't a side project. This is something I needed to exist. And I'm building it in public, with people who get it, for people who get it.
-    </p>
+    <div style="flex: 1; min-width: 260px;">
+      <div style="font-size: 13px; font-weight: 600; color: var(--green); letter-spacing: 1px; margin-bottom: 20px; font-style: italic;">"Just do it — you know how." For years, I was tired of hearing that.</div>
+      <p style="font-size: 15px; color: #6B6760; line-height: 1.8; margin-bottom: 16px;">Knowing how isn't the problem. It's the biological wall between "knowing" and "doing" that stops us. Most "ADHD-friendly" tools are an afterthought — a standard app with a few features tossed to us as a courtesy.</p>
+      <p style="font-size: 15px; color: #6B6760; line-height: 1.8; margin-bottom: 16px;">I realized I was trying to run a life that wasn't built for me. I couldn't accept the status quo anymore. I needed an external framework for survival.</p>
+      <p style="font-size: 15px; color: #6B6760; line-height: 1.8;">Daily Operating Systems (DOS) is the result of connecting the dots between clinical research, hundreds of real-world interviews, and a lifetime of navigating the ADHD trenches. It's an intervention built by someone who knows that the "1 PM wall" isn't a character flaw — it's a hardware mismatch.</p>
+    </div>
   </section>
 
   <hr class="divider" />
@@ -270,6 +272,7 @@
   <section class="phases">
     <div class="section-label">The Roadmap</div>
     <h2>Two phases.<br /><strong>One operating system.</strong></h2>
+    <p style="font-size: 14px; color: #ABABAB; margin-bottom: 32px;">Built on a foundation of clinical research, authentic interviews, and three decades of lived experience with ADHD.</p>
     <div class="phase-grid">
 
       <div class="phase-card active">
@@ -291,7 +294,7 @@
         <div class="phase-tag">Phase 2 — Coming Soon</div>
         <div class="phase-title">The Active Executive Partner</div>
         <div class="phase-desc">
-          The 1PM wall is real. When mid-day dopamine depletion hits, Daily Ops intercepts with real-time support — gamified motivation, body doubling, the Dopa-Menu, radical micro-tasking, and somatic regulation tools. It won't just plan your day. It'll carry you through it.
+          The 1PM wall is real. When mid-day dopamine depletion hits, Daily Ops intercepts with real-time support — this is the gamechanger. 🖥️ <em>(wireframe coming soon)</em>
         </div>
         <div class="phase-features">
           <span class="phase-feature">Dopa-Menu</span>
@@ -309,6 +312,7 @@
   <!-- FOOTER -->
   <footer>
     DOS · Brought to you by another neurodivergent · Marcos Cuellar 2026
+    <br /><br />— from your tall neurodivergent friend, Marcos
   </footer>
 
   <script>
