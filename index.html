@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daily Ops — Your Daily Operating System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green: #2D5A4E;
+      --green-light: #E8F0EE;
+      --yellow: #E9C46A;
+      --text: #1A1814;
+      --muted: #6B6760;
+      --border: #E8E8E8;
+    }
+
+    body {
+      font-family: 'Lexend', sans-serif;
+      background: #ffffff;
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 28px 48px;
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-brand { display: flex; flex-direction: column; }
+    .nav-brand .name { font-size: 15px; font-weight: 700; letter-spacing: 2.5px; }
+    .nav-brand .name span { color: var(--green); }
+    .nav-brand .sub { font-size: 10px; color: #ABABAB; letter-spacing: 1.5px; text-transform: uppercase; margin-top: 2px; }
+    .nav-badge {
+      font-size: 11px; font-weight: 600; color: var(--green);
+      background: var(--green-light); padding: 5px 14px;
+      border-radius: 20px; letter-spacing: 0.5px;
+    }
+
+    /* HERO */
+    .hero {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 100px 24px 80px;
+      text-align: center;
+    }
+    .hero-eyebrow {
+      font-size: 12px; font-weight: 600; color: var(--green);
+      letter-spacing: 2px; text-transform: uppercase;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      margin-bottom: 24px;
+    }
+    .hero-eyebrow .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); }
+    .hero h1 {
+      font-size: 52px; font-weight: 300; line-height: 1.15;
+      letter-spacing: -1px; color: var(--text); margin-bottom: 12px;
+    }
+    .hero h1 strong { font-weight: 700; }
+    .hero .subtitle {
+      font-size: 18px; font-weight: 400; color: var(--muted);
+      line-height: 1.7; max-width: 560px; margin: 0 auto 48px;
+    }
+
+    /* ROTATING BANNER */
+    .rotating-wrapper {
+      background: var(--text);
+      border-radius: 16px;
+      padding: 20px 32px;
+      margin: 0 auto 48px;
+      max-width: 600px;
+      min-height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .rotating-text {
+      font-size: 16px; font-weight: 500; color: #fff;
+      text-align: center; line-height: 1.5;
+      opacity: 0;
+      animation: fadeInOut 4s ease-in-out infinite;
+    }
+    @keyframes fadeInOut {
+      0% { opacity: 0; transform: translateY(6px); }
+      15% { opacity: 1; transform: translateY(0); }
+      75% { opacity: 1; transform: translateY(0); }
+      90% { opacity: 0; transform: translateY(-6px); }
+      100% { opacity: 0; }
+    }
+
+    /* CTA */
+    .cta-form {
+      display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+    .cta-form input {
+      font-family: 'Lexend', sans-serif;
+      font-size: 14px; font-weight: 400;
+      padding: 14px 20px; border-radius: 14px;
+      border: 1.5px solid var(--border);
+      width: 280px; outline: none; color: var(--text);
+      transition: border-color 0.2s;
+    }
+    .cta-form input:focus { border-color: var(--green); }
+    .cta-form input::placeholder { color: #ABABAB; }
+    .cta-form button {
+      font-family: 'Lexend', sans-serif;
+      font-size: 14px; font-weight: 700;
+      padding: 14px 28px; border-radius: 14px;
+      border: none; background: var(--yellow);
+      color: var(--text); cursor: pointer;
+      transition: all 0.2s;
+    }
+    .cta-form button:hover { opacity: 0.88; transform: translateY(-1px); }
+    .cta-hint { font-size: 12px; color: #ABABAB; margin-bottom: 12px; }
+    .success-msg {
+      display: none; font-size: 14px; color: var(--green);
+      font-weight: 500; margin-top: 8px;
+    }
+
+    /* DIVIDER */
+    .divider { border: none; border-top: 1px solid var(--border); max-width: 760px; margin: 0 auto; }
+
+    /* WHY SECTION */
+    .why {
+      max-width: 760px; margin: 0 auto;
+      padding: 80px 24px;
+    }
+    .section-label {
+      font-size: 11px; font-weight: 600; color: var(--green);
+      letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px;
+    }
+    .why h2 {
+      font-size: 32px; font-weight: 300; line-height: 1.3;
+      letter-spacing: -0.5px; margin-bottom: 24px;
+    }
+    .why h2 strong { font-weight: 700; }
+    .why p {
+      font-size: 16px; color: var(--muted); line-height: 1.8;
+      margin-bottom: 16px; font-weight: 400;
+    }
+    .why .highlight {
+      background: var(--green-light);
+      border-left: 3px solid var(--green);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin: 32px 0;
+      font-size: 16px; color: var(--green);
+      line-height: 1.7; font-weight: 500;
+    }
+
+    /* PHASES */
+    .phases {
+      max-width: 760px; margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+    .phases h2 {
+      font-size: 32px; font-weight: 300; line-height: 1.3;
+      letter-spacing: -0.5px; margin-bottom: 40px;
+    }
+    .phases h2 strong { font-weight: 700; }
+    .phase-grid { display: flex; flex-direction: column; gap: 16px; }
+    .phase-card {
+      border: 1.5px solid var(--border);
+      border-radius: 20px; padding: 28px 32px;
+      position: relative; overflow: hidden;
+    }
+    .phase-card.active { border-color: var(--green); }
+    .phase-card.active::before {
+      content: ''; position: absolute;
+      top: 0; left: 0; right: 0; height: 3px;
+      background: var(--green);
+    }
+    .phase-card.coming { background: #FAFAFA; }
+    .phase-tag {
+      font-size: 10px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; margin-bottom: 12px;
+      display: inline-block; padding: 4px 12px;
+      border-radius: 20px;
+    }
+    .phase-card.active .phase-tag { color: var(--green); background: var(--green-light); }
+    .phase-card.coming .phase-tag { color: #ABABAB; background: #F0F0F0; }
+    .phase-title { font-size: 20px; font-weight: 600; margin-bottom: 8px; }
+    .phase-desc { font-size: 14px; color: var(--muted); line-height: 1.7; }
+    .phase-features {
+      display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px;
+    }
+    .phase-feature {
+      font-size: 12px; font-weight: 500;
+      padding: 4px 12px; border-radius: 20px;
+      background: var(--green-light); color: var(--green);
+    }
+    .phase-card.coming .phase-feature {
+      background: #F0F0F0; color: #ABABAB;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 48px;
+      text-align: center;
+      font-size: 11px; color: #CBCBCB;
+      letter-spacing: 0.5px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-brand">
+      <div class="name">DAILY <span>OPS</span></div>
+      <div class="sub">Your Daily Operating System</div>
+    </div>
+    <div class="nav-badge">Beta — Phase 1 Live</div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-eyebrow">
+      <div class="dot"></div>
+      Built by a neurodivergent brain, for neurodivergent brains
+    </div>
+    <h1>Your brain wasn't broken.<br /><strong style="color: #2D5A4E;">It just needed the right OS.</strong></h1>
+    <p class="subtitle">
+      Daily Ops is the executive function apparatus — an AI-powered daily operating system that steps in where the ADHD brain struggles, and turns the chaos in your head into a plan that actually works.
+    </p>
+
+    <!-- ROTATING BANNER -->
+    <div class="rotating-wrapper">
+      <div class="rotating-text" id="rotatingText"></div>
+    </div>
+
+    <!-- CTA FORM -->
+    <div class="cta-form">
+      <input type="email" id="emailInput" placeholder="your@email.com" />
+      <button onclick="handleSubmit()">Join the Beta →</button>
+    </div>
+    <p class="cta-hint">No spam. Just real updates from a real person building this in real time.</p>
+    <p class="success-msg" id="successMsg">✓ You're in! I'll be in touch soon. Thank you. 🌿</p>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- WHY -->
+  <section class="why">
+    <div class="section-label">The Why</div>
+    <h2>I spent 35 years trying to<br /><strong>work around my own brain.</strong></h2>
+    <p>
+      I lost jobs. I missed deadlines. I sat in front of a blank screen knowing exactly what needed to get done and completely unable to start. Not because I didn't care — because my brain's executive function wasn't showing up.
+    </p>
+    <p>
+      Executive function is the brain's ability to plan, organize, and prioritize. For those of us with ADHD, it's the thing that doesn't always show up when we need it most. And every productivity app I tried assumed I already had it.
+    </p>
+    <div class="highlight">
+      Daily Ops doesn't ask you to be organized. It does the organizing for you. It's not a tool you use — it's a system that runs alongside you.
+    </div>
+    <p>
+      This isn't a side project. This is something I needed to exist. And I'm building it in public, with people who get it, for people who get it.
+    </p>
+  </section>
+
+  <hr class="divider" />
+
+  <!-- PHASES -->
+  <section class="phases">
+    <div class="section-label">The Roadmap</div>
+    <h2>Two phases.<br /><strong>One operating system.</strong></h2>
+    <div class="phase-grid">
+
+      <div class="phase-card active">
+        <div class="phase-tag">Phase 1 — Live Now</div>
+        <div class="phase-title">The Boot Sequence</div>
+        <div class="phase-desc">
+          Start your day with a cognitive offload. Type everything swirling in your head — work, personal, things you've been avoiding — and Daily Ops builds you a realistic, time-blocked schedule. No judgment. No toxic positivity. Just a plan.
+        </div>
+        <div class="phase-features">
+          <span class="phase-feature">Cognitive offload</span>
+          <span class="phase-feature">AI-built schedule</span>
+          <span class="phase-feature">Time-blocked plan</span>
+          <span class="phase-feature">Calendar sync</span>
+          <span class="phase-feature">To-do export</span>
+        </div>
+      </div>
+
+      <div class="phase-card coming">
+        <div class="phase-tag">Phase 2 — Coming Soon</div>
+        <div class="phase-title">The Active Executive Partner</div>
+        <div class="phase-desc">
+          The 1PM wall is real. When mid-day dopamine depletion hits, Daily Ops intercepts with real-time support — gamified motivation, body doubling, the Dopa-Menu, radical micro-tasking, and somatic regulation tools. It won't just plan your day. It'll carry you through it.
+        </div>
+        <div class="phase-features">
+          <span class="phase-feature">Dopa-Menu</span>
+          <span class="phase-feature">Body doubling</span>
+          <span class="phase-feature">Micro-tasking</span>
+          <span class="phase-feature">Gamification</span>
+          <span class="phase-feature">Brown noise</span>
+          <span class="phase-feature">Rescue mode</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    DOS · Brought to you by another neurodivergent · Marcos Cuellar 2026
+  </footer>
+
+  <script>
+    // Rotating banner
+    const phrases = [
+      "\"I know what I need to do. I just can't start.\"",
+      "\"By 2PM my brain just stops working.\"",
+      "\"I've tried every productivity app. None of them get it.\"",
+      "\"I'm not lazy. My brain just works differently.\"",
+      "\"The overwhelm is real. The shame is real. The potential is real too.\"",
+      "\"What if my phone actually helped instead of distracted?\"",
+    ];
+    let current = 0;
+    const el = document.getElementById('rotatingText');
+
+    function showNext() {
+      el.style.animation = 'none';
+      el.textContent = phrases[current];
+      el.offsetHeight; // reflow
+      el.style.animation = 'fadeInOut 4s ease-in-out forwards';
+      current = (current + 1) % phrases.length;
+    }
+
+    showNext();
+    setInterval(showNext, 4000);
+
+    // Email submit
+    function handleSubmit() {
+      const email = document.getElementById('emailInput').value;
+      if (!email || !email.includes('@')) {
+        document.getElementById('emailInput').style.borderColor = '#B91C1C';
+        return;
+      }
+      document.querySelector('.cta-form').style.display = 'none';
+      document.querySelector('.cta-hint').style.display = 'none';
+      document.getElementById('successMsg').style.display = 'block';
+      // Opens email client with pre-filled info
+      window.location.href = `mailto:marcoscuellar99@icloud.com?subject=Daily Ops Beta Request&body=Hey Marcos! I want to join the Daily Ops beta. My email is: ${email}`;
+    }
+  </script>
+
+</body>
+</html>
