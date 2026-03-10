@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daily Operating Systems — DOS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green: #2D5A4E;
+      --green-light: #E8F0EE;
+      --yellow: #E9C46A;
+      --text: #1A1814;
+      --muted: #6B6760;
+      --border: #E8E8E8;
+    }
+
+    body { font-family: 'Lexend', sans-serif; background: #ffffff; color: var(--text); }
+
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 28px 48px; border-bottom: 1px solid var(--border); }
+    .nav-brand .name { font-size: 15px; font-weight: 700; letter-spacing: 2.5px; }
+    .nav-brand .name span { color: var(--green); }
+    .nav-brand .sub { font-size: 10px; color: #ABABAB; letter-spacing: 1.5px; text-transform: uppercase; margin-top: 2px; }
+    .nav-badge { font-size: 11px; font-weight: 600; color: var(--green); background: var(--green-light); padding: 5px 14px; border-radius: 20px; }
+
+    .hero { max-width: 760px; margin: 0 auto; padding: 100px 24px 80px; text-align: center; }
+    .hero-eyebrow { font-size: 12px; font-weight: 600; color: var(--green); letter-spacing: 2px; text-transform: uppercase; display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 24px; }
+    .hero-eyebrow .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); }
+    .hero h1 { font-size: 52px; font-weight: 300; line-height: 1.15; letter-spacing: -1px; margin-bottom: 20px; }
+    .hero h1 strong { font-weight: 700; color: var(--green); }
+    .hero .subtitle { font-size: 17px; color: var(--muted); line-height: 1.7; max-width: 560px; margin: 0 auto 48px; }
+
+    .rotating-wrapper { background: var(--text); border-radius: 16px; padding: 20px 32px; margin: 0 auto 48px; max-width: 600px; min-height: 64px; display: flex; align-items: center; justify-content: center; }
+    .rotating-text { font-size: 16px; font-weight: 500; color: #fff; text-align: center; line-height: 1.5; opacity: 0; animation: fadeInOut 4s ease-in-out infinite; }
+    @keyframes fadeInOut {
+      0% { opacity: 0; transform: translateY(6px); }
+      15% { opacity: 1; transform: translateY(0); }
+      75% { opacity: 1; transform: translateY(0); }
+      90% { opacity: 0; transform: translateY(-6px); }
+      100% { opacity: 0; }
+    }
+
+    .cta-form { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-bottom: 16px; }
+    .cta-form input { font-family: 'Lexend', sans-serif; font-size: 14px; padding: 14px 20px; border-radius: 14px; border: 1.5px solid var(--border); width: 200px; outline: none; color: var(--text); transition: border-color 0.2s; }
+    .cta-form input:focus { border-color: var(--green); }
+    .cta-form input::placeholder { color: #ABABAB; }
+    .cta-form button { font-family: 'Lexend', sans-serif; font-size: 14px; font-weight: 700; padding: 14px 28px; border-radius: 14px; border: none; background: var(--yellow); color: var(--text); cursor: pointer; transition: all 0.2s; }
+    .cta-form button:hover { opacity: 0.88; transform: translateY(-1px); }
+    .cta-hint { font-size: 12px; color: #ABABAB; margin-bottom: 12px; }
+    .success-msg { display: none; font-size: 14px; color: var(--green); font-weight: 500; margin-top: 8px; }
+
+    .divider { border: none; border-top: 1px solid var(--border); max-width: 760px; margin: 0 auto; }
+
+    .source-code { max-width: 760px; margin: 0 auto; padding: 80px 24px; display: flex; gap: 48px; align-items: flex-start; flex-wrap: wrap; }
+    .source-photo { flex: 0 0 240px; }
+    .source-photo img { width: 100%; border-radius: 20px; object-fit: cover; }
+    .source-caption { font-size: 10px; color: #ABABAB; letter-spacing: 2px; text-transform: uppercase; margin-top: 12px; text-align: center; }
+    .source-text { flex: 1; min-width: 260px; }
+    .section-label { font-size: 11px; font-weight: 600; color: var(--green); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; }
+    .source-text .quote { font-size: 15px; font-weight: 600; color: var(--green); font-style: italic; line-height: 1.6; margin-bottom: 20px; padding-left: 16px; border-left: 3px solid var(--green); }
+    .source-text p { font-size: 15px; color: var(--muted); line-height: 1.8; margin-bottom: 14px; }
+
+    .phases { max-width: 760px; margin: 0 auto; padding: 80px 24px; }
+    .phases h2 { font-size: 32px; font-weight: 300; line-height: 1.3; letter-spacing: -0.5px; margin-bottom: 8px; }
+    .phases h2 strong { font-weight: 700; }
+    .phase-sub { font-size: 13px; color: #ABABAB; margin-bottom: 40px; }
+    .phase-grid { display: flex; flex-direction: column; gap: 16px; }
+    .phase-card { border: 1.5px solid var(--border); border-radius: 20px; padding: 28px 32px; position: relative; overflow: hidden; }
+    .phase-card.active { border-color: var(--green); }
+    .phase-card.active::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--green); }
+    .phase-card.coming { background: #FAFAFA; border-color: var(--yellow); }
+    .phase-card.coming::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--yellow); }
+    .phase-tag { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; display: inline-block; padding: 4px 12px; border-radius: 20px; }
+    .phase-card.active .phase-tag { color: var(--green); background: var(--green-light); }
+    .phase-card.coming .phase-tag { color: #8B6E1A; background: #FDF3D9; }
+    .phase-title { font-size: 20px; font-weight: 600; margin-bottom: 8px; }
+    .phase-desc { font-size: 14px; color: var(--muted); line-height: 1.7; }
+    .phase-features { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+    .phase-feature { font-size: 12px; font-weight: 500; padding: 4px 12px; border-radius: 20px; }
+    .phase-card.active .phase-feature { background: var(--green-light); color: var(--green); }
+    .phase-card.coming .phase-feature { background: #FDF3D9; color: #8B6E1A; }
+
+    footer { border-top: 1px solid var(--border); padding: 48px; text-align: center; }
+    .footer-specs { display: flex; justify-content: center; gap: 48px; flex-wrap: wrap; margin-bottom: 32px; }
+    .footer-spec .num { font-size: 28px; font-weight: 700; color: var(--green); }
+    .footer-spec .label { font-size: 11px; color: #ABABAB; letter-spacing: 1px; text-transform: uppercase; margin-top: 4px; }
+    .footer-copy { font-size: 11px; color: #CBCBCB; letter-spacing: 0.5px; line-height: 1.8; }
+
+    @media (max-width: 600px) {
+      nav { padding: 20px 24px; }
+      .hero { padding: 60px 24px; }
+      .hero h1 { font-size: 36px; }
+      .source-code { flex-direction: column; }
+      .source-photo { flex: none; width: 100%; max-width: 280px; margin: 0 auto; }
+      .footer-specs { gap: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="nav-brand">
+      <div class="name">DAILY <span>OPS</span></div>
+      <div class="sub">Daily Operating Systems [DOS]</div>
+    </div>
+    <div class="nav-badge">Beta — Phase 1 Live</div>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-eyebrow">
+      <div class="dot"></div>
+      Built by a neurodivergent brain, for neurodivergent brains
+    </div>
+    <h1>Your brain wasn't broken.<br /><strong>It just needed the right OS.</strong></h1>
+    <p class="subtitle">Daily Operating Systems (DOS) is an executive function prosthetic — an AI-powered daily operating system that steps in where the ADHD brain struggles.</p>
+
+    <div class="rotating-wrapper">
+      <div class="rotating-text" id="rotatingText"></div>
+    </div>
+
+    <div id="cta-section">
+      <div class="cta-form">
+        <input type="text" id="nameInput" placeholder="Your name" />
+        <input type="email" id="emailInput" placeholder="your@email.com" />
+        <button onclick="handleSubmit()">Initialize Access →</button>
+      </div>
+      <p class="cta-hint">No spam. Just real updates from your real tall neurodivergent friend, in real time. Really.</p>
+    </div>
+    <p class="success-msg" id="successMsg">✓ You're in! I'll be in touch soon. Thank you. 🌿</p>
+
+    <div style="margin-top: 32px;">
+      <a href="https://daily-ops-omega.vercel.app" target="_blank" style="font-family: 'Lexend', sans-serif; font-size: 14px; font-weight: 600; color: var(--green); text-decoration: none; border: 1.5px solid var(--green); padding: 13px 28px; border-radius: 14px; display: inline-block; transition: all 0.2s;" onmouseover="this.style.background='#E8F0EE'" onmouseout="this.style.background='transparent'">Try the Prototype →</a>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <section class="source-code">
+    <div class="source-photo">
+      <div class="section-label">Source Code</div>
+      <img src="./a8c76501-2c25-4d02-ac6a-5578998bd249.jpeg" alt="Marcos Cuellar" />
+      <div class="source-caption">[ ARCHITECT_ID: MARCOS_CUELLAR ]</div>
+    </div>
+    <div class="source-text">
+      <div class="quote">"Just do it — you know how." For years, I was tired of hearing that.</div>
+      <p>Knowing how isn't the problem. It's the biological wall between "knowing" and "doing" that stops us. Most "ADHD-friendly" tools are an afterthought — a standard app with a few features tossed to us as a courtesy.</p>
+      <p>I realized I was trying to run a life that wasn't built for me. I couldn't accept the status quo anymore. I needed an external framework for survival.</p>
+      <p>Daily Operating Systems (DOS) is the result of connecting the dots between clinical research, hundreds of real-world interviews, and a lifetime of navigating the ADHD trenches. It's an intervention built by someone who knows that the "1 PM wall" isn't a character flaw — it's a hardware mismatch.</p>
+    </div>
+  </section>
+
+  <hr class="divider" />
+
+  <section class="phases">
+    <div class="section-label">The Wireframe</div>
+    <h2>Two phases.<br /><strong>One operating system.</strong></h2>
+    <p class="phase-sub">Built on a foundation of clinical research, authentic interviews, and three decades of lived experience with ADHD.</p>
+
+    <div class="phase-grid">
+      <div class="phase-card active">
+        <div class="phase-tag">Phase 1 — Live Now</div>
+        <div class="phase-title">The Boot Sequence</div>
+        <div class="phase-desc">Start your day with a cognitive offload. Type everything swirling in your head — work, personal, things you've been avoiding — and DOS builds you a realistic, time-blocked schedule. No judgment. No toxic positivity. Just a plan.</div>
+        <div class="phase-features">
+          <span class="phase-feature">Cognitive offload</span>
+          <span class="phase-feature">AI-built schedule</span>
+          <span class="phase-feature">Time-blocked plan</span>
+          <span class="phase-feature">Calendar sync</span>
+          <span class="phase-feature">To-do export</span>
+        </div>
+      </div>
+
+      <div class="phase-card coming">
+        <div class="phase-tag">Phase 2 — Coming Soon</div>
+        <div class="phase-title">The Active Executive Partner</div>
+        <div class="phase-desc">The 1PM wall is real. When mid-day dopamine depletion hits, DOS intercepts with real-time support — this is the gamechanger. 🖥️ <em>Wireframe coming soon.</em></div>
+        <div class="phase-features">
+          <span class="phase-feature">Dopa-Menu</span>
+          <span class="phase-feature">Body doubling</span>
+          <span class="phase-feature">Micro-tasking</span>
+          <span class="phase-feature">Gamification</span>
+          <span class="phase-feature">Brown noise</span>
+          <span class="phase-feature">Rescue mode</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-specs">
+      <div class="footer-spec">
+        <div class="num">30+</div>
+        <div class="label">Years of ADHD Troubleshooting</div>
+      </div>
+      <div class="footer-spec">
+        <div class="num">100s</div>
+        <div class="label">Real-World Interviews</div>
+      </div>
+      <div class="footer-spec">
+        <div class="num">CLI</div>
+        <div class="label">Clinical Research Backing</div>
+      </div>
+    </div>
+    <div class="footer-copy">
+      DOS · Brought to you by another neurodivergent · Marcos Cuellar 2026<br />
+      — from your tall neurodivergent friend, Marcos
+    </div>
+  </footer>
+
+  <script>
+    const phrases = [
+      '"I know what I need to do. I just can\'t start."',
+      '"By 2PM my brain just stops working."',
+      '"I\'ve tried every productivity app. None of them get it."',
+      '"I\'m not lazy. My brain just works differently."',
+      '"The overwhelm is real. The shame is real. The potential is real too."',
+      '"What if my phone actually helped instead of distracted?"',
+    ];
+    let current = 0;
+    const el = document.getElementById('rotatingText');
+    function showNext() {
+      el.style.animation = 'none';
+      el.textContent = phrases[current];
+      el.offsetHeight;
+      el.style.animation = 'fadeInOut 4s ease-in-out forwards';
+      current = (current + 1) % phrases.length;
+    }
+    showNext();
+    setInterval(showNext, 4000);
+
+    async function handleSubmit() {
+      const name = document.getElementById('nameInput').value.trim();
+      const email = document.getElementById('emailInput').value.trim();
+      if (!name) { document.getElementById('nameInput').style.borderColor = '#B91C1C'; return; }
+      if (!email || !email.includes('@')) { document.getElementById('emailInput').style.borderColor = '#B91C1C'; return; }
+      try {
+        await fetch('https://formspree.io/f/mjgayjqp', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({ name, email })
+        });
+        document.getElementById('cta-section').style.display = 'none';
+        document.getElementById('successMsg').style.display = 'block';
+      } catch(e) {
+        alert('Something went wrong. Please try again.');
+      }
+    }
+  </script>
+
+</body>
+</html>
