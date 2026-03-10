@@ -129,6 +129,10 @@
       <p class="cta-hint">No spam. Just real updates from your real tall neurodivergent friend, in real time. Really.</p>
     </div>
     <p class="success-msg" id="successMsg">✓ You're in! I'll be in touch soon. Thank you. 🌿</p>
+
+    <div style="margin-top: 32px;">
+      <a href="https://daily-ops-omega.vercel.app" target="_blank" style="font-family: 'Lexend', sans-serif; font-size: 14px; font-weight: 600; color: var(--green); text-decoration: none; border: 1.5px solid var(--green); padding: 13px 28px; border-radius: 14px; display: inline-block; transition: all 0.2s;" onmouseover="this.style.background='#E8F0EE'" onmouseout="this.style.background='transparent'">Try the Prototype →</a>
+    </div>
   </section>
 
   <hr class="divider" />
@@ -232,7 +236,7 @@
       if (!name) { document.getElementById('nameInput').style.borderColor = '#B91C1C'; return; }
       if (!email || !email.includes('@')) { document.getElementById('emailInput').style.borderColor = '#B91C1C'; return; }
       try {
-        await fetch('https://formspree.io/f/mjgaggjg', {
+        await fetch('https://formspree.io/f/mjgayjqp', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
           body: JSON.stringify({ name, email })
