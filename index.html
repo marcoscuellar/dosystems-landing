@@ -95,6 +95,9 @@
       .source-code { flex-direction: column; }
       .source-photo { flex: none; width: 100%; max-width: 280px; margin: 0 auto; }
       .footer-specs { gap: 24px; }
+      .research-grid { grid-template-columns: 1fr !important; }
+      .research-grid > div { border-right: none !important; border-bottom: 1px solid var(--border); }
+      .research-grid > div:last-child { border-bottom: none; }
     }
   </style>
 </head>
@@ -141,7 +144,7 @@
   <section style="max-width: 900px; margin: 0 auto; padding: 80px 24px;">
     <div style="font-family: 'Courier New', monospace; font-size: 11px; font-weight: 600; color: var(--green); letter-spacing: 2px; margin-bottom: 8px;">[ SYSTEM_LOGIC // RESEARCH_SPEC ]</div>
     <p style="font-size: 13px; color: #ABABAB; margin-bottom: 40px; font-family: 'Courier New', monospace;">The neuroscience behind the scaffold.</p>
-    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid var(--border); border-radius: 16px; overflow: hidden;">
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border: 1px solid var(--border); border-radius: 16px; overflow: hidden;" class="research-grid">
 
       <div style="padding: 32px 28px; border-right: 1px solid var(--border);">
         <div style="font-family: 'Courier New', monospace; font-size: 10px; color: var(--green); letter-spacing: 2px; margin-bottom: 16px;">01 / THE 30% ORGANIZATION TAX</div>
