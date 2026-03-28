@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="DOS is an AI-powered executive function prosthetic built for neurodivergent brains. Not a productivity app. An operating system.">
+<title>DOS — Daily Operating System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --green: #2A5343; --white: #FFFFFF; --gold: #E9C46A;
+  --forest: #3D7A62; --gray: #888880; --light: #E8E6E0;
+  --cream: #F3EFE7; --dark: #151C19;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--white); color: var(--green); font-family: 'Inter', sans-serif; overflow-x: hidden; }
+
+/* NAV */
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 60px; height: 64px; display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,.95); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(42,83,67,.07); }
+.nav-logo { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--green); text-decoration: none; }
+.nav-links { display: flex; gap: 28px; align-items: center; }
+.nav-link { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: .14em; color: var(--gray); text-decoration: none; transition: color .2s; }
+.nav-link:hover { color: var(--green); }
+.nav-cta { padding: 9px 20px; background: var(--gold); color: var(--green); border: none; border-radius: 7px; font-size: 11px; font-weight: 500; cursor: pointer; text-decoration: none; letter-spacing: .06em; font-family: 'JetBrains Mono', monospace; transition: background .2s; }
+.nav-cta:hover { background: #f0cc6a; }
+
+/* HERO */
+.hero { position: relative; height: 100vh; min-height: 680px; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 0 80px 64px; overflow: hidden; }
+.hero-img { position: absolute; inset: 0; background: url('photo-01b-hero.jpg') center/cover no-repeat; }
+.hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(15,26,20,.92) 0%, rgba(15,26,20,.5) 50%, rgba(15,26,20,.08) 100%); }
+.hero-content { position: relative; z-index: 2; max-width: 780px; }
+.hero-archetype { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: .22em; color: rgba(233,196,106,.65); margin-bottom: 20px; }
+.hero-headline { font-family: 'Playfair Display', serif; font-size: clamp(46px, 6.5vw, 82px); color: var(--white); line-height: 1.04; letter-spacing: -.02em; margin-bottom: 20px; }
+.hero-headline em { font-style: italic; color: var(--gold); }
+.hero-sub { font-size: 16px; font-weight: 300; color: rgba(255,255,255,.6); max-width: 460px; line-height: 1.65; margin-bottom: 36px; }
+.hero-actions { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.btn-gold { padding: 14px 30px; background: var(--gold); color: var(--green); border: none; border-radius: 8px; font-size: 11px; font-weight: 500; cursor: pointer; text-decoration: none; letter-spacing: .06em; font-family: 'JetBrains Mono', monospace; transition: background .2s, transform .15s; }
+.btn-gold:hover { background: #f0cc6a; transform: translateY(-1px); }
+.btn-ghost { padding: 14px 30px; background: transparent; color: rgba(255,255,255,.65); border: 1px solid rgba(255,255,255,.2); border-radius: 8px; font-size: 11px; cursor: pointer; text-decoration: none; font-family: 'JetBrains Mono', monospace; letter-spacing: .06em; transition: border-color .2s, color .2s; }
+.btn-ghost:hover { border-color: rgba(255,255,255,.45); color: var(--white); }
+.hero-note { position: absolute; bottom: 30px; right: 60px; z-index: 2; font-size: 11px; color: rgba(255,255,255,.3); font-style: italic; }
+
+/* PHILOSOPHY */
+.philosophy { background: var(--green); }
+.philosophy-inner { display: grid; grid-template-columns: 1fr 1fr; min-height: 580px; }
+.philosophy-img-wrap { position: relative; overflow: hidden; }
+.philosophy-img { position: absolute; inset: 0; background: url('photo-02-philosophy.jpg') center/cover no-repeat; background-position: 50% 30%; }
+.philosophy-img-overlay { position: absolute; inset: 0; background: rgba(42,83,67,.15); }
+.philosophy-caption { position: absolute; bottom: 20px; left: 20px; font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: .12em; color: rgba(243,239,231,.6); background: rgba(42,83,67,.6); padding: 6px 10px; border-radius: 4px; }
+.philosophy-text { padding: 80px 64px; display: flex; flex-direction: column; justify-content: center; }
+.philosophy-pretag { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: .2em; color: rgba(243,239,231,.25); margin-bottom: 28px; }
+.philosophy-quote { font-family: 'Playfair Display', serif; font-size: clamp(22px, 2.6vw, 34px); color: var(--cream); line-height: 1.45; margin-bottom: 24px; }
+.philosophy-quote span { color: var(--gold); }
+.philosophy-rule { font-size: 13px; font-weight: 300; color: rgba(243,239,231,.45); line-height: 1.7; border-top: 1px solid rgba(243,239,231,.08); padding-top: 24px; }
+
+/* THE MOMENT */
+.moment { padding: 100px 64px; background: var(--white); }
+.moment-inner { max-width: 1060px; margin: 0 auto; }
+.section-tag { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: .2em; color: var(--gray); margin-bottom: 48px; display: flex; align-items: center; gap: 14px; }
+.section-tag::after { content: ''; width: 40px; height: 1px; background: var(--light); }
+.moment-headline { font-family: 'Playfair Display', serif; font-size: clamp(30px, 3.8vw, 50px); color: var(--green); line-height: 1.15; letter-spacing: -.02em; max-width: 600px; margin-bottom: 48px; }
+.moment-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px; }
+.moment-card { padding: 32px 28px; }
+.mc1 { background: var(--cream); }
+.mc2 { background: var(--green); }
+.mc3 { background: #1E3329; }
+.moment-time { font-family: 'JetBrains Mono', monospace; font-size: 20px; color: var(--gold); margin-bottom: 12px; }
+.mlabel { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: .12em; margin-bottom: 8px; }
+.mlabel.lg { color: rgba(243,239,231,.35); } .mlabel.lc { color: var(--gray); }
+.mtitle { font-size: 15px; font-weight: 500; margin-bottom: 8px; line-height: 1.3; }
+.mtitle.lg { color: var(--cream); } .mtitle.lc { color: var(--green); }
+.mbody { font-size: 13px; font-weight: 300; line-height: 1.65; }
+.mbody.lg { color: rgba(243,239,231,.5); } .mbody.lc { color: var(--gray); }
+.mdos { margin-top: 16px; padding: 10px 12px; background: rgba(233,196,106,.12); border-radius: 5px; font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--gold); letter-spacing: .06em; line-height: 1.5; border-left: 2px solid var(--gold); }
+
+/* ARCHETYPES */
+.archetypes { padding: 100px 64px; background: var(--dark); }
+.archetypes-inner { max-width: 1060px; margin: 0 auto; }
+.archetypes-pretag { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: .2em; color: rgba(243,239,231,.25); margin-bottom: 16px; }
+.archetypes-title { font-family: 'Playfair Display', serif; font-size: clamp(28px, 3.5vw, 44px); color: var(--cream); line-height: 1.15; letter-spacing: -.02em; margin-bottom: 12px; }
+.archetypes-sub { font-size: 14px; font-weight: 300; color: rgba(243,239,231,.4); max-width: 460px; line-height: 1.6; margin-bottom: 52px; }
+.archetypes-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: 310px 310px; gap: 2px; }
+.a-card { position: relative; overflow: hidden; }
+.a-card.tall { grid-row: span 2; }
+.a-img { position: absolute; inset: 0; background-size: cover; background-position: center; transition: transform .5s ease; }
+.a-card:hover .a-img { transform: scale(1.04); }
+.a-grad { position: absolute; inset: 0; background: linear-gradient(to top, rgba(15,26,20,.95) 0%, transparent 55%); }
+.a-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 24px; }
+.a-num { font-family: 'JetBrains Mono', monospace; font-size: 8px; letter-spacing: .18em; color: rgba(233,196,106,.55); margin-bottom: 4px; }
+.a-name { font-size: 14px; font-weight: 500; color: var(--white); margin-bottom: 4px; }
+.a-cap { font-size: 11px; font-weight: 300; color: rgba(255,255,255,.45); line-height: 1.4; }
+.a-dos { margin-top: 8px; font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--gold); letter-spacing: .06em; font-style: italic; line-height: 1.4; }
+
+/* SYSTEM */
+.system { padding: 100px 64px; background: var(--white); }
+.system-inner { max-width: 1060px; margin: 0 auto; }
+.system-headline { font-family: 'Playfair Display', serif; font-size: clamp(30px, 3.8vw, 48px); color: var(--green); line-height: 1.15; letter-spacing: -.02em; max-width: 560px; margin-bottom: 12px; margin-top: 8px; }
+.system-sub { font-size: 14px; font-weight: 300; color: var(--gray); max-width: 460px; line-height: 1.65; margin-bottom: 52px; }
+.system-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px; }
+.s-card { padding: 28px 24px; }
+.sg { background: var(--green); } .sf { background: var(--forest); } .sc { background: var(--cream); }
+.s-tag { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: .12em; margin-bottom: 8px; }
+.s-tl { color: rgba(243,239,231,.3); } .s-td { color: var(--gray); }
+.s-name { font-size: 15px; font-weight: 500; margin-bottom: 8px; line-height: 1.25; }
+.s-nl { color: var(--cream); } .s-nd { color: var(--green); }
+.s-desc { font-size: 12px; font-weight: 300; line-height: 1.65; }
+.s-dl { color: rgba(243,239,231,.5); } .s-dd { color: var(--gray); }
+.s-pill { display: inline-block; margin-top: 12px; padding: 4px 10px; border-radius: 20px; font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: .08em; background: rgba(233,196,106,.15); color: var(--gold); }
+.s-pill-f { background: rgba(243,239,231,.08); color: rgba(243,239,231,.4); }
+
+/* ARCHITECT */
+.architect { background: var(--green); }
+.architect-inner { display: grid; grid-template-columns: 1fr 1fr; min-height: 600px; }
+.architect-photo { position: relative; overflow: hidden; background: url('photo-07-architect.jpg') center/cover no-repeat; min-height: 500px; }
+.architect-photo-tag { position: absolute; bottom: 20px; right: 20px; font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: .12em; color: var(--gold); background: rgba(42,83,67,.7); padding: 7px 12px; border-radius: 4px; border: 1px solid rgba(233,196,106,.25); }
+.architect-text { padding: 80px 64px; display: flex; flex-direction: column; justify-content: center; }
+.arch-pretag { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: .2em; color: rgba(243,239,231,.25); margin-bottom: 28px; }
+.arch-headline { font-family: 'Playfair Display', serif; font-size: clamp(26px, 3vw, 40px); color: var(--cream); line-height: 1.2; letter-spacing: -.01em; margin-bottom: 20px; }
+.arch-headline span { color: var(--gold); }
+.arch-body { font-size: 14px; font-weight: 300; color: rgba(243,239,231,.5); line-height: 1.75; margin-bottom: 28px; }
+.arch-creds { display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; }
+.arch-cred { display: flex; align-items: center; gap: 10px; font-size: 13px; color: rgba(243,239,231,.6); }
+.arch-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+.arch-promise { padding: 20px 22px; background: rgba(243,239,231,.06); border-radius: 8px; border-left: 2px solid var(--gold); font-family: 'Playfair Display', serif; font-size: 15px; font-style: italic; color: rgba(243,239,231,.65); line-height: 1.6; }
+
+/* CTA */
+.cta-section { padding: 100px 64px; background: var(--white); }
+.cta-inner { max-width: 620px; margin: 0 auto; text-align: center; }
+.cta-pretag { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: .2em; color: var(--gray); margin-bottom: 24px; }
+.cta-headline { font-family: 'Playfair Display', serif; font-size: clamp(32px, 4.5vw, 52px); color: var(--green); line-height: 1.12; letter-spacing: -.02em; margin-bottom: 16px; }
+.cta-sub { font-size: 15px; font-weight: 300; color: var(--gray); line-height: 1.65; margin-bottom: 40px; max-width: 400px; margin-left: auto; margin-right: auto; }
+.email-form { display: flex; gap: 8px; max-width: 440px; margin: 0 auto 14px; }
+.email-input { flex: 1; padding: 14px 18px; border: 1px solid var(--light); border-radius: 8px; font-size: 14px; font-family: 'Inter', sans-serif; background: var(--white); color: var(--green); outline: none; transition: border-color .2s; }
+.email-input:focus { border-color: var(--green); }
+.email-input::placeholder { color: var(--gray); }
+.email-submit { padding: 14px 22px; background: var(--gold); color: var(--green); border: none; border-radius: 8px; font-size: 11px; font-weight: 500; cursor: pointer; font-family: 'JetBrains Mono', monospace; white-space: nowrap; letter-spacing: .06em; transition: background .2s; }
+.email-submit:hover { background: #f0cc6a; }
+.cta-note { font-size: 11px; color: var(--gray); font-weight: 300; font-style: italic; }
+.success-msg { display: none; padding: 16px 24px; background: rgba(42,83,67,.05); border-radius: 8px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: .08em; color: var(--forest); border: 1px solid rgba(42,83,67,.12); margin-bottom: 14px; }
+
+/* FOOTER */
+footer { background: var(--dark); padding: 48px 60px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+.footer-logo { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--cream); }
+.footer-promise { font-family: 'Playfair Display', serif; font-size: 14px; font-style: italic; color: rgba(243,239,231,.35); }
+.footer-meta { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: .1em; color: rgba(243,239,231,.2); }
+.footer-link { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: .1em; color: var(--gold); text-decoration: none; padding: 8px 16px; border: 1px solid rgba(233,196,106,.25); border-radius: 5px; transition: border-color .2s; }
+.footer-link:hover { border-color: var(--gold); }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  nav { padding: 0 24px; }
+  .nav-links { display: none; }
+  .hero { padding: 0 0 64px 28px; }
+  .hero-note { display: none; }
+  .philosophy-inner, .architect-inner { grid-template-columns: 1fr; }
+  .philosophy-img-wrap, .architect-photo { min-height: 320px; }
+  .philosophy-text, .architect-text { padding: 56px 28px; }
+  .moment, .archetypes, .system, .cta-section { padding: 72px 28px; }
+  .moment-grid, .system-grid { grid-template-columns: 1fr; }
+  .archetypes-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+  .a-card.tall { grid-row: span 1; min-height: 320px; }
+  .a-card { min-height: 260px; }
+  footer { padding: 40px 24px; flex-direction: column; align-items: flex-start; gap: 16px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="nav-logo">DOS</a>
+  <div class="nav-links">
+    <a href="#system" class="nav-link">[ SYSTEM ]</a>
+    <a href="#architect" class="nav-link">[ ARCHITECT ]</a>
+    <a href="#access" class="nav-link">[ ACCESS ]</a>
+  </div>
+  <a href="#access" class="nav-cta">[ INITIALIZE ACCESS ]</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-img"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-archetype">[ ARCHETYPE 02 // THE 1 PM WALL ]</div>
+    <h1 class="hero-headline">
+      Your brain<br>isn't broken.<br>
+      It needed <em>the right OS.</em>
+    </h1>
+    <p class="hero-sub">Built by a neurodivergent brain — for neurodivergent brains. An executive function prosthetic. Not a productivity tool.</p>
+    <div class="hero-actions">
+      <a href="#access" class="btn-gold">[ INITIALIZE ACCESS ] →</a>
+      <a href="https://daily-ops-omega.vercel.app" target="_blank" class="btn-ghost">Try the prototype</a>
+    </div>
+  </div>
+  <div class="hero-note">No spam. Real updates from your neurodivergent friend.</div>
+</section>
+
+<section class="philosophy">
+  <div class="philosophy-inner">
+    <div class="philosophy-img-wrap">
+      <div class="philosophy-img"></div>
+      <div class="philosophy-img-overlay"></div>
+      <div class="philosophy-caption">[ ARCHETYPE 05 // THE FLOOR WORKER ]</div>
+    </div>
+    <div class="philosophy-text">
+      <div class="philosophy-pretag">[ PERMANENT FOUNDATION // NEVER CHANGES ]</div>
+      <div class="philosophy-quote">
+        Your brain isn't broken. It's <span>high-spec hardware running in the wrong environment.</span> DOS is the right OS.
+      </div>
+      <div class="philosophy-rule">
+        Not a productivity tool. Not a wellness app. An executive function prosthetic — built by a neurodivergent brain, for neurodivergent brains. <strong style="color:rgba(243,239,231,.75)">You're not behind. You're mid-process. There's a difference.</strong>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="moment">
+  <div class="moment-inner">
+    <div class="section-tag">[ THE MOMENT DOS WAS BUILT FOR ]</div>
+    <h2 class="moment-headline">It's 1:07 PM. You had a plan. Here's what happens next.</h2>
+    <div class="moment-grid">
+      <div class="moment-card mc1">
+        <div class="moment-time">1:07 PM</div>
+        <div class="mlabel lc">[ THE WALL ]</div>
+        <div class="mtitle lc">Executive battery: zero.</div>
+        <div class="mbody lc">You had a plan this morning. It made sense. Now you're staring at the screen and nothing is moving. This isn't laziness. It's a physiological crash. Dopamine reserves depleted. Prefrontal cortex offline.</div>
+      </div>
+      <div class="moment-card mc2">
+        <div class="moment-time">1:07 PM</div>
+        <div class="mlabel lg">[ DOS DETECTS IT ]</div>
+        <div class="mtitle lg">Inactivity. Time window. Pattern recognized.</div>
+        <div class="mbody lg">DOS sees the inactivity. Reads the time. Knows your medication wear-off window. It doesn't wait for you to notice. It moves first.</div>
+        <div class="mdos">[ OVERRIDE INITIATED ] Executive battery low. 1:07 PM detected.</div>
+      </div>
+      <div class="moment-card mc3">
+        <div class="moment-time">1:08 PM</div>
+        <div class="mlabel lg">[ DOS ACTS ]</div>
+        <div class="mtitle lg">Screen clears. One step surfaces.</div>
+        <div class="mbody lg">No choices. No menus. The screen transitions to Deep Orbit Green. Every unfinished task fades. One micro-step appears. The only thing to do is the simplest possible thing.</div>
+        <div class="mdos">[ CATALYST ] "Open the doc." Step 1 of 6.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="archetypes">
+  <div class="archetypes-inner">
+    <div class="archetypes-pretag">[ RADICAL REALISM // THE SCENES DOS LIVES IN ]</div>
+    <h2 class="archetypes-title">Real rooms. Real people.<br>Real mid-process moments.</h2>
+    <p class="archetypes-sub">DOS doesn't live in productivity magazines. Recognition is the hook — not aspiration.</p>
+    <div class="archetypes-grid">
+
+      <div class="a-card tall">
+        <div class="a-img" style="background-image:url('photo-03-autonomous.jpg'); background-position: center top;"></div>
+        <div class="a-grad"></div>
+        <div class="a-content">
+          <div class="a-num">[ ARCHETYPE 03 ]</div>
+          <div class="a-name">The Autonomous Worker</div>
+          <div class="a-cap">Multiple coffees. Papers everywhere. Her environment is calibrated for her brain — not for a productivity magazine. It doesn't look perfect. It works.</div>
+          <div class="a-dos">DOS: "Your system isn't wrong. It just needed the right OS underneath."</div>
+        </div>
+      </div>
+
+      <div class="a-card">
+        <div class="a-img" style="background-image:url('photo-04-midprocess.jpg');"></div>
+        <div class="a-grad"></div>
+        <div class="a-content">
+          <div class="a-num">[ ARCHETYPE 04 ]</div>
+          <div class="a-name">Mid-Process. Full Stop.</div>
+          <div class="a-cap">Mid-task and paused. Not in distress. Just stopped. Somewhere in the middle of a real day.</div>
+          <div class="a-dos">DOS: "Buffer cleared. Pick one thing."</div>
+        </div>
+      </div>
+
+      <div class="a-card">
+        <div class="a-img" style="background-image:url('photo-05-floor.jpg'); background-position: center top;"></div>
+        <div class="a-grad"></div>
+        <div class="a-content">
+          <div class="a-num">[ ARCHETYPE 05 ]</div>
+          <div class="a-name">The Floor Worker</div>
+          <div class="a-cap">Desk not working today. Moved to the floor. Coffee, M&Ms. The work is getting done anyway.</div>
+          <div class="a-dos">DOS: "Your workspace is wherever your brain works."</div>
+        </div>
+      </div>
+
+      <div class="a-card">
+        <div class="a-img" style="background-image:url('photo-06-blackout.png'); background-position: center;"></div>
+        <div class="a-grad"></div>
+        <div class="a-content">
+          <div class="a-num">[ ARCHETYPE 06 ]</div>
+          <div class="a-name">The Hyperfocus Blackout</div>
+          <div class="a-cap">The pan is burning. He didn't forget. He was running a different process at full capacity.</div>
+          <div class="a-dos">DOS: "You didn't forget the stove. You were hyperfocused. A feature without a governor."</div>
+        </div>
+      </div>
+
+      <div class="a-card">
+        <div class="a-img" style="background-image:url('photo-01-hero.jpg'); background-position: center top;"></div>
+        <div class="a-grad"></div>
+        <div class="a-content">
+          <div class="a-num">[ ARCHETYPE 02 ]</div>
+          <div class="a-name">The 1 PM Wall</div>
+          <div class="a-cap">Full suit. Chair reclined. Eyes closed. Laptop open. Papers around. Proof of real work — then the crash.</div>
+          <div class="a-dos">DOS: "Executive battery at zero. Override initiated. One thing at a time."</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="system" id="system">
+  <div class="system-inner">
+    <div class="section-tag">[ SYSTEM LOGIC // RESEARCH SPEC ]</div>
+    <h2 class="system-headline">Six features.<br>One unbroken sequence.</h2>
+    <p class="system-sub">Every feature solves a named clinical problem. Research cited, not assumed. No streaks. No shame. No toxic positivity.</p>
+    <div class="system-grid">
+      <div class="s-card sc">
+        <div class="s-tag s-td">[ 01 // INPUT LAYER ]</div>
+        <div class="s-name s-nd">Working Memory Buffer</div>
+        <div class="s-desc s-dd">Voice, type, or inbound from Slack and email. Everything drops silently with zero friction. The foundation the entire system runs on.</div>
+        <span class="s-pill" style="background:rgba(42,83,67,.08);color:var(--forest);">Externalization wins</span>
+      </div>
+      <div class="s-card sg">
+        <div class="s-tag s-tl">[ 02 // INTERVENTION ]</div>
+        <div class="s-name s-nl">Executive Override</div>
+        <div class="s-desc s-dl">One tap. No decisions. Screen clears. A 2-minute mission surfaces. The app acts as your executive function when yours is offline.</div>
+        <span class="s-pill">Activation &gt; planning</span>
+      </div>
+      <div class="s-card sf">
+        <div class="s-tag s-tl">[ 03 // DECOMPOSITION ]</div>
+        <div class="s-name s-nl">Task Initiation Catalyst</div>
+        <div class="s-desc s-dl">AI converts "Finish the report" into "Open the doc." One step. Max 8 words. Step 1 always the smallest.</div>
+        <span class="s-pill">Task initiation disorder</span>
+      </div>
+      <div class="s-card sc">
+        <div class="s-tag s-td">[ 04 // RECOVERY ]</div>
+        <div class="s-name s-nd">Dopa-Menu</div>
+        <div class="s-desc s-dd">Appetizers (2 min), Sides (concurrent audio), Entrees (time-boxed), Desserts (guardrailed). Built before the crash hits — when the brain can still decide.</div>
+        <span class="s-pill" style="background:rgba(42,83,67,.08);color:var(--forest);">Reinforcer menus</span>
+      </div>
+      <div class="s-card sg">
+        <div class="s-tag s-tl">[ 05 // ACCOUNTABILITY ]</div>
+        <div class="s-name s-nl">Body Double Link</div>
+        <div class="s-desc s-dl">One tap. Read-only link. No app download. Partner sees your current step only. No monitoring. No PDA trigger. User-initiated, always.</div>
+        <span class="s-pill">Presence, not surveillance</span>
+      </div>
+      <div class="s-card sf">
+        <div class="s-tag s-tl">[ 06 // RETENTION ]</div>
+        <div class="s-name s-nl">Variable Rewards Engine</div>
+        <div class="s-desc s-dl">Visor Gold pulse on every step. Dynamic haptics. No streaks. No near-miss mechanics. The dopamine loop closes on every step.</div>
+        <span class="s-pill">Fixed core, variable spice</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="architect" id="architect">
+  <div class="architect-inner">
+    <div class="architect-photo">
+      <div class="architect-photo-tag">[ ARCHITECT_ID: MARCOS_CUELLAR ]</div>
+    </div>
+    <div class="architect-text">
+      <div class="arch-pretag">[ DEEP FOCUS CREATOR // 3:15 AM ]</div>
+      <h2 class="arch-headline">He's been in this for <span>hours.</span><br>The environment is the system.</h2>
+      <p class="arch-body">DOS was built out of personal frustration with tools designed for neurotypical operating systems. Not from a whiteboard. From 30 years of lived experience, hundreds of real interviews, and the clinical research that explains why most productivity apps fail neurodivergent brains before the first task is even opened.</p>
+      <div class="arch-creds">
+        <div class="arch-cred"><div class="arch-dot"></div>30+ years of ADHD lived experience in the build</div>
+        <div class="arch-cred"><div class="arch-dot"></div>Clinically grounded. Psychiatrist and psychologist recommendable.</div>
+        <div class="arch-cred"><div class="arch-dot"></div>Built on Claude API. Dopamine science from the research up.</div>
+        <div class="arch-cred"><div class="arch-dot"></div>FOR NEURODIVERGENT. FROM A NEURODIVERGENT.</div>
+      </div>
+      <div class="arch-promise">
+        "We will never make anyone feel like they should have their life more together. DOS exists because the world already does that. We are the first thing in their day that doesn't."
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section" id="access">
+  <div class="cta-inner">
+    <div class="cta-pretag">[ INITIALIZE ACCESS ]</div>
+    <h2 class="cta-headline">We're building this for a specific kind of brain.</h2>
+    <p class="cta-sub">If that's yours, you already know. Get early access to Phase 2 — the Override, the Catalyst, the Dopa-Menu.</p>
+    <form class="email-form" action="https://formspree.io/f/mjgaggjg" method="POST" id="email-form">
+      <input type="email" name="email" class="email-input" placeholder="your@email.com" required>
+      <button type="submit" class="email-submit">[ INITIALIZE ]</button>
+    </form>
+    <div class="success-msg" id="success-msg">[ ACCESS INITIALIZED ] — You're in. We'll be in touch.</div>
+    <p class="cta-note">No spam. No streak notifications. Just the build. dosystems.app · Marcos Cuellar 2026</p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">DOS</div>
+  <div class="footer-promise">"You're mid-process. There's a difference."</div>
+  <div class="footer-meta">[ FOR NEURODIVERGENT // FROM A NEURODIVERGENT ] · 2026</div>
+  <a href="https://daily-ops-omega.vercel.app" target="_blank" class="footer-link">[ TRY PROTOTYPE ]</a>
+</footer>
+
+<script>
+document.getElementById('email-form').addEventListener('submit', function(e) {
+  e.preventDefault();
+  fetch(this.action, { method: 'POST', body: new FormData(this), headers: { 'Accept': 'application/json' } })
+    .then(() => { this.style.display = 'none'; document.getElementById('success-msg').style.display = 'block'; })
+    .catch(() => { this.style.display = 'none'; document.getElementById('success-msg').style.display = 'block'; });
+});
+</script>
+</body>
+</html>
