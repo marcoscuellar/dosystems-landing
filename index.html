@@ -6,7 +6,7 @@
 <meta name="description" content="DOS is an AI-powered executive function prosthetic built for neurodivergent brains. Not a productivity app. An operating system.">
 <title>DOS — Daily Operating System</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&family=Poppins:wght@800&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 :root {
@@ -113,7 +113,7 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 60px;
 /* ARCHITECT */
 .architect { background: var(--green); }
 .architect-inner { display: grid; grid-template-columns: 1fr 1fr; min-height: 600px; }
-.architect-photo { position: relative; overflow: hidden; background: url('photo-07-architect.jpg') center/cover no-repeat; min-height: 500px; }
+.architect-photo { position: relative; overflow: hidden; background: url('MARCOS_7.jpg') center/cover no-repeat; background-position: 50% 20%; min-height: 500px; }
 .architect-photo-tag { position: absolute; bottom: 20px; right: 20px; font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: .12em; color: var(--gold); background: rgba(42,83,67,.7); padding: 7px 12px; border-radius: 4px; border: 1px solid rgba(233,196,106,.25); }
 .architect-text { padding: 80px 64px; display: flex; flex-direction: column; justify-content: center; }
 .arch-pretag { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: .2em; color: rgba(243,239,231,.25); margin-bottom: 28px; }
@@ -140,13 +140,84 @@ nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 60px;
 .cta-note { font-size: 11px; color: var(--gray); font-weight: 300; font-style: italic; }
 .success-msg { display: none; padding: 16px 24px; background: rgba(42,83,67,.05); border-radius: 8px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: .08em; color: var(--forest); border: 1px solid rgba(42,83,67,.12); margin-bottom: 14px; }
 
+/* ============================================
+   TRY PROTOTYPE — FULL SECTION (NEW)
+   ============================================ */
+.prototype-section {
+  background: var(--dark);
+  padding: 100px 64px;
+  border-top: 1px solid rgba(233,196,106,.12);
+}
+.prototype-inner {
+  max-width: 1060px;
+  margin: 0 auto;
+}
+.prototype-pretag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: .22em;
+  color: rgba(233,196,106,.5);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.prototype-pretag::after { content: ''; width: 40px; height: 1px; background: rgba(233,196,106,.2); }
+.prototype-headline {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: clamp(32px, 4.5vw, 56px);
+  color: var(--white);
+  line-height: 1.1;
+  margin-bottom: 16px;
+  letter-spacing: -.02em;
+  max-width: 640px;
+}
+.prototype-headline span {
+  color: var(--gold);
+  font-style: italic;
+}
+.prototype-sub {
+  font-size: 15px;
+  font-weight: 300;
+  color: rgba(255,255,255,.4);
+  line-height: 1.65;
+  margin-bottom: 44px;
+  max-width: 480px;
+}
+.prototype-btn {
+  display: inline-block;
+  padding: 18px 48px;
+  background: var(--gold);
+  color: var(--green);
+  border: none;
+  border-radius: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: .12em;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background .2s, transform .15s, box-shadow .2s;
+}
+.prototype-btn:hover {
+  background: #f5d47a;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(233,196,106,.28);
+}
+.prototype-note {
+  margin-top: 18px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: .1em;
+  color: rgba(255,255,255,.18);
+}
+
 /* FOOTER */
-footer { background: var(--dark); padding: 48px 60px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+footer { background: var(--dark); padding: 36px 60px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; border-top: 1px solid rgba(255,255,255,.04); }
 .footer-logo { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--cream); }
 .footer-promise { font-family: 'Playfair Display', serif; font-size: 14px; font-style: italic; color: rgba(243,239,231,.35); }
 .footer-meta { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: .1em; color: rgba(243,239,231,.2); }
-.footer-link { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: .1em; color: var(--gold); text-decoration: none; padding: 8px 16px; border: 1px solid rgba(233,196,106,.25); border-radius: 5px; transition: border-color .2s; }
-.footer-link:hover { border-color: var(--gold); }
 
 /* RESPONSIVE */
 @media (max-width: 900px) {
@@ -163,6 +234,8 @@ footer { background: var(--dark); padding: 48px 60px; display: flex; align-items
   .a-card.tall { grid-row: span 1; min-height: 320px; }
   .a-card { min-height: 260px; }
   footer { padding: 40px 24px; flex-direction: column; align-items: flex-start; gap: 16px; }
+  .prototype-section { padding: 64px 28px; }
+  .prototype-btn { padding: 18px 36px; font-size: 13px; }
 }
 </style>
 </head>
@@ -250,7 +323,6 @@ footer { background: var(--dark); padding: 48px 60px; display: flex; align-items
     <h2 class="archetypes-title">Real rooms. Real people.<br>Real mid-process moments.</h2>
     <p class="archetypes-sub">DOS doesn't live in productivity magazines. Recognition is the hook — not aspiration.</p>
     <div class="archetypes-grid">
-
       <div class="a-card tall">
         <div class="a-img" style="background-image:url('photo-03-autonomous.jpg'); background-position: center top;"></div>
         <div class="a-grad"></div>
@@ -261,7 +333,6 @@ footer { background: var(--dark); padding: 48px 60px; display: flex; align-items
           <div class="a-dos">DOS: "Your system isn't wrong. It just needed the right OS underneath."</div>
         </div>
       </div>
-
       <div class="a-card">
         <div class="a-img" style="background-image:url('photo-04-midprocess.jpg');"></div>
         <div class="a-grad"></div>
@@ -272,7 +343,6 @@ footer { background: var(--dark); padding: 48px 60px; display: flex; align-items
           <div class="a-dos">DOS: "Buffer cleared. Pick one thing."</div>
         </div>
       </div>
-
       <div class="a-card">
         <div class="a-img" style="background-image:url('photo-05-floor.jpg'); background-position: center top;"></div>
         <div class="a-grad"></div>
@@ -283,7 +353,6 @@ footer { background: var(--dark); padding: 48px 60px; display: flex; align-items
           <div class="a-dos">DOS: "Your workspace is wherever your brain works."</div>
         </div>
       </div>
-
       <div class="a-card">
         <div class="a-img" style="background-image:url('photo-06-blackout.png'); background-position: center;"></div>
         <div class="a-grad"></div>
@@ -294,7 +363,6 @@ footer { background: var(--dark); padding: 48px 60px; display: flex; align-items
           <div class="a-dos">DOS: "You didn't forget the stove. You were hyperfocused. A feature without a governor."</div>
         </div>
       </div>
-
       <div class="a-card">
         <div class="a-img" style="background-image:url('photo-01-hero.jpg'); background-position: center top;"></div>
         <div class="a-grad"></div>
@@ -305,7 +373,6 @@ footer { background: var(--dark); padding: 48px 60px; display: flex; align-items
           <div class="a-dos">DOS: "Executive battery at zero. Override initiated. One thing at a time."</div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
@@ -392,11 +459,24 @@ footer { background: var(--dark); padding: 48px 60px; display: flex; align-items
   </div>
 </section>
 
+<!-- ============================================
+     TRY PROTOTYPE — FULL SECTION
+     ============================================ -->
+<section class="prototype-section">
+  <div class="prototype-inner">
+    <div class="prototype-pretag">[ PHASE 1 // LIVE PROTOTYPE ]</div>
+    <h2 class="prototype-headline">The prototype<br>is <span>live right now.</span></h2>
+    <p class="prototype-sub">Not a mockup. Not a demo. A working version of DOS running on the Claude API. Open it. Use it. See what your brain feels like with the right OS.</p>
+    <a href="https://daily-ops-omega.vercel.app" target="_blank" class="prototype-btn">[ TRY THE PROTOTYPE ] →</a>
+    <div class="prototype-note">Opens in a new tab · No account required · Built on Claude API</div>
+  </div>
+</section>
+
+
 <footer>
   <div class="footer-logo">DOS</div>
   <div class="footer-promise">"You're mid-process. There's a difference."</div>
   <div class="footer-meta">[ FOR NEURODIVERGENT // FROM A NEURODIVERGENT ] · 2026</div>
-  <a href="https://daily-ops-omega.vercel.app" target="_blank" class="footer-link">[ TRY PROTOTYPE ]</a>
 </footer>
 
 <script>
