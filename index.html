@@ -1,505 +1,366 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="DOS turns mental clutter into clear next steps. Built for your brain. Not their expectations.">
-<title>DOS — Daily Operating System</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&family=Poppins:wght@800&display=swap" rel="stylesheet">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>DOS — Landing Page Mockup</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
 <style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-:root {
-  --green: #2A5343; --white: #FFFFFF; --gold: #E9C46A;
-  --forest: #3D7A62; --gray: #888880; --light: #E8E6E0;
-  --cream: #F3EFE7; --dark: #151C19;
-}
-html { scroll-behavior: smooth; }
-body { background: var(--white); color: var(--green); font-family: 'Inter', sans-serif; overflow-x: hidden; }
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:#fff;color:#111}
+.page{max-width:960px;margin:0 auto;background:#fff}
 
-/* NAV */
-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 60px; height: 64px; display: flex; align-items: center; justify-content: space-between; background: transparent; transition: background .3s; }
-nav.scrolled { background: rgba(255,255,255,.95); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(42,83,67,.07); }
-nav.scrolled .nav-logo { color: var(--green); }
-nav.scrolled .nav-link { color: var(--gray); }
-nav.scrolled .nav-link:hover { color: var(--green); }
-.nav-logo { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--white); text-decoration: none; transition: color .3s; }
-.nav-links { display: flex; gap: 28px; align-items: center; }
-.nav-link { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: .14em; color: rgba(255,255,255,.65); text-decoration: none; transition: color .2s; }
-.nav-link:hover { color: var(--white); }
-.nav-cta { padding: 9px 20px; background: var(--gold); color: #1a1200; border: none; border-radius: 999px; font-size: 11px; font-weight: 500; cursor: pointer; text-decoration: none; letter-spacing: .06em; font-family: 'JetBrains Mono', monospace; transition: background .2s; }
-.nav-cta:hover { background: #f0cc6a; }
+.s1{background:#1a2218;border-radius:20px;overflow:hidden;position:relative;min-height:480px;display:flex;flex-direction:column;justify-content:flex-end;padding:3rem}
+.s1-photo{position:absolute;inset:0;background:url('photo-01b-hero.jpg') center/cover no-repeat;border-radius:20px}
+.s1-bg{position:absolute;inset:0;background:linear-gradient(105deg,rgba(15,22,14,.95) 0%,rgba(15,22,14,.5) 50%,rgba(15,22,14,.15) 100%)}
+.s1-eyebrow{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;color:rgba(255,255,255,.35);margin-bottom:1rem;position:relative;z-index:2}
+.s1-h{font-family:'Playfair Display',serif;font-size:54px;color:#fff;line-height:1.08;margin-bottom:1rem;position:relative;z-index:2}
+.s1-h em{font-style:italic}
+.s1-sub{font-size:15px;color:rgba(255,255,255,.6);max-width:420px;line-height:1.65;margin-bottom:2rem;position:relative;z-index:2}
+.s1-btns{display:flex;gap:10px;position:relative;z-index:2}
+.btn-gold{background:#E9C46A;color:#1a1200;border:none;border-radius:999px;padding:13px 28px;font-size:13px;font-weight:500;cursor:pointer}
+.btn-ghost{background:rgba(255,255,255,.08);color:rgba(255,255,255,.75);border:0.5px solid rgba(255,255,255,.2);border-radius:999px;padding:13px 28px;font-size:13px;cursor:pointer}
+.s1-note{position:absolute;bottom:1.5rem;right:2rem;font-size:11px;color:rgba(255,255,255,.2);z-index:2;font-style:italic}
 
-/* HERO */
-.hero { position: relative; height: 100vh; min-height: 680px; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 0 80px 64px; overflow: hidden; }
-.hero-img { position: absolute; inset: 0; background: url('photo-01b-hero.jpg') center/cover no-repeat; }
-.hero-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(15,26,20,.92) 0%, rgba(15,26,20,.5) 50%, rgba(15,26,20,.08) 100%); }
-.hero-content { position: relative; z-index: 2; max-width: 780px; }
-.hero-archetype { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: .22em; color: rgba(255,255,255,.45); margin-bottom: 20px; }
-.hero-headline { font-family: 'Playfair Display', serif; font-size: clamp(46px, 6.5vw, 82px); color: var(--white); line-height: 1.04; letter-spacing: -.02em; margin-bottom: 20px; }
-.hero-headline em { font-style: italic; color: var(--white); }
-.hero-sub { font-size: 16px; font-weight: 300; color: rgba(255,255,255,.6); max-width: 460px; line-height: 1.65; margin-bottom: 36px; }
-.hero-actions { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
-.btn-gold { padding: 14px 30px; background: var(--gold); color: var(--green); border: none; border-radius: 999px; font-size: 14px; font-weight: 500; cursor: pointer; text-decoration: none; letter-spacing: .02em; font-family: 'Inter', sans-serif; transition: background .2s, transform .15s; }
-.btn-gold:hover { background: #f0cc6a; transform: translateY(-1px); }
-.btn-ghost { padding: 14px 30px; background: rgba(255,255,255,0.08); color: rgba(255,255,255,.75); border: 1px solid rgba(255,255,255,.2); border-radius: 999px; font-size: 14px; cursor: pointer; text-decoration: none; font-family: 'Inter', sans-serif; letter-spacing: .02em; transition: border-color .2s, color .2s; }
-.btn-ghost:hover { border-color: rgba(255,255,255,.45); color: var(--white); }
-.hero-note { position: absolute; bottom: 30px; right: 60px; z-index: 2; font-size: 11px; color: rgba(255,255,255,.3); font-style: italic; }
+.ribbon{background:#E9C46A;padding:1.5rem 3rem;margin-top:12px;display:flex;flex-direction:column;gap:.6rem;border-top:0.5px solid rgba(0,0,0,.05);border-bottom:0.5px solid rgba(0,0,0,.05)}
+.ribbon-eyebrow{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.12em;color:rgba(42,83,67,.5)}
+.ribbon-quote{font-family:'Inter',sans-serif;font-size:17px;font-weight:500;font-style:normal;color:#1a1200;line-height:1.5;max-width:700px}
+.ribbon-attr{font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(42,83,67,.55);letter-spacing:.06em}
 
-/* PHILOSOPHY */
-.philosophy { background: var(--green); }
-.philosophy-inner { display: grid; grid-template-columns: 1fr 1fr; min-height: 580px; }
-.philosophy-img-wrap { position: relative; overflow: hidden; }
-.philosophy-img { position: absolute; inset: 0; background: url('photo-02-philosophy.jpg') center/cover no-repeat; background-position: 50% 30%; }
-.philosophy-img-overlay { position: absolute; inset: 0; background: rgba(42,83,67,.15); }
-.philosophy-caption { position: absolute; bottom: 20px; left: 20px; font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: .12em; color: rgba(243,239,231,.6); background: rgba(42,83,67,.6); padding: 6px 10px; border-radius: 4px; }
-.philosophy-text { padding: 80px 64px; display: flex; flex-direction: column; justify-content: center; }
-.philosophy-pretag { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: .2em; color: rgba(243,239,231,.25); margin-bottom: 28px; }
-.philosophy-quote { font-family: 'Playfair Display', serif; font-size: clamp(22px, 2.6vw, 34px); color: var(--cream); line-height: 1.45; margin-bottom: 24px; }
-.philosophy-quote span { color: var(--gold); }
-.philosophy-rule { font-size: 13px; font-weight: 300; color: rgba(243,239,231,.45); line-height: 1.7; border-top: 1px solid rgba(243,239,231,.08); padding-top: 24px; }
+.s2{padding:5rem 3rem;background:#fff;border-bottom:0.5px solid rgba(42,83,67,.1)}
+.s2-header{margin-bottom:2.5rem}
+.s2-tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;color:#3D7A62;margin-bottom:1rem}
+.s2-h{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:#111;line-height:1.25;margin-bottom:.75rem;max-width:680px}
+.s2-sub{font-size:15px;color:#888880;line-height:1.7;max-width:560px}
+.s2-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.s2-card{position:relative;border-radius:20px;overflow:hidden;cursor:pointer;aspect-ratio:1;transition:all .35s ease}
+.s2-blurb{cursor:default}
+.s2-card.expanded{aspect-ratio:unset;min-height:380px;grid-column:span 2}
+.s2-photo-body{font-size:16px;color:rgba(255,255,255,.8);line-height:1.65;margin-bottom:.75rem}
+.s2-photo-yeah{font-family:'Playfair Display',serif;font-size:26px;font-style:italic;color:#fff;margin-bottom:.75rem}
+.s2-photo-sub{font-size:14px;color:rgba(255,255,255,.5);line-height:1.65}
+.s2-card-bg{position:absolute;inset:0;transition:transform .35s ease}
+.s2-card:hover .s2-card-bg{transform:scale(1.02)}
+.s2-card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,18,12,.92) 0%,rgba(10,18,12,.45) 55%,rgba(10,18,12,.15) 100%)}
+.s2-card-content{position:relative;z-index:2;padding:1.75rem;display:flex;flex-direction:column;justify-content:flex-end;height:100%}
+.s2-card-num{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;color:rgba(233,196,106,.55);margin-bottom:.5rem}
+.s2-card-name{font-family:'Playfair Display',serif;font-size:30px;color:#fff;line-height:1.2;margin-bottom:.5rem}
+.s2-card-hint{font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,.3);letter-spacing:.06em;margin-top:.5rem}
+.s2-card-expand{display:none;margin-top:1.25rem;border-top:0.5px solid rgba(255,255,255,.1);padding-top:1.25rem}
+.s2-card.expanded .s2-card-expand{display:block}
+.s2-card-body{font-size:15px;color:rgba(255,255,255,.7);line-height:1.7;margin-bottom:1rem;max-width:600px}
+.s2-card-link{font-family:'JetBrains Mono',monospace;font-size:11px;color:#E9C46A;letter-spacing:.08em;cursor:pointer}
+.s2-card-close{font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,.35);letter-spacing:.08em;margin-top:1rem;cursor:pointer}
+.s2-card.expanded .s2-card-hint{display:none}
+.s2-photo-card{position:relative;border-radius:20px;overflow:hidden;min-height:320px;display:flex;flex-direction:column;justify-content:flex-end;margin-top:0}
+.s2-photo-bg{position:absolute;inset:0;background:url('photo-05-floor.jpg') center/cover no-repeat;background-color:#2c3028}
+.s2-photo-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(15,22,14,.92) 0%,rgba(15,22,14,.4) 60%,rgba(15,22,14,.1) 100%)}
+.s2-photo-content{position:relative;z-index:2;padding:2rem}
+.s2-photo-body{font-size:15px;color:rgba(255,255,255,.75);line-height:1.65;margin-bottom:.75rem}
+.s2-photo-yeah{font-family:'Playfair Display',serif;font-size:22px;font-style:italic;color:#fff;margin-bottom:.75rem}
+.s2-photo-sub{font-size:13px;color:rgba(255,255,255,.5);line-height:1.65}
 
-/* THE MOMENT */
-.moment { padding: 100px 64px; background: var(--white); }
-.moment-inner { max-width: 1060px; margin: 0 auto; }
-.section-tag { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: .2em; color: var(--gray); margin-bottom: 48px; display: flex; align-items: center; gap: 14px; }
-.section-tag::after { content: ''; width: 40px; height: 1px; background: var(--light); }
-.moment-headline { font-family: 'Playfair Display', serif; font-size: clamp(30px, 3.8vw, 50px); color: var(--green); line-height: 1.15; letter-spacing: -.02em; max-width: 600px; margin-bottom: 48px; }
-.moment-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px; }
-.moment-card { padding: 32px 28px; }
-.mc1 { background: var(--cream); }
-.mc2 { background: var(--green); }
-.mc3 { background: #1E3329; }
-.moment-time { font-family: 'JetBrains Mono', monospace; font-size: 20px; color: var(--gold); margin-bottom: 12px; }
-.mlabel { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: .12em; margin-bottom: 8px; }
-.mlabel.lg { color: rgba(243,239,231,.35); } .mlabel.lc { color: var(--gray); }
-.mtitle { font-size: 15px; font-weight: 500; margin-bottom: 8px; line-height: 1.3; }
-.mtitle.lg { color: var(--cream); } .mtitle.lc { color: var(--green); }
-.mbody { font-size: 13px; font-weight: 300; line-height: 1.65; }
-.mbody.lg { color: rgba(243,239,231,.5); } .mbody.lc { color: var(--gray); }
-.mdos { margin-top: 16px; padding: 10px 12px; background: rgba(233,196,106,.12); border-radius: 5px; font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--gold); letter-spacing: .06em; line-height: 1.5; border-left: 2px solid var(--gold); }
+.s3{display:grid;grid-template-columns:1fr 1fr;min-height:500px;border-bottom:0.5px solid rgba(42,83,67,.1);background:#fff}
+.s3-left{background:#f9f7f4;padding:2.5rem;display:flex;flex-direction:column;border-right:0.5px solid rgba(42,83,67,.08);justify-content:space-between}
+.s3-app{background:#fff;border-radius:16px;padding:1.25rem;border:0.5px solid rgba(0,0,0,.08);flex:1}
+.s3-app-header{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;color:#888880;margin-bottom:1rem;padding-bottom:.75rem;border-bottom:0.5px solid rgba(0,0,0,.06)}
+.s3-dump{background:#f5f3f0;border-radius:10px;padding:1rem;font-size:12px;color:#777;line-height:1.7;margin-bottom:.75rem;font-style:italic}
+.s3-arrow-down{text-align:center;font-size:18px;color:#3D7A62;margin:.5rem 0}
+.s3-block{display:flex;gap:10px;padding:.6rem .75rem;background:#fff;border-radius:8px;border-left:3px solid #2A5343;border:0.5px solid rgba(42,83,67,.08);border-left:3px solid #2A5343;margin-bottom:6px}
+.s3-time{font-family:'JetBrains Mono',monospace;font-size:10px;color:#888880;white-space:nowrap;padding-top:1px}
+.s3-task{font-size:12px;font-weight:500;color:#2A5343}
+.s3-note{font-size:11px;color:#888880}
+.s3-right{padding:4rem 3rem;display:flex;flex-direction:column;justify-content:center;background:#fff}
+.s3-tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;color:#3D7A62;margin-bottom:1rem}
+.s3-h{font-family:'Playfair Display',serif;font-size:28px;color:#111;line-height:1.25;margin-bottom:1rem}
+.s3-body{font-size:14px;color:#888880;line-height:1.8;margin-bottom:1.5rem}
+.s3-result{background:#f9f7f4;border-radius:10px;padding:1rem 1.25rem;font-size:13px;color:#2A5343;line-height:1.6;border-left:3px solid #2A5343}
 
-/* ARCHETYPES */
-.archetypes { padding: 100px 64px; background: var(--dark); }
-.archetypes-inner { max-width: 1060px; margin: 0 auto; }
-.archetypes-pretag { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: .2em; color: rgba(243,239,231,.25); margin-bottom: 16px; }
-.archetypes-title { font-family: 'Playfair Display', serif; font-size: clamp(28px, 3.5vw, 44px); color: var(--cream); line-height: 1.15; letter-spacing: -.02em; margin-bottom: 12px; }
-.archetypes-sub { font-size: 14px; font-weight: 300; color: rgba(243,239,231,.4); max-width: 460px; line-height: 1.6; margin-bottom: 52px; }
-.archetypes-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; grid-template-rows: 310px 310px; gap: 2px; }
-.a-card { position: relative; overflow: hidden; }
-.a-card.tall { grid-row: span 2; }
-.a-img { position: absolute; inset: 0; background-size: cover; background-position: center; transition: transform .5s ease; }
-.a-card:hover .a-img { transform: scale(1.04); }
-.a-grad { position: absolute; inset: 0; background: linear-gradient(to top, rgba(15,26,20,.95) 0%, transparent 55%); }
-.a-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 24px; }
-.a-num { font-family: 'JetBrains Mono', monospace; font-size: 8px; letter-spacing: .18em; color: rgba(233,196,106,.55); margin-bottom: 4px; }
-.a-name { font-size: 14px; font-weight: 500; color: var(--white); margin-bottom: 4px; }
-.a-cap { font-size: 11px; font-weight: 300; color: rgba(255,255,255,.45); line-height: 1.4; }
-.a-dos { margin-top: 8px; font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--gold); letter-spacing: .06em; font-style: italic; line-height: 1.4; }
+.s4{background:#fff;padding:5rem 3rem;border-top:0.5px solid rgba(42,83,67,.1);border-bottom:0.5px solid rgba(42,83,67,.1)}
+.s4-tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;color:#3D7A62;margin-bottom:1rem}
+.s4-h{font-family:'Playfair Display',serif;font-size:36px;color:#111;line-height:1.2;margin-bottom:.5rem}
+.s4-sub{font-size:14px;color:#888880;max-width:480px;line-height:1.7;margin-bottom:2.5rem}
+.mcard-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.mcard{position:relative;border-radius:20px;overflow:hidden;cursor:pointer;aspect-ratio:1;transition:all .35s ease}
+.mcard.expanded{aspect-ratio:unset;min-height:400px;grid-column:span 2}
+.mcard-bg{position:absolute;inset:0;background:#1a2218;transition:transform .35s ease}
+.mcard:hover .mcard-bg{transform:scale(1.01)}
+.mcard-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,18,12,.92) 0%,rgba(10,18,12,.4) 60%,rgba(10,18,12,.1) 100%)}
+.mcard-content{position:relative;z-index:2;padding:1.75rem;display:flex;flex-direction:column;justify-content:flex-end;height:100%}
+.mc-num{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;color:rgba(233,196,106,.55);margin-bottom:.5rem}
+.mc-name{font-family:'Playfair Display',serif;font-size:30px;color:#fff;line-height:1.2;margin-bottom:.5rem}
+.mc-pill{display:inline-block;background:rgba(233,196,106,.15);color:#E9C46A;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.06em;padding:4px 12px;border-radius:999px;width:fit-content}
+.mc-expand{display:none;margin-top:1.25rem;border-top:0.5px solid rgba(255,255,255,.1);padding-top:1.25rem}
+.mcard.expanded .mc-expand{display:block}
+.mc-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;color:rgba(233,196,106,.6);margin-bottom:5px;margin-top:1rem}
+.mc-body{font-size:16px;color:rgba(255,255,255,.65);line-height:1.7}
+.mc-result{font-size:17px;color:#fff;line-height:1.65;font-weight:500}
+.mc-close{display:none;font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,.4);letter-spacing:.08em;margin-top:1rem;cursor:pointer}
+.mcard.expanded .mc-close{display:block}
+.mc-hint{font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,.3);letter-spacing:.06em;margin-top:.75rem}
+.mcard.expanded .mc-hint{display:none}
+.mc-teaser{font-size:15px;color:rgba(255,255,255,.7);line-height:1.6;margin-top:.5rem}
+.mcard.expanded .mc-teaser{display:none}
 
-/* SYSTEM */
-.system { padding: 100px 64px; background: var(--white); }
-.system-inner { max-width: 1060px; margin: 0 auto; }
-.system-headline { font-family: 'Playfair Display', serif; font-size: clamp(30px, 3.8vw, 48px); color: var(--green); line-height: 1.15; letter-spacing: -.02em; max-width: 560px; margin-bottom: 12px; margin-top: 8px; }
-.system-sub { font-size: 14px; font-weight: 300; color: var(--gray); max-width: 460px; line-height: 1.65; margin-bottom: 52px; }
-.system-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px; }
-.s-card { padding: 28px 24px; }
-.sg { background: var(--green); } .sf { background: var(--forest); } .sc { background: var(--cream); }
-.s-tag { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: .12em; margin-bottom: 8px; }
-.s-tl { color: rgba(243,239,231,.3); } .s-td { color: var(--gray); }
-.s-name { font-size: 15px; font-weight: 500; margin-bottom: 8px; line-height: 1.25; }
-.s-nl { color: var(--cream); } .s-nd { color: var(--green); }
-.s-desc { font-size: 12px; font-weight: 300; line-height: 1.65; }
-.s-dl { color: rgba(243,239,231,.5); } .s-dd { color: var(--gray); }
-.s-pill { display: inline-block; margin-top: 12px; padding: 4px 10px; border-radius: 20px; font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: .08em; background: rgba(233,196,106,.15); color: var(--gold); }
-.s-pill-f { background: rgba(243,239,231,.08); color: rgba(243,239,231,.4); }
+.s5{display:grid;grid-template-columns:1fr 1fr;min-height:400px;background:#fff;border-top:0.5px solid rgba(42,83,67,.1)}
+.s5-left{padding:4rem 3rem;display:flex;flex-direction:column;justify-content:center}
+.s5-tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;color:#888880;margin-bottom:1rem}
+.s5-h{font-family:'Playfair Display',serif;font-size:32px;color:#111;line-height:1.2;margin-bottom:.75rem}
+.s5-body{font-size:14px;color:#888880;line-height:1.75;margin-bottom:2rem;max-width:380px}
+.s5-links{display:flex;flex-direction:column;gap:10px;max-width:340px}
+.s5-link{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;background:#f9f7f4;border-radius:999px;border:0.5px solid rgba(42,83,67,.12);font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;color:#2A5343;cursor:pointer}
+.s5-right{background:url('photo-04-midprocess.jpg') center/cover no-repeat;min-height:400px;display:flex;align-items:center;justify-content:center;border-left:0.5px solid rgba(42,83,67,.08)}
+.s5-photo-hint{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;color:rgba(60,50,40,.3)}
 
-/* ARCHITECT */
-.architect { background: var(--green); }
-.architect-inner { display: grid; grid-template-columns: 1fr 1fr; min-height: 600px; }
-.architect-photo { position: relative; overflow: hidden; background: url('MARCOS_7.jpg') center/cover no-repeat; background-position: 50% 20%; min-height: 500px; }
-.architect-photo-tag { position: absolute; bottom: 20px; right: 20px; font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: .12em; color: var(--gold); background: rgba(42,83,67,.7); padding: 7px 12px; border-radius: 4px; border: 1px solid rgba(233,196,106,.25); }
-.architect-text { padding: 80px 64px; display: flex; flex-direction: column; justify-content: center; }
-.arch-pretag { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: .2em; color: rgba(243,239,231,.25); margin-bottom: 28px; }
-.arch-headline { font-family: 'Playfair Display', serif; font-size: clamp(26px, 3vw, 40px); color: var(--cream); line-height: 1.2; letter-spacing: -.01em; margin-bottom: 20px; }
-.arch-headline span { color: var(--gold); }
-.arch-body { font-size: 14px; font-weight: 300; color: rgba(243,239,231,.5); line-height: 1.75; margin-bottom: 28px; }
-.arch-creds { display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; }
-.arch-cred { display: flex; align-items: center; gap: 10px; font-size: 13px; color: rgba(243,239,231,.6); }
-.arch-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
-.arch-promise { padding: 20px 22px; background: rgba(243,239,231,.06); border-radius: 8px; border-left: 2px solid var(--gold); font-family: 'Playfair Display', serif; font-size: 15px; font-style: italic; color: rgba(243,239,231,.65); line-height: 1.6; }
-
-/* CTA */
-.cta-section { padding: 100px 64px; background: var(--white); }
-.cta-inner { max-width: 620px; margin: 0 auto; text-align: center; }
-.cta-pretag { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: .2em; color: var(--gray); margin-bottom: 24px; }
-.cta-headline { font-family: 'Playfair Display', serif; font-size: clamp(32px, 4.5vw, 52px); color: var(--green); line-height: 1.12; letter-spacing: -.02em; margin-bottom: 16px; }
-.cta-sub { font-size: 15px; font-weight: 300; color: var(--gray); line-height: 1.65; margin-bottom: 40px; max-width: 400px; margin-left: auto; margin-right: auto; }
-.email-form { display: flex; gap: 8px; max-width: 440px; margin: 0 auto 14px; }
-.email-input { flex: 1; padding: 14px 18px; border: 1px solid var(--light); border-radius: 8px; font-size: 14px; font-family: 'Inter', sans-serif; background: var(--white); color: var(--green); outline: none; transition: border-color .2s; }
-.email-input:focus { border-color: var(--green); }
-.email-input::placeholder { color: var(--gray); }
-.email-submit { padding: 14px 22px; background: var(--gold); color: var(--green); border: none; border-radius: 8px; font-size: 11px; font-weight: 500; cursor: pointer; font-family: 'JetBrains Mono', monospace; white-space: nowrap; letter-spacing: .06em; transition: background .2s; }
-.email-submit:hover { background: #f0cc6a; }
-.cta-note { font-size: 11px; color: var(--gray); font-weight: 300; font-style: italic; }
-.success-msg { display: none; padding: 16px 24px; background: rgba(42,83,67,.05); border-radius: 8px; font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: .08em; color: var(--forest); border: 1px solid rgba(42,83,67,.12); margin-bottom: 14px; }
-
-/* ============================================
-   TRY PROTOTYPE — FULL SECTION (NEW)
-   ============================================ */
-.prototype-section {
-  background: var(--dark);
-  padding: 100px 64px;
-  border-top: 1px solid rgba(233,196,106,.12);
-}
-.prototype-inner {
-  max-width: 1060px;
-  margin: 0 auto;
-}
-.prototype-pretag {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 9px;
-  letter-spacing: .22em;
-  color: rgba(233,196,106,.5);
-  margin-bottom: 20px;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-.prototype-pretag::after { content: ''; width: 40px; height: 1px; background: rgba(233,196,106,.2); }
-.prototype-headline {
-  font-family: 'Playfair Display', serif;
-  font-weight: 700;
-  font-size: clamp(32px, 4.5vw, 56px);
-  color: var(--white);
-  line-height: 1.1;
-  margin-bottom: 16px;
-  letter-spacing: -.02em;
-  max-width: 640px;
-}
-.prototype-headline span {
-  color: var(--gold);
-  font-style: italic;
-}
-.prototype-sub {
-  font-size: 15px;
-  font-weight: 300;
-  color: rgba(255,255,255,.4);
-  line-height: 1.65;
-  margin-bottom: 44px;
-  max-width: 480px;
-}
-.prototype-btn {
-  display: inline-block;
-  padding: 18px 48px;
-  background: var(--gold);
-  color: var(--green);
-  border: none;
-  border-radius: 10px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: .12em;
-  text-decoration: none;
-  cursor: pointer;
-  transition: background .2s, transform .15s, box-shadow .2s;
-}
-.prototype-btn:hover {
-  background: #f5d47a;
-  transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(233,196,106,.28);
-}
-.prototype-note {
-  margin-top: 18px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 9px;
-  letter-spacing: .1em;
-  color: rgba(255,255,255,.18);
-}
-
-/* FOOTER */
-footer { background: var(--dark); padding: 36px 60px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; border-top: 1px solid rgba(255,255,255,.04); }
-.footer-logo { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--cream); }
-.footer-promise { font-family: 'Playfair Display', serif; font-size: 14px; font-style: italic; color: rgba(243,239,231,.35); }
-.footer-meta { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: .1em; color: rgba(243,239,231,.2); }
-
-/* RESPONSIVE */
-@media (max-width: 900px) {
-  nav { padding: 0 24px; }
-  .nav-links { display: none; }
-  .hero { padding: 0 0 64px 28px; }
-  .hero-note { display: none; }
-  .philosophy-inner, .architect-inner { grid-template-columns: 1fr; }
-  .philosophy-img-wrap, .architect-photo { min-height: 320px; }
-  .philosophy-text, .architect-text { padding: 56px 28px; }
-  .moment, .archetypes, .system, .cta-section { padding: 72px 28px; }
-  .moment-grid, .system-grid { grid-template-columns: 1fr; }
-  .archetypes-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
-  .a-card.tall { grid-row: span 1; min-height: 320px; }
-  .a-card { min-height: 260px; }
-  footer { padding: 40px 24px; flex-direction: column; align-items: flex-start; gap: 16px; }
-  .prototype-section { padding: 64px 28px; }
-  .prototype-btn { padding: 18px 36px; font-size: 13px; }
-}
+.s6{background:#2A5343;padding:5rem 3rem}
+.s6-tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;color:rgba(233,196,106,.5);margin-bottom:1.5rem}
+.s6-h{font-family:'Playfair Display',serif;font-size:36px;color:#fff;line-height:1.2;margin-bottom:.75rem}
+.s6-sub{font-size:15px;color:rgba(255,255,255,.45);margin-bottom:2rem}
+.s6-form{display:flex;gap:10px;flex-wrap:wrap}
+.s6-input{background:rgba(255,255,255,.1);border:0.5px solid rgba(255,255,255,.2);border-radius:999px;padding:13px 20px;font-size:14px;color:#fff;min-width:240px;flex:1;outline:none}
+.s6-btn{background:#E9C46A;color:#1a1200;border:none;border-radius:999px;padding:13px 28px;font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap}
+.s6-note{font-size:11px;color:rgba(255,255,255,.22);margin-top:1rem;font-style:italic}
 </style>
 </head>
 <body>
+<div class="page">
 
-<nav>
-  <a href="/" class="nav-logo">DOS</a>
-  <div class="nav-links">
-    <a href="#system" class="nav-link">[ SYSTEM ]</a>
-    <a href="#architect" class="nav-link">[ ARCHITECT ]</a>
-    <a href="#access" class="nav-link">[ ACCESS ]</a>
+<div class="s1">
+  <div class="s1-photo"></div>
+  <div class="s1-bg"></div>
+  <p class="s1-eyebrow">DAILY OPERATING SYSTEM</p>
+  <h1 class="s1-h">Built for your brain.<br><em>Not their expectations.</em></h1>
+  <p class="s1-sub">DOS turns mental noise into clear next steps. Because no one needs another productivity app — you need a system that works with your neurobiology.</p>
+  <div class="s1-btns">
+    <button class="btn-gold">Start with clarity →</button>
+    <button class="btn-ghost">See how it works</button>
   </div>
-  <a href="#access" class="nav-cta">[ INITIALIZE ACCESS ]</a>
-</nav>
+  <p class="s1-note">No spam. Real updates from your neurodivergent friend.</p>
+</div>
 
-<section class="hero">
-  <div class="hero-img"></div>
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <div class="hero-archetype">DAILY OPERATING SYSTEM</div>
-    <h1 class="hero-headline">
-      Built for your brain.<br>
-      <em>Not their expectations.</em>
-    </h1>
-    <p class="hero-sub">DOS turns mental clutter into clear next steps.<br>Because no one needs another productivity app.</p>
-    <div class="hero-actions">
-      <a href="#access" class="btn-gold">Join the waitlist</a>
-      <a href="#system" class="btn-ghost">See how it works</a>
-    </div>
+
+<div class="s2">
+  <div class="s2-header">
+    <p class="s2-tag">SYSTEM OVERVIEW</p>
+    <h2 class="s2-h">DOS is an AI-powered daily planning system designed for neurodivergent brains.</h2>
+    <p class="s2-sub">Turns mental clutter into a realistic, energy-aware plan you'll actually follow.</p>
   </div>
-  <div class="hero-note">No spam. Real updates from your neurodivergent friend.</div>
-</section>
+  <div class="s2-grid" id="switchboard">
 
-<section class="philosophy">
-  <div class="philosophy-inner">
-    <div class="philosophy-img-wrap">
-      <div class="philosophy-img"></div>
-      <div class="philosophy-img-overlay"></div>
-      <div class="philosophy-caption">[ ARCHETYPE 05 // THE FLOOR WORKER ]</div>
-    </div>
-    <div class="philosophy-text">
-      <div class="philosophy-pretag">[ THE FOUNDATION // NEVER CHANGES ]</div>
-      <div class="philosophy-quote">
-        You're not behind. You're mid-process. <span>There's a difference.</span>
-      </div>
-      <div class="philosophy-rule">
-        "Just do it, you know what to do."<br><br>DOS is a different kind of tool — built around how your brain actually works. Grounded in research, shaped by science, and built from hundreds of hours talking to professionals and people living it every day. No guilt built in. No streaks to break. No punishment for being human.
+    <div class="s2-card s2-blurb">
+      <div class="s2-card-bg" style="background:linear-gradient(135deg,#2A5343,#1a3328)"></div>
+      <div class="s2-card-overlay"></div>
+      <div class="s2-card-content">
+        <p class="s2-photo-body">Ever have those days when you forget your to-do list by 10:07 AM, you want to quit by 1:10 PM, and you're emotionally spent by 5 PM?</p>
+        <p class="s2-photo-yeah">Yeah. Same.</p>
+        <p class="s2-photo-sub">DOS plans your day, catches you when you crash, and never punishes you for being human.</p>
       </div>
     </div>
-  </div>
-</section>
 
-<section class="moment">
-  <div class="moment-inner">
-    <div class="section-tag">[ THE MOMENT DOS WAS BUILT FOR ]</div>
-    <h2 class="moment-headline">It's 1:07 PM. You had a plan. Here's what happens next.</h2>
-    <div class="moment-grid">
-      <div class="moment-card mc1">
-        <div class="moment-time">1:07 PM</div>
-        <div class="mlabel lc">[ THE WALL ]</div>
-        <div class="mtitle lc">You know what needs to happen. You just can't start.</div>
-        <div class="mbody lc">You had a plan this morning. It made sense. Now you're staring at the screen and nothing is moving. That gap between knowing and starting — that's not a character flaw. That's just what happens at 1 PM.</div>
-      </div>
-      <div class="moment-card mc2">
-        <div class="moment-time">1:07 PM</div>
-        <div class="mlabel lg">[ DOS DETECTS IT ]</div>
-        <div class="mtitle lg">Inactivity. Time window. Pattern recognized.</div>
-        <div class="mbody lg">DOS sees the inactivity. Reads the time. Recognizes the pattern. It doesn't wait for you to notice. It moves first — before the spiral has a chance to start.</div>
-        <div class="mdos">[ OVERRIDE INITIATED ] Something's off. 1:07 PM detected.</div>
-      </div>
-      <div class="moment-card mc3">
-        <div class="moment-time">1:08 PM</div>
-        <div class="mlabel lg">[ DOS ACTS ]</div>
-        <div class="mtitle lg">Screen clears. One step surfaces.</div>
-        <div class="mbody lg">No choices. No menus. The screen transitions to Deep Orbit Green. Everything else fades. One step appears. The only thing to do is the simplest possible thing.</div>
-        <div class="mdos">[ CATALYST ] "Open the doc." Step 1 of 6.</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="archetypes">
-  <div class="archetypes-inner">
-    <div class="archetypes-pretag">[ RADICAL REALISM // THE SCENES DOS LIVES IN ]</div>
-    <h2 class="archetypes-title">Real rooms. Real people.<br>Real mid-process moments.</h2>
-    <p class="archetypes-sub">DOS doesn't live in productivity magazines. Recognition is the hook — not aspiration.</p>
-    <div class="archetypes-grid">
-      <div class="a-card tall">
-        <div class="a-img" style="background-image:url('photo-03-autonomous.jpg'); background-position: center top;"></div>
-        <div class="a-grad"></div>
-        <div class="a-content">
-          <div class="a-num">[ ARCHETYPE 03 ]</div>
-          <div class="a-name">The Autonomous Worker</div>
-          <div class="a-cap">Multiple coffees. Papers everywhere. Her environment is calibrated for her brain — not for a productivity magazine. It doesn't look perfect. It works.</div>
-          <div class="a-dos">DOS: "Your setup isn't wrong. It just needed the right foundation."</div>
-        </div>
-      </div>
-      <div class="a-card">
-        <div class="a-img" style="background-image:url('photo-04-midprocess.jpg');"></div>
-        <div class="a-grad"></div>
-        <div class="a-content">
-          <div class="a-num">[ ARCHETYPE 04 ]</div>
-          <div class="a-name">Mid-Process. Full Stop.</div>
-          <div class="a-cap">Mid-task and paused. Not in distress. Just stopped. Somewhere in the middle of a real day.</div>
-          <div class="a-dos">DOS: "Buffer cleared. Pick one thing."</div>
-        </div>
-      </div>
-      <div class="a-card">
-        <div class="a-img" style="background-image:url('photo-05-floor.jpg'); background-position: center top;"></div>
-        <div class="a-grad"></div>
-        <div class="a-content">
-          <div class="a-num">[ ARCHETYPE 05 ]</div>
-          <div class="a-name">The Floor Worker</div>
-          <div class="a-cap">Desk not working today. Moved to the floor. Coffee, M&Ms. The work is getting done anyway.</div>
-          <div class="a-dos">DOS: "Your workspace is wherever your brain works."</div>
-        </div>
-      </div>
-      <div class="a-card">
-        <div class="a-img" style="background-image:url('photo-06-blackout.png'); background-position: center;"></div>
-        <div class="a-grad"></div>
-        <div class="a-content">
-          <div class="a-num">[ ARCHETYPE 06 ]</div>
-          <div class="a-name">The Hyperfocus Blackout</div>
-          <div class="a-cap">The pan is burning. He didn't forget. He was running a different process at full capacity.</div>
-          <div class="a-dos">DOS: "You didn't forget the stove. You were hyperfocused. A feature without a governor."</div>
-        </div>
-      </div>
-      <div class="a-card">
-        <div class="a-img" style="background-image:url('photo-01-hero.jpg'); background-position: center top;"></div>
-        <div class="a-grad"></div>
-        <div class="a-content">
-          <div class="a-num">[ ARCHETYPE 02 ]</div>
-          <div class="a-name">The 1 PM Wall</div>
-          <div class="a-cap">Full suit. Chair reclined. Eyes closed. Laptop open. Papers around. Proof of real work — then the crash.</div>
-          <div class="a-dos">DOS: "Still here. Let's find the one thing."</div>
+    <div class="s2-card" onclick="toggleSwitch(this)">
+      <div class="s2-card-bg" style="background:linear-gradient(135deg,#1a2218,#2c3a28)"></div>
+      <div class="s2-card-overlay"></div>
+      <div class="s2-card-content">
+        <p class="s2-card-num">01 //</p>
+        <p class="s2-card-name">The Smart Calendar</p>
+        <p class="s2-card-hint">↓ tap to learn more</p>
+        <div class="s2-card-expand">
+          <p class="s2-card-body">Dump everything in your head — tasks, anxiety, errands, all of it. DOS builds you a realistic, time-blocked day based on how your brain actually works. Not clock time. Cognitive load.</p>
+          <a class="s2-card-link" href="#smartcal">See it in action ↓</a>
+          <p class="s2-card-close" onclick="event.stopPropagation();collapseSwitch(this)">↑ collapse</p>
         </div>
       </div>
     </div>
-  </div>
-</section>
 
-<section class="system" id="system">
-  <div class="system-inner">
-    <div class="section-tag">[ SYSTEM LOGIC // HOW IT WORKS ]</div>
-    <h2 class="system-headline">Six features.<br>One unbroken sequence.</h2>
-    <p class="system-sub">Six tools, each one built for a specific moment. No streaks. No shame. No punishment for being human.</p>
-    <div class="system-grid">
-      <div class="s-card sc">
-        <div class="s-tag s-td">[ 01 // INPUT LAYER ]</div>
-        <div class="s-name s-nd">Working Memory Buffer</div>
-        <div class="s-desc s-dd">Voice, type, or inbound from Slack and email. Everything drops silently with zero friction. The foundation the entire system runs on.</div>
-        <span class="s-pill" style="background:rgba(42,83,67,.08);color:var(--forest);">Get it out of your head</span>
-      </div>
-      <div class="s-card sg">
-        <div class="s-tag s-tl">[ 02 // INTERVENTION ]</div>
-        <div class="s-name s-nl">Executive Override</div>
-        <div class="s-desc s-dl">One tap. No decisions. Screen clears. One next step surfaces. DOS takes over when you've got nothing left.</div>
-        <span class="s-pill">Starting beats planning</span>
-      </div>
-      <div class="s-card sf">
-        <div class="s-tag s-tl">[ 03 // DECOMPOSITION ]</div>
-        <div class="s-name s-nl">Task Initiation Catalyst</div>
-        <div class="s-desc s-dl">AI converts "Finish the report" into "Open the doc." One step. Max 8 words. Step 1 always the smallest.</div>
-        <span class="s-pill">The smallest possible start</span>
-      </div>
-      <div class="s-card sc">
-        <div class="s-tag s-td">[ 04 // RECOVERY ]</div>
-        <div class="s-name s-nd">Dopa-Menu</div>
-        <div class="s-desc s-dd">Appetizers (2 min), Sides (concurrent audio), Entrees (time-boxed), Desserts (guardrailed). Built before the crash hits — when you can still decide.</div>
-        <span class="s-pill" style="background:rgba(42,83,67,.08);color:var(--forest);">Reset on your terms</span>
-      </div>
-      <div class="s-card sg">
-        <div class="s-tag s-tl">[ 05 // ACCOUNTABILITY ]</div>
-        <div class="s-name s-nl">Body Double Link</div>
-        <div class="s-desc s-dl">One tap. Read-only link. No app download. Someone sees your current step only. No monitoring. No pressure. You control it, always.</div>
-        <span class="s-pill">Presence, not surveillance</span>
-      </div>
-      <div class="s-card sf">
-        <div class="s-tag s-tl">[ 06 // RETENTION ]</div>
-        <div class="s-name s-nl">Variable Rewards Engine</div>
-        <div class="s-desc s-dl">Visor Gold pulse on every step. Dynamic haptics. No streaks. No near-miss mechanics. Every step gets a reward — because your brain needs it.</div>
-        <span class="s-pill">Fixed core, variable spice</span>
+    <div class="s2-card" onclick="toggleSwitch(this)">
+      <div class="s2-card-bg" style="background:linear-gradient(135deg,#1a1a20,#28283a)"></div>
+      <div class="s2-card-overlay"></div>
+      <div class="s2-card-content">
+        <p class="s2-card-num">02 //</p>
+        <p class="s2-card-name">Executive Overdrive</p>
+        <p class="s2-card-hint">↓ tap to learn more</p>
+        <div class="s2-card-expand">
+          <p class="s2-card-body">When the 1 PM wall hits and nothing moves — DOS offers low-friction moves to get you unstuck without medication, without willpower, without shame.</p>
+          <a class="s2-card-link" href="#overdrive">Explore the methods ↓</a>
+          <p class="s2-card-close" onclick="event.stopPropagation();collapseSwitch(this)">↑ collapse</p>
+        </div>
       </div>
     </div>
-  </div>
-</section>
 
-<section class="architect" id="architect">
-  <div class="architect-inner">
-    <div class="architect-photo">
-      <div class="architect-photo-tag">[ ARCHITECT_ID: MARCOS_CUELLAR ]</div>
-    </div>
-    <div class="architect-text">
-      <div class="arch-pretag">[ ARCHITECT_ID: MARCOS_CUELLAR ]</div>
-      <h2 class="arch-headline">He's been in this for <span>hours.</span><br>The environment is the system.</h2>
-      <p class="arch-body">DOS was built out of personal frustration with tools that assumed a brain I didn't have. Not from a whiteboard. From 30 years of lived experience, hundreds of real conversations, and a deep dive into why most productivity apps fail people like us before the first task is even opened.</p>
-      <div class="arch-creds">
-        <div class="arch-cred"><div class="arch-dot"></div>30+ years of lived experience in the build</div>
-        <div class="arch-cred"><div class="arch-dot"></div>Clinically grounded. Psychiatrist and psychologist recommendable.</div>
-        <div class="arch-cred"><div class="arch-dot"></div>Built on Claude API. Research-backed from the ground up.</div>
-        <div class="arch-cred"><div class="arch-dot"></div>FOR THIS BRAIN. FROM THIS BRAIN.</div>
-      </div>
-      <div class="arch-promise">
-        "We will never make anyone feel like they should have their life more together. DOS exists because the world already does that. We are the first thing in their day that doesn't."
+    <div class="s2-card" onclick="toggleSwitch(this)">
+      <div class="s2-card-bg" style="background:linear-gradient(135deg,#1e1a14,#2c2418)"></div>
+      <div class="s2-card-overlay"></div>
+      <div class="s2-card-content">
+        <p class="s2-card-num">03 //</p>
+        <p class="s2-card-name">The Safety Net</p>
+        <p class="s2-card-hint">↓ tap to learn more</p>
+        <div class="s2-card-expand">
+          <p class="s2-card-body">We're your neurodivergent friend, not just your software. If you're struggling beyond the app, we've curated vetted resources for the days when you need more than a system.</p>
+          <a class="s2-card-link" href="#safetynet">Find your people ↓</a>
+          <p class="s2-card-close" onclick="event.stopPropagation();collapseSwitch(this)">↑ collapse</p>
+        </div>
       </div>
     </div>
+
   </div>
-</section>
+</div>
 
-<section class="cta-section" id="access">
-  <div class="cta-inner">
-    <div class="cta-pretag">[ INITIALIZE ACCESS ]</div>
-    <h2 class="cta-headline">We're building this for a specific kind of brain.</h2>
-    <p class="cta-sub">If that's yours, you already know. Get early access to Phase 2 — the Override, the Catalyst, the Dopa-Menu.</p>
-    <form class="email-form" action="https://formspree.io/f/mjgaggjg" method="POST" id="email-form">
-      <input type="email" name="email" class="email-input" placeholder="your@email.com" required>
-      <button type="submit" class="email-submit">[ INITIALIZE ]</button>
-    </form>
-    <div class="success-msg" id="success-msg">[ ACCESS INITIALIZED ] — You're in. We'll be in touch.</div>
-    <p class="cta-note">No spam. No streak notifications. Just the build. dosystems.app · Marcos Cuellar 2026</p>
+
+<div class="s3">
+  <div class="s3-left">
+    <div class="s3-app">
+      <p class="s3-app-header">BRAIN DUMP → YOUR DAY</p>
+      <div class="s3-dump">"meeting at 2, finish the deck, groceries, call mom, reply to slack, anxiety about the presentation, haven't started the report..."</div>
+      <div class="s3-arrow-down">↓</div>
+      <div class="s3-block"><span class="s3-time">9:00</span><div><div class="s3-task">Deep work — Report</div><div class="s3-note">Open doc first. Section 2.</div></div></div>
+      <div class="s3-block"><span class="s3-time">11:00</span><div><div class="s3-task">Presentation deck</div><div class="s3-note">Slides 4–7. 45 min max.</div></div></div>
+      <div class="s3-block"><span class="s3-time">12:00</span><div><div class="s3-task">Lunch + Slack replies</div><div class="s3-note">Batch. 20 min.</div></div></div>
+      <div class="s3-block"><span class="s3-time">14:00</span><div><div class="s3-task">Meeting</div><div class="s3-note">Buffer 15 min before.</div></div></div>
+      <div class="s3-block"><span class="s3-time">16:30</span><div><div class="s3-task">Errands + call mom</div><div class="s3-note">Low energy. Combine.</div></div></div>
+    </div>
   </div>
-</section>
-
-<!-- ============================================
-     TRY PROTOTYPE — FULL SECTION
-     ============================================ -->
-<section class="prototype-section">
-  <div class="prototype-inner">
-    <div class="prototype-pretag">[ PHASE 1 // LIVE PROTOTYPE ]</div>
-    <h2 class="prototype-headline">The prototype<br>is <span>live right now.</span></h2>
-    <p class="prototype-sub">Not a mockup. Not a demo. A working version of DOS running on the Claude API. Open it. Use it. See what today feels like with the right system.</p>
-    <a href="https://daily-ops-omega.vercel.app" target="_blank" class="prototype-btn">[ TRY THE PROTOTYPE ] →</a>
-    <div class="prototype-note">Opens in a new tab · No account required · Built on Claude API</div>
+  <div class="s3-right">
+    <p class="s3-tag">01 // THE SMART CALENDAR</p>
+    <h2 class="s3-h">Stop negotiating with your to-do list.</h2>
+    <p class="s3-body">Most planners assume you'll have the same energy at 9 AM and 4 PM. DOS knows better. Dump everything in your head and DOS builds you a realistic, time-blocked day based on cognitive load, not just clock time.</p>
+    <div class="s3-result">The result: a schedule that actually survives the first hour.</div>
   </div>
-</section>
+</div>
 
+<div class="s4">
+  <p class="s4-tag">02 // EXECUTIVE OVERDRIVE</p>
+  <h2 class="s4-h">When you hit the wall,<br>DOS hits back.</h2>
+  <p class="s4-sub">Stop guessing why you're stuck. DOS helps lower the activation energy required to get moving.</p>
 
-<footer>
-  <div class="footer-logo">DOS</div>
-  <div class="footer-promise">"You're mid-process. There's a difference."</div>
-  <div class="footer-meta">[ FOR NEURODIVERGENT // FROM A NEURODIVERGENT ] · 2026</div>
-</footer>
+  <div class="mcard-grid" id="methodGrid">
 
+    <div class="mcard" onclick="toggleCard(this)">
+      <div class="mcard-bg" style="background:linear-gradient(135deg,#1a2218,#2c3a28)"></div>
+      <div class="mcard-overlay"></div>
+      <div class="mcard-content">
+        <p class="mc-num">01 //</p>
+        <p class="mc-name">Body</p>
+        <span class="mc-pill">Physiological</span>
+        <p class="mc-teaser">Your brain's capacity relies on energy, arousal, and dopamine.</p>
+        <p class="mc-hint">↓ tap to expand</p>
+        <div class="mc-expand">
+          <p class="mc-label">WHY IT MATTERS</p>
+          <p class="mc-body">You can't "mindset" your way out of a physiological deficit. Whether it's sensory modulation or light therapy, DOS recommends the right lever for the right now to wake your brain up.</p>
+          <p class="mc-close">↑ collapse</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mcard" onclick="toggleCard(this)">
+      <div class="mcard-bg" style="background:linear-gradient(135deg,#1a1e2a,#2a2c3e)"></div>
+      <div class="mcard-overlay"></div>
+      <div class="mcard-content">
+        <p class="mc-num">02 //</p>
+        <p class="mc-name">Space</p>
+        <span class="mc-pill">Environmental</span>
+        <p class="mc-teaser">Your surroundings are either a tool or a trap.</p>
+        <p class="mc-hint">↓ tap to expand</p>
+        <div class="mc-expand">
+          <p class="mc-label">WHY IT MATTERS</p>
+          <p class="mc-body">Willpower is finite; environment is permanent. DOS identifies the friction points stealing your focus and prompts the smallest environmental change — workspace design, digital blocking — that removes the biggest barrier.</p>
+          <p class="mc-close">↑ collapse</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mcard" onclick="toggleCard(this)">
+      <div class="mcard-bg" style="background:linear-gradient(135deg,#1e1a18,#322820)"></div>
+      <div class="mcard-overlay"></div>
+      <div class="mcard-content">
+        <p class="mc-num">03 //</p>
+        <p class="mc-name">Action</p>
+        <span class="mc-pill">Behavioral</span>
+        <p class="mc-teaser">Big goals cause paralysis. Small actions build momentum.</p>
+        <p class="mc-hint">↓ tap to expand</p>
+        <div class="mc-expand">
+          <p class="mc-label">WHY IT MATTERS</p>
+          <p class="mc-body">Intentions need to become mechanical movement before the start barrier gets too high to climb. DOS converts your vague intentions into a single, undeniable physical step. We don't do to-do lists. We do execution.</p>
+          <p class="mc-close">↑ collapse</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="mcard" onclick="toggleCard(this)">
+      <div class="mcard-bg" style="background:linear-gradient(135deg,#1a1a20,#28283a)"></div>
+      <div class="mcard-overlay"></div>
+      <div class="mcard-content">
+        <p class="mc-num">04 //</p>
+        <p class="mc-name">Mind</p>
+        <span class="mc-pill">Cognitive</span>
+        <p class="mc-teaser">How you think determines if you keep going or spiral into avoidance.</p>
+        <p class="mc-hint">↓ tap to expand</p>
+        <div class="mc-expand">
+          <p class="mc-label">WHY IT MATTERS</p>
+          <p class="mc-body">The shame spiral is the ultimate productivity killer. When you interpret a pause as a failure, avoidance takes over. DOS detects the onset of avoidance and interrupts the negative self-talk before it turns into a lost afternoon.</p>
+          <p class="mc-close">↑ collapse</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="s5">
+  <div class="s5-left">
+    <p class="s5-tag">03 // THE SAFETY NET</p>
+    <h2 class="s5-h">Systems help.<br>People heal.</h2>
+    <p class="s5-body">We're your neurodivergent friend, not just your software. If you're struggling beyond the app, here are vetted resources to find your people.</p>
+    <div class="s5-links">
+      <div class="s5-link"><span>[ FIND AN ADHD COACH ]</span><span>→</span></div>
+      <div class="s5-link"><span>[ NEURO-AFFIRMING THERAPY ]</span><span>→</span></div>
+      <div class="s5-link"><span>[ SUBSTANCE USE SUPPORT ]</span><span>→</span></div>
+    </div>
+  </div>
+  <div class="s5-right">
+    <p class="s5-photo-hint">YOUR PHOTO HERE</p>
+  </div>
+</div>
+
+<div class="s6">
+  <p class="s6-tag">[ INITIALIZE ACCESS ]</p>
+  <h2 class="s6-h">Ready when you are.</h2>
+  <p class="s6-sub">No pressure. No spam. Just the build.</p>
+  <div class="s6-form">
+    <input class="s6-input" type="email" placeholder="your@email.com"/>
+    <button class="s6-btn">Join the waitlist</button>
+  </div>
+  <p class="s6-note">No spam. Real updates from your neurodivergent friend.</p>
+</div>
+
+</div>
 <script>
-// Nav scroll behavior
-const nav = document.querySelector('nav');
-window.addEventListener('scroll', () => {
-  if (window.scrollY > window.innerHeight * 0.85) {
-    nav.classList.add('scrolled');
-  } else {
-    nav.classList.remove('scrolled');
+function toggleSwitch(card) {
+  const isExpanded = card.classList.contains('expanded');
+  document.querySelectorAll('.s2-card').forEach(c => {
+    c.classList.remove('expanded');
+    c.style.gridColumn = '';
+  });
+  if (!isExpanded) {
+    card.classList.add('expanded');
+    card.style.gridColumn = 'span 3';
   }
-});
-
-document.getElementById('email-form').addEventListener('submit', function(e) {
-  e.preventDefault();
-  fetch(this.action, { method: 'POST', body: new FormData(this), headers: { 'Accept': 'application/json' } })
-    .then(() => { this.style.display = 'none'; document.getElementById('success-msg').style.display = 'block'; })
-    .catch(() => { this.style.display = 'none'; document.getElementById('success-msg').style.display = 'block'; });
-});
+}
+function collapseSwitch(el) {
+  const card = el.closest('.s2-card');
+  card.classList.remove('expanded');
+  card.style.gridColumn = '';
+}
+function toggleCard(card) {
+  const isExpanded = card.classList.contains('expanded');
+  document.querySelectorAll('.mcard').forEach(c => {
+    c.classList.remove('expanded');
+    c.style.gridColumn = '';
+  });
+  if (!isExpanded) {
+    card.classList.add('expanded');
+    card.style.gridColumn = 'span 2';
+  }
+}
 </script>
 </body>
 </html>
