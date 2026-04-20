@@ -1,366 +1,816 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>DOS — Landing Page Mockup</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="DOS turns mental noise into clear next steps. Built for your brain. Not their expectations.">
+<title>DOS — Daily Operating System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Inter',sans-serif;background:#fff;color:#111}
-.page{max-width:960px;margin:0 auto;background:#fff}
+/* ---------- RESET & TOKENS ---------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --green:  #2A5343;
+  --gold:   #E9C46A;
+  --white:  #FFFFFF;
+  --gray:   #888880;
+  --ink:    #111111;
+  --cream:  #F3EFE7;
+  --line:   rgba(42,83,67,.08);
+}
+html { scroll-behavior: smooth; }
+body {
+  background: var(--white);
+  color: var(--green);
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  overflow-x: hidden;
+  text-align: left;
+  -webkit-font-smoothing: antialiased;
+}
 
-.s1{background:#1a2218;border-radius:20px;overflow:hidden;position:relative;min-height:480px;display:flex;flex-direction:column;justify-content:flex-end;padding:3rem}
-.s1-photo{position:absolute;inset:0;background:url('photo-01b-hero.jpg') center/cover no-repeat;border-radius:20px}
-.s1-bg{position:absolute;inset:0;background:linear-gradient(105deg,rgba(15,22,14,.95) 0%,rgba(15,22,14,.5) 50%,rgba(15,22,14,.15) 100%)}
-.s1-eyebrow{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.14em;color:rgba(255,255,255,.35);margin-bottom:1rem;position:relative;z-index:2}
-.s1-h{font-family:'Playfair Display',serif;font-size:54px;color:#fff;line-height:1.08;margin-bottom:1rem;position:relative;z-index:2}
-.s1-h em{font-style:italic}
-.s1-sub{font-size:15px;color:rgba(255,255,255,.6);max-width:420px;line-height:1.65;margin-bottom:2rem;position:relative;z-index:2}
-.s1-btns{display:flex;gap:10px;position:relative;z-index:2}
-.btn-gold{background:#E9C46A;color:#1a1200;border:none;border-radius:999px;padding:13px 28px;font-size:13px;font-weight:500;cursor:pointer}
-.btn-ghost{background:rgba(255,255,255,.08);color:rgba(255,255,255,.75);border:0.5px solid rgba(255,255,255,.2);border-radius:999px;padding:13px 28px;font-size:13px;cursor:pointer}
-.s1-note{position:absolute;bottom:1.5rem;right:2rem;font-size:11px;color:rgba(255,255,255,.2);z-index:2;font-style:italic}
+/* ---------- NAV ---------- */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 0 60px; height: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: transparent; transition: background .3s, border-color .3s;
+}
+nav.scrolled {
+  background: rgba(255,255,255,.95);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(42,83,67,.08);
+}
+nav.scrolled .nav-logo { color: var(--green); }
+nav.scrolled .nav-link { color: var(--gray); }
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px; color: var(--white);
+  text-decoration: none; transition: color .3s;
+}
+.nav-links { display: flex; gap: 28px; align-items: center; }
+.nav-link {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: .14em;
+  color: rgba(255,255,255,.7); text-decoration: none;
+  transition: color .2s;
+}
+.nav-link:hover { color: var(--white); }
+nav.scrolled .nav-link:hover { color: var(--green); }
+.nav-cta {
+  padding: 10px 22px; background: var(--gold); color: var(--green);
+  border: none; border-radius: 999px;
+  font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 500;
+  letter-spacing: .08em; text-decoration: none; cursor: pointer;
+}
 
-.ribbon{background:#E9C46A;padding:1.5rem 3rem;margin-top:12px;display:flex;flex-direction:column;gap:.6rem;border-top:0.5px solid rgba(0,0,0,.05);border-bottom:0.5px solid rgba(0,0,0,.05)}
-.ribbon-eyebrow{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:.12em;color:rgba(42,83,67,.5)}
-.ribbon-quote{font-family:'Inter',sans-serif;font-size:17px;font-weight:500;font-style:normal;color:#1a1200;line-height:1.5;max-width:700px}
-.ribbon-attr{font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(42,83,67,.55);letter-spacing:.06em}
+/* ---------- 1. HERO ---------- */
+.hero {
+  position: relative; min-height: 100vh;
+  display: flex; flex-direction: column; justify-content: flex-end;
+  padding: 0 0 80px 64px; overflow: hidden;
+}
+.hero-img {
+  position: absolute; inset: 0;
+  background: url('photo-01b-hero.jpg') center/cover no-repeat;
+  background-color: #1a2218;
+}
+.hero-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(15,26,20,.92) 0%, rgba(15,26,20,.5) 50%, rgba(15,26,20,.1) 100%);
+}
+.hero-content { position: relative; z-index: 2; max-width: 780px; }
+.hero-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: .22em;
+  color: rgba(255,255,255,.5); margin-bottom: 20px;
+}
+.hero-headline {
+  font-family: 'Playfair Display', serif; font-weight: 700;
+  font-size: clamp(46px, 6.5vw, 84px);
+  color: var(--white); line-height: 1.04;
+  letter-spacing: -.02em; margin-bottom: 22px;
+}
+.hero-headline em { font-style: italic; }
+.hero-sub {
+  font-family: 'Inter', sans-serif; font-weight: 300;
+  font-size: 16px; color: rgba(255,255,255,.65);
+  max-width: 480px; line-height: 1.65; margin-bottom: 36px;
+}
+.hero-actions { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.btn-gold {
+  padding: 14px 30px; background: var(--gold); color: var(--green);
+  border: none; border-radius: 999px;
+  font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500;
+  text-decoration: none; cursor: pointer;
+}
+.btn-ghost {
+  padding: 14px 30px; background: rgba(255,255,255,.08);
+  color: rgba(255,255,255,.8);
+  border: 1px solid rgba(255,255,255,.22); border-radius: 999px;
+  font-family: 'Inter', sans-serif; font-size: 14px;
+  text-decoration: none; cursor: pointer;
+}
+.hero-note {
+  position: absolute; bottom: 30px; right: 60px; z-index: 2;
+  font-family: 'Inter', sans-serif; font-style: italic;
+  font-size: 11px; color: rgba(255,255,255,.35);
+  max-width: 240px; text-align: right;
+}
 
-.s2{padding:5rem 3rem;background:#fff;border-bottom:0.5px solid rgba(42,83,67,.1)}
-.s2-header{margin-bottom:2.5rem}
-.s2-tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;color:#3D7A62;margin-bottom:1rem}
-.s2-h{font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:#111;line-height:1.25;margin-bottom:.75rem;max-width:680px}
-.s2-sub{font-size:15px;color:#888880;line-height:1.7;max-width:560px}
-.s2-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.s2-card{position:relative;border-radius:20px;overflow:hidden;cursor:pointer;aspect-ratio:1;transition:all .35s ease}
-.s2-blurb{cursor:default}
-.s2-card.expanded{aspect-ratio:unset;min-height:380px;grid-column:span 2}
-.s2-photo-body{font-size:16px;color:rgba(255,255,255,.8);line-height:1.65;margin-bottom:.75rem}
-.s2-photo-yeah{font-family:'Playfair Display',serif;font-size:26px;font-style:italic;color:#fff;margin-bottom:.75rem}
-.s2-photo-sub{font-size:14px;color:rgba(255,255,255,.5);line-height:1.65}
-.s2-card-bg{position:absolute;inset:0;transition:transform .35s ease}
-.s2-card:hover .s2-card-bg{transform:scale(1.02)}
-.s2-card-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,18,12,.92) 0%,rgba(10,18,12,.45) 55%,rgba(10,18,12,.15) 100%)}
-.s2-card-content{position:relative;z-index:2;padding:1.75rem;display:flex;flex-direction:column;justify-content:flex-end;height:100%}
-.s2-card-num{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;color:rgba(233,196,106,.55);margin-bottom:.5rem}
-.s2-card-name{font-family:'Playfair Display',serif;font-size:30px;color:#fff;line-height:1.2;margin-bottom:.5rem}
-.s2-card-hint{font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,.3);letter-spacing:.06em;margin-top:.5rem}
-.s2-card-expand{display:none;margin-top:1.25rem;border-top:0.5px solid rgba(255,255,255,.1);padding-top:1.25rem}
-.s2-card.expanded .s2-card-expand{display:block}
-.s2-card-body{font-size:15px;color:rgba(255,255,255,.7);line-height:1.7;margin-bottom:1rem;max-width:600px}
-.s2-card-link{font-family:'JetBrains Mono',monospace;font-size:11px;color:#E9C46A;letter-spacing:.08em;cursor:pointer}
-.s2-card-close{font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,.35);letter-spacing:.08em;margin-top:1rem;cursor:pointer}
-.s2-card.expanded .s2-card-hint{display:none}
-.s2-photo-card{position:relative;border-radius:20px;overflow:hidden;min-height:320px;display:flex;flex-direction:column;justify-content:flex-end;margin-top:0}
-.s2-photo-bg{position:absolute;inset:0;background:url('photo-05-floor.jpg') center/cover no-repeat;background-color:#2c3028}
-.s2-photo-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(15,22,14,.92) 0%,rgba(15,22,14,.4) 60%,rgba(15,22,14,.1) 100%)}
-.s2-photo-content{position:relative;z-index:2;padding:2rem}
-.s2-photo-body{font-size:15px;color:rgba(255,255,255,.75);line-height:1.65;margin-bottom:.75rem}
-.s2-photo-yeah{font-family:'Playfair Display',serif;font-size:22px;font-style:italic;color:#fff;margin-bottom:.75rem}
-.s2-photo-sub{font-size:13px;color:rgba(255,255,255,.5);line-height:1.65}
+/* ---------- shared section tag / headline ---------- */
+.section-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: .18em;
+  color: var(--green); margin-bottom: 18px;
+}
+.section-headline {
+  font-family: 'Playfair Display', serif; font-weight: 700;
+  font-size: clamp(32px, 4vw, 52px);
+  color: var(--green); line-height: 1.12;
+  letter-spacing: -.02em; margin-bottom: 16px; max-width: 760px;
+}
+.section-sub {
+  font-family: 'Inter', sans-serif; font-weight: 300;
+  font-size: 16px; color: var(--gray);
+  max-width: 520px; line-height: 1.7;
+}
 
-.s3{display:grid;grid-template-columns:1fr 1fr;min-height:500px;border-bottom:0.5px solid rgba(42,83,67,.1);background:#fff}
-.s3-left{background:#f9f7f4;padding:2.5rem;display:flex;flex-direction:column;border-right:0.5px solid rgba(42,83,67,.08);justify-content:space-between}
-.s3-app{background:#fff;border-radius:16px;padding:1.25rem;border:0.5px solid rgba(0,0,0,.08);flex:1}
-.s3-app-header{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;color:#888880;margin-bottom:1rem;padding-bottom:.75rem;border-bottom:0.5px solid rgba(0,0,0,.06)}
-.s3-dump{background:#f5f3f0;border-radius:10px;padding:1rem;font-size:12px;color:#777;line-height:1.7;margin-bottom:.75rem;font-style:italic}
-.s3-arrow-down{text-align:center;font-size:18px;color:#3D7A62;margin:.5rem 0}
-.s3-block{display:flex;gap:10px;padding:.6rem .75rem;background:#fff;border-radius:8px;border-left:3px solid #2A5343;border:0.5px solid rgba(42,83,67,.08);border-left:3px solid #2A5343;margin-bottom:6px}
-.s3-time{font-family:'JetBrains Mono',monospace;font-size:10px;color:#888880;white-space:nowrap;padding-top:1px}
-.s3-task{font-size:12px;font-weight:500;color:#2A5343}
-.s3-note{font-size:11px;color:#888880}
-.s3-right{padding:4rem 3rem;display:flex;flex-direction:column;justify-content:center;background:#fff}
-.s3-tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;color:#3D7A62;margin-bottom:1rem}
-.s3-h{font-family:'Playfair Display',serif;font-size:28px;color:#111;line-height:1.25;margin-bottom:1rem}
-.s3-body{font-size:14px;color:#888880;line-height:1.8;margin-bottom:1.5rem}
-.s3-result{background:#f9f7f4;border-radius:10px;padding:1rem 1.25rem;font-size:13px;color:#2A5343;line-height:1.6;border-left:3px solid #2A5343}
+/* ---------- 2. SWITCHBOARD ---------- */
+.switchboard { background: var(--white); padding: 120px 80px; }
+.sw-header { margin-bottom: 56px; }
+.sw-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: minmax(0, 1fr);
+  gap: 16px;
+}
+.sw-card {
+  position: relative; border-radius: 22px; overflow: hidden;
+  cursor: pointer; aspect-ratio: 1 / 1;
+  transition: all .4s ease;
+  background: #1a2218;
+}
+.sw-card.blurb { cursor: default; }
+.sw-card.active { aspect-ratio: auto; min-height: 480px; grid-column: span 2; }
+.sw-bg {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+  transition: transform .6s ease;
+}
+.sw-card:not(.blurb):hover .sw-bg { transform: scale(1.04); }
+.sw-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(10,20,15,.94) 0%, rgba(10,20,15,.35) 58%, rgba(10,20,15,.05) 100%);
+}
+.sw-content {
+  position: absolute; inset: 0; z-index: 2;
+  padding: 36px;
+  display: flex; flex-direction: column; justify-content: flex-end;
+}
+.sw-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: .14em;
+  color: rgba(233,196,106,.65); margin-bottom: 10px;
+}
+.sw-name {
+  font-family: 'Playfair Display', serif; font-weight: 700;
+  font-size: clamp(26px, 3vw, 38px);
+  color: var(--white); line-height: 1.15; margin-bottom: 10px;
+}
+.sw-hint {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: .08em;
+  color: rgba(255,255,255,.45);
+}
+.sw-expand {
+  display: none; margin-top: 18px;
+  border-top: 1px solid rgba(255,255,255,.12); padding-top: 18px;
+}
+.sw-card.active .sw-expand { display: block; }
+.sw-card.active .sw-hint { display: none; }
+.sw-body {
+  font-family: 'Inter', sans-serif; font-weight: 300;
+  font-size: 15px; color: rgba(255,255,255,.75);
+  line-height: 1.75; max-width: 680px; margin-bottom: 14px;
+}
+.sw-close {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: .08em;
+  color: rgba(255,255,255,.5);
+  cursor: pointer; margin-top: 6px;
+}
+.sw-blurb-copy {
+  font-family: 'Inter', sans-serif; font-weight: 400;
+  font-size: 16px; color: rgba(255,255,255,.85);
+  line-height: 1.55; margin-bottom: 10px;
+}
+.sw-yeah {
+  font-family: 'Playfair Display', serif; font-weight: 700;
+  font-style: italic; font-size: clamp(28px, 3.4vw, 42px);
+  color: var(--white); line-height: 1.1; margin: 8px 0;
+}
+.sw-blurb-sub {
+  font-family: 'Inter', sans-serif; font-weight: 300;
+  font-size: 14px; color: rgba(255,255,255,.6);
+  line-height: 1.6;
+}
 
-.s4{background:#fff;padding:5rem 3rem;border-top:0.5px solid rgba(42,83,67,.1);border-bottom:0.5px solid rgba(42,83,67,.1)}
-.s4-tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;color:#3D7A62;margin-bottom:1rem}
-.s4-h{font-family:'Playfair Display',serif;font-size:36px;color:#111;line-height:1.2;margin-bottom:.5rem}
-.s4-sub{font-size:14px;color:#888880;max-width:480px;line-height:1.7;margin-bottom:2.5rem}
-.mcard-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.mcard{position:relative;border-radius:20px;overflow:hidden;cursor:pointer;aspect-ratio:1;transition:all .35s ease}
-.mcard.expanded{aspect-ratio:unset;min-height:400px;grid-column:span 2}
-.mcard-bg{position:absolute;inset:0;background:#1a2218;transition:transform .35s ease}
-.mcard:hover .mcard-bg{transform:scale(1.01)}
-.mcard-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,18,12,.92) 0%,rgba(10,18,12,.4) 60%,rgba(10,18,12,.1) 100%)}
-.mcard-content{position:relative;z-index:2;padding:1.75rem;display:flex;flex-direction:column;justify-content:flex-end;height:100%}
-.mc-num{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;color:rgba(233,196,106,.55);margin-bottom:.5rem}
-.mc-name{font-family:'Playfair Display',serif;font-size:30px;color:#fff;line-height:1.2;margin-bottom:.5rem}
-.mc-pill{display:inline-block;background:rgba(233,196,106,.15);color:#E9C46A;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.06em;padding:4px 12px;border-radius:999px;width:fit-content}
-.mc-expand{display:none;margin-top:1.25rem;border-top:0.5px solid rgba(255,255,255,.1);padding-top:1.25rem}
-.mcard.expanded .mc-expand{display:block}
-.mc-label{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;color:rgba(233,196,106,.6);margin-bottom:5px;margin-top:1rem}
-.mc-body{font-size:16px;color:rgba(255,255,255,.65);line-height:1.7}
-.mc-result{font-size:17px;color:#fff;line-height:1.65;font-weight:500}
-.mc-close{display:none;font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,.4);letter-spacing:.08em;margin-top:1rem;cursor:pointer}
-.mcard.expanded .mc-close{display:block}
-.mc-hint{font-family:'JetBrains Mono',monospace;font-size:10px;color:rgba(255,255,255,.3);letter-spacing:.06em;margin-top:.75rem}
-.mcard.expanded .mc-hint{display:none}
-.mc-teaser{font-size:15px;color:rgba(255,255,255,.7);line-height:1.6;margin-top:.5rem}
-.mcard.expanded .mc-teaser{display:none}
+/* ---------- 3. SMART CALENDAR ---------- */
+.smartcal {
+  background: var(--white); padding: 120px 80px;
+  border-top: 1px solid var(--line);
+}
+.sc-inner {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: center;
+}
+.sc-mockup {
+  background: #f9f7f4; border-radius: 22px; padding: 2rem;
+}
+.sc-app {
+  background: var(--white); border-radius: 14px;
+  padding: 1.5rem; border: 1px solid rgba(0,0,0,.06);
+}
+.sc-app-header {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: .12em;
+  color: var(--gray); margin-bottom: 1rem;
+  padding-bottom: .85rem; border-bottom: 1px solid rgba(0,0,0,.06);
+}
+.sc-dump {
+  background: #f5f3f0; border-radius: 10px; padding: 1rem 1.1rem;
+  font-family: 'Inter', sans-serif; font-style: italic;
+  font-size: 13px; color: #666; line-height: 1.7;
+  margin-bottom: .9rem;
+}
+.sc-arrow {
+  text-align: center; font-size: 18px;
+  color: var(--green); margin: .4rem 0;
+}
+.sc-block {
+  display: flex; gap: 14px; padding: .75rem .9rem;
+  background: var(--white);
+  border: 1px solid rgba(42,83,67,.08);
+  border-left: 3px solid var(--green);
+  border-radius: 8px; margin-bottom: 6px;
+}
+.sc-time {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; color: var(--gray);
+  white-space: nowrap; padding-top: 2px;
+}
+.sc-task {
+  font-family: 'Inter', sans-serif; font-weight: 500;
+  font-size: 13px; color: var(--green);
+}
+.sc-note {
+  font-family: 'Inter', sans-serif; font-weight: 300;
+  font-size: 11px; color: var(--gray); margin-top: 1px;
+}
+.sc-right { display: flex; flex-direction: column; }
+.sc-body {
+  font-family: 'Inter', sans-serif; font-weight: 300;
+  font-size: 16px; color: var(--gray);
+  line-height: 1.8; margin: 18px 0 28px;
+  max-width: 500px;
+}
+.sc-result {
+  background: #f9f7f4; border-left: 3px solid var(--green);
+  border-radius: 10px; padding: 1rem 1.2rem;
+  font-family: 'Inter', sans-serif; font-size: 14px;
+  color: var(--green); line-height: 1.6; max-width: 520px;
+}
 
-.s5{display:grid;grid-template-columns:1fr 1fr;min-height:400px;background:#fff;border-top:0.5px solid rgba(42,83,67,.1)}
-.s5-left{padding:4rem 3rem;display:flex;flex-direction:column;justify-content:center}
-.s5-tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;color:#888880;margin-bottom:1rem}
-.s5-h{font-family:'Playfair Display',serif;font-size:32px;color:#111;line-height:1.2;margin-bottom:.75rem}
-.s5-body{font-size:14px;color:#888880;line-height:1.75;margin-bottom:2rem;max-width:380px}
-.s5-links{display:flex;flex-direction:column;gap:10px;max-width:340px}
-.s5-link{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;background:#f9f7f4;border-radius:999px;border:0.5px solid rgba(42,83,67,.12);font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;color:#2A5343;cursor:pointer}
-.s5-right{background:url('photo-04-midprocess.jpg') center/cover no-repeat;min-height:400px;display:flex;align-items:center;justify-content:center;border-left:0.5px solid rgba(42,83,67,.08)}
-.s5-photo-hint{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;color:rgba(60,50,40,.3)}
+/* ---------- 4. EXECUTIVE OVERDRIVE ---------- */
+.overdrive {
+  background: var(--white); padding: 120px 80px;
+  border-top: 1px solid var(--line);
+}
+.od-header { margin-bottom: 56px; }
+.od-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+.od-card {
+  position: relative; border-radius: 22px; overflow: hidden;
+  cursor: pointer; aspect-ratio: 1 / 1;
+  transition: all .4s ease;
+  background: #1a2218;
+}
+.od-card.expanded {
+  aspect-ratio: auto; min-height: 520px; grid-column: span 2;
+}
+.od-bg {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+  transition: transform .6s ease;
+}
+.od-card:hover .od-bg { transform: scale(1.04); }
+.od-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(10,20,15,.94) 0%, rgba(10,20,15,.3) 58%, rgba(10,20,15,.05) 100%);
+}
+.od-content {
+  position: absolute; inset: 0; z-index: 2; padding: 36px;
+  display: flex; flex-direction: column; justify-content: flex-end;
+}
+.od-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: .14em;
+  color: rgba(233,196,106,.65); margin-bottom: 10px;
+}
+.od-name {
+  font-family: 'Playfair Display', serif; font-weight: 700;
+  font-size: clamp(32px, 3.4vw, 44px);
+  color: var(--white); line-height: 1.1; margin-bottom: 12px;
+}
+.od-pill {
+  display: inline-block; width: fit-content;
+  background: rgba(233,196,106,.18); color: var(--gold);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: .08em;
+  padding: 5px 14px; border-radius: 999px;
+}
+.od-teaser {
+  font-family: 'Inter', sans-serif; font-weight: 300;
+  font-size: 15px; color: rgba(255,255,255,.6);
+  line-height: 1.6; margin-top: 14px;
+}
+.od-hint {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: .08em;
+  color: rgba(255,255,255,.35); margin-top: 14px;
+}
+.od-expand {
+  display: none; margin-top: 22px;
+  border-top: 1px solid rgba(255,255,255,.1); padding-top: 22px;
+}
+.od-card.expanded .od-expand { display: block; }
+.od-card.expanded .od-hint,
+.od-card.expanded .od-teaser { display: none; }
+.od-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: .14em;
+  color: rgba(233,196,106,.65); margin-bottom: 10px;
+}
+.od-body {
+  font-family: 'Inter', sans-serif; font-weight: 300;
+  font-size: 16px; color: rgba(255,255,255,.75);
+  line-height: 1.75; max-width: 740px;
+}
+.od-close {
+  display: inline-block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: .08em;
+  color: rgba(255,255,255,.5);
+  cursor: pointer; margin-top: 20px;
+}
 
-.s6{background:#2A5343;padding:5rem 3rem}
-.s6-tag{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.12em;color:rgba(233,196,106,.5);margin-bottom:1.5rem}
-.s6-h{font-family:'Playfair Display',serif;font-size:36px;color:#fff;line-height:1.2;margin-bottom:.75rem}
-.s6-sub{font-size:15px;color:rgba(255,255,255,.45);margin-bottom:2rem}
-.s6-form{display:flex;gap:10px;flex-wrap:wrap}
-.s6-input{background:rgba(255,255,255,.1);border:0.5px solid rgba(255,255,255,.2);border-radius:999px;padding:13px 20px;font-size:14px;color:#fff;min-width:240px;flex:1;outline:none}
-.s6-btn{background:#E9C46A;color:#1a1200;border:none;border-radius:999px;padding:13px 28px;font-size:13px;font-weight:500;cursor:pointer;white-space:nowrap}
-.s6-note{font-size:11px;color:rgba(255,255,255,.22);margin-top:1rem;font-style:italic}
+/* ---------- 5. SAFETY NET ---------- */
+.safetynet {
+  background: var(--white); padding: 120px 80px;
+  border-top: 1px solid var(--line);
+}
+.sn-inner {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: center;
+}
+.sn-body {
+  font-family: 'Inter', sans-serif; font-weight: 300;
+  font-size: 16px; color: var(--gray);
+  line-height: 1.8; margin: 18px 0 32px;
+  max-width: 440px;
+}
+.sn-links {
+  display: flex; flex-direction: column; gap: 10px;
+  max-width: 420px;
+}
+.sn-link {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 22px;
+  background: #f9f7f4;
+  border: 1px solid rgba(42,83,67,.1);
+  border-radius: 999px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; letter-spacing: .08em;
+  color: var(--green); text-decoration: none;
+  transition: background .2s, border-color .2s;
+}
+.sn-link:hover {
+  background: rgba(233,196,106,.12);
+  border-color: rgba(233,196,106,.4);
+}
+.sn-link .sn-arrow { color: var(--green); font-size: 16px; }
+.sn-photo {
+  position: relative; min-height: 440px;
+  border-radius: 22px; overflow: hidden;
+  background: #2c3028 url('body-double.png') center/cover no-repeat;
+}
+.sn-photo-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(15,26,20,.55) 0%, rgba(15,26,20,.15) 60%, rgba(15,26,20,0) 100%);
+}
+.sn-photo-tag {
+  position: absolute; bottom: 20px; left: 20px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: .12em;
+  color: rgba(243,239,231,.8);
+  background: rgba(42,83,67,.55);
+  padding: 7px 12px; border-radius: 4px;
+  backdrop-filter: blur(4px);
+}
+
+/* ---------- 6. CTA ---------- */
+.cta-section {
+  background: var(--green); padding: 120px 80px;
+}
+.cta-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: .22em;
+  color: rgba(233,196,106,.55); margin-bottom: 22px;
+}
+.cta-headline {
+  font-family: 'Playfair Display', serif; font-weight: 700;
+  font-size: clamp(38px, 5vw, 64px);
+  color: var(--white); line-height: 1.08;
+  letter-spacing: -.02em; margin-bottom: 14px;
+  max-width: 720px;
+}
+.cta-sub {
+  font-family: 'Inter', sans-serif; font-weight: 300;
+  font-size: 16px; color: rgba(255,255,255,.55);
+  line-height: 1.65; margin-bottom: 36px;
+  max-width: 520px;
+}
+.cta-form {
+  display: flex; gap: 10px; max-width: 520px;
+  flex-wrap: wrap;
+}
+.cta-input {
+  flex: 1 1 240px; min-width: 0;
+  padding: 14px 20px;
+  background: rgba(255,255,255,.08);
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 999px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px; color: var(--white);
+  outline: none;
+}
+.cta-input::placeholder { color: rgba(255,255,255,.4); }
+.cta-input:focus { border-color: var(--gold); }
+.cta-submit {
+  padding: 14px 28px;
+  background: var(--gold); color: var(--green);
+  border: none; border-radius: 999px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; font-weight: 500;
+  letter-spacing: .08em; cursor: pointer;
+  white-space: nowrap;
+}
+.cta-note {
+  font-family: 'Inter', sans-serif; font-style: italic;
+  font-size: 12px; color: rgba(255,255,255,.35);
+  margin-top: 18px;
+}
+.cta-success {
+  display: none; margin-top: 18px; padding: 14px 20px;
+  background: rgba(233,196,106,.12);
+  border: 1px solid rgba(233,196,106,.3);
+  border-radius: 10px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; letter-spacing: .06em;
+  color: var(--gold); max-width: 520px;
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 1080px) {
+  .switchboard, .smartcal, .overdrive, .safetynet, .cta-section { padding: 96px 48px; }
+  .sc-inner, .sn-inner { gap: 48px; }
+}
+
+@media (max-width: 720px) {
+  nav { padding: 0 24px; }
+  .nav-links { display: none; }
+  .nav-cta { padding: 8px 16px; font-size: 10px; }
+
+  .hero { padding: 0 0 64px 28px; }
+  .hero-note { right: 24px; max-width: 200px; }
+
+  .switchboard, .smartcal, .overdrive, .safetynet, .cta-section {
+    padding: 72px 24px;
+  }
+
+  /* Switchboard — single column on iPhone */
+  .sw-grid { grid-template-columns: 1fr; }
+  .sw-card { aspect-ratio: 16 / 11; }
+  .sw-card.active { grid-column: span 1; min-height: 440px; }
+  .sw-content { padding: 28px; }
+
+  /* Smart Calendar — stack, text above mockup on mobile */
+  .sc-inner, .sn-inner { grid-template-columns: 1fr; gap: 40px; }
+  .sc-mockup { padding: 1.25rem; order: 2; }
+  .sc-right { order: 1; }
+
+  /* Overdrive — single column */
+  .od-grid { grid-template-columns: 1fr; }
+  .od-card { aspect-ratio: 16 / 11; }
+  .od-card.expanded { grid-column: span 1; min-height: 440px; }
+  .od-content { padding: 28px; }
+
+  /* Safety Net — photo first then links */
+  .sn-photo { min-height: 280px; order: 2; }
+  .sn-inner > .sn-text { order: 1; }
+
+  /* CTA */
+  .cta-form { flex-direction: column; }
+  .cta-submit { width: 100%; }
+}
 </style>
 </head>
 <body>
-<div class="page">
 
-<div class="s1">
-  <div class="s1-photo"></div>
-  <div class="s1-bg"></div>
-  <p class="s1-eyebrow">DAILY OPERATING SYSTEM</p>
-  <h1 class="s1-h">Built for your brain.<br><em>Not their expectations.</em></h1>
-  <p class="s1-sub">DOS turns mental noise into clear next steps. Because no one needs another productivity app — you need a system that works with your neurobiology.</p>
-  <div class="s1-btns">
-    <button class="btn-gold">Start with clarity →</button>
-    <button class="btn-ghost">See how it works</button>
+<nav id="nav">
+  <a href="#top" class="nav-logo">DOS</a>
+  <div class="nav-links">
+    <a href="#smartcal" class="nav-link">[ SMART CALENDAR ]</a>
+    <a href="#overdrive" class="nav-link">[ OVERDRIVE ]</a>
+    <a href="#safetynet" class="nav-link">[ SAFETY NET ]</a>
   </div>
-  <p class="s1-note">No spam. Real updates from your neurodivergent friend.</p>
-</div>
+  <a href="#access" class="nav-cta">[ INITIALIZE ACCESS ]</a>
+</nav>
 
-
-<div class="s2">
-  <div class="s2-header">
-    <p class="s2-tag">SYSTEM OVERVIEW</p>
-    <h2 class="s2-h">DOS is an AI-powered daily planning system designed for neurodivergent brains.</h2>
-    <p class="s2-sub">Turns mental clutter into a realistic, energy-aware plan you'll actually follow.</p>
-  </div>
-  <div class="s2-grid" id="switchboard">
-
-    <div class="s2-card s2-blurb">
-      <div class="s2-card-bg" style="background:linear-gradient(135deg,#2A5343,#1a3328)"></div>
-      <div class="s2-card-overlay"></div>
-      <div class="s2-card-content">
-        <p class="s2-photo-body">Ever have those days when you forget your to-do list by 10:07 AM, you want to quit by 1:10 PM, and you're emotionally spent by 5 PM?</p>
-        <p class="s2-photo-yeah">Yeah. Same.</p>
-        <p class="s2-photo-sub">DOS plans your day, catches you when you crash, and never punishes you for being human.</p>
-      </div>
-    </div>
-
-    <div class="s2-card" onclick="toggleSwitch(this)">
-      <div class="s2-card-bg" style="background:linear-gradient(135deg,#1a2218,#2c3a28)"></div>
-      <div class="s2-card-overlay"></div>
-      <div class="s2-card-content">
-        <p class="s2-card-num">01 //</p>
-        <p class="s2-card-name">The Smart Calendar</p>
-        <p class="s2-card-hint">↓ tap to learn more</p>
-        <div class="s2-card-expand">
-          <p class="s2-card-body">Dump everything in your head — tasks, anxiety, errands, all of it. DOS builds you a realistic, time-blocked day based on how your brain actually works. Not clock time. Cognitive load.</p>
-          <a class="s2-card-link" href="#smartcal">See it in action ↓</a>
-          <p class="s2-card-close" onclick="event.stopPropagation();collapseSwitch(this)">↑ collapse</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="s2-card" onclick="toggleSwitch(this)">
-      <div class="s2-card-bg" style="background:linear-gradient(135deg,#1a1a20,#28283a)"></div>
-      <div class="s2-card-overlay"></div>
-      <div class="s2-card-content">
-        <p class="s2-card-num">02 //</p>
-        <p class="s2-card-name">Executive Overdrive</p>
-        <p class="s2-card-hint">↓ tap to learn more</p>
-        <div class="s2-card-expand">
-          <p class="s2-card-body">When the 1 PM wall hits and nothing moves — DOS offers low-friction moves to get you unstuck without medication, without willpower, without shame.</p>
-          <a class="s2-card-link" href="#overdrive">Explore the methods ↓</a>
-          <p class="s2-card-close" onclick="event.stopPropagation();collapseSwitch(this)">↑ collapse</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="s2-card" onclick="toggleSwitch(this)">
-      <div class="s2-card-bg" style="background:linear-gradient(135deg,#1e1a14,#2c2418)"></div>
-      <div class="s2-card-overlay"></div>
-      <div class="s2-card-content">
-        <p class="s2-card-num">03 //</p>
-        <p class="s2-card-name">The Safety Net</p>
-        <p class="s2-card-hint">↓ tap to learn more</p>
-        <div class="s2-card-expand">
-          <p class="s2-card-body">We're your neurodivergent friend, not just your software. If you're struggling beyond the app, we've curated vetted resources for the days when you need more than a system.</p>
-          <a class="s2-card-link" href="#safetynet">Find your people ↓</a>
-          <p class="s2-card-close" onclick="event.stopPropagation();collapseSwitch(this)">↑ collapse</p>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</div>
-
-
-<div class="s3">
-  <div class="s3-left">
-    <div class="s3-app">
-      <p class="s3-app-header">BRAIN DUMP → YOUR DAY</p>
-      <div class="s3-dump">"meeting at 2, finish the deck, groceries, call mom, reply to slack, anxiety about the presentation, haven't started the report..."</div>
-      <div class="s3-arrow-down">↓</div>
-      <div class="s3-block"><span class="s3-time">9:00</span><div><div class="s3-task">Deep work — Report</div><div class="s3-note">Open doc first. Section 2.</div></div></div>
-      <div class="s3-block"><span class="s3-time">11:00</span><div><div class="s3-task">Presentation deck</div><div class="s3-note">Slides 4–7. 45 min max.</div></div></div>
-      <div class="s3-block"><span class="s3-time">12:00</span><div><div class="s3-task">Lunch + Slack replies</div><div class="s3-note">Batch. 20 min.</div></div></div>
-      <div class="s3-block"><span class="s3-time">14:00</span><div><div class="s3-task">Meeting</div><div class="s3-note">Buffer 15 min before.</div></div></div>
-      <div class="s3-block"><span class="s3-time">16:30</span><div><div class="s3-task">Errands + call mom</div><div class="s3-note">Low energy. Combine.</div></div></div>
+<!-- 1. HERO -->
+<section class="hero" id="top">
+  <div class="hero-img"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow">DAILY OPERATING SYSTEM</div>
+    <h1 class="hero-headline">Built for your brain.<br><em>Not their expectations.</em></h1>
+    <p class="hero-sub">DOS turns mental noise into clear next steps. Because no one needs another productivity app — you need a system that works with your neurobiology.</p>
+    <div class="hero-actions">
+      <a href="#access" class="btn-gold">Start with clarity →</a>
+      <a href="#switchboard" class="btn-ghost">See how it works</a>
     </div>
   </div>
-  <div class="s3-right">
-    <p class="s3-tag">01 // THE SMART CALENDAR</p>
-    <h2 class="s3-h">Stop negotiating with your to-do list.</h2>
-    <p class="s3-body">Most planners assume you'll have the same energy at 9 AM and 4 PM. DOS knows better. Dump everything in your head and DOS builds you a realistic, time-blocked day based on cognitive load, not just clock time.</p>
-    <div class="s3-result">The result: a schedule that actually survives the first hour.</div>
+  <div class="hero-note">No spam. Real updates from your neurodivergent friend.</div>
+</section>
+
+<!-- 2. SWITCHBOARD / SYSTEM OVERVIEW -->
+<section class="switchboard" id="switchboard">
+  <div class="sw-header">
+    <p class="section-tag">[ SYSTEM OVERVIEW ]</p>
+    <h2 class="section-headline">DOS is an AI-powered daily planning system designed for neurodivergent brains.</h2>
+    <p class="section-sub">Turns mental clutter into a realistic, energy-aware plan you'll actually follow.</p>
   </div>
-</div>
 
-<div class="s4">
-  <p class="s4-tag">02 // EXECUTIVE OVERDRIVE</p>
-  <h2 class="s4-h">When you hit the wall,<br>DOS hits back.</h2>
-  <p class="s4-sub">Stop guessing why you're stuck. DOS helps lower the activation energy required to get moving.</p>
+  <div class="sw-grid" id="swGrid">
 
-  <div class="mcard-grid" id="methodGrid">
+    <!-- (1) BLURB -->
+    <div class="sw-card blurb">
+      <div class="sw-bg" style="background-image:url('executive_override.jpg')"></div>
+      <div class="sw-overlay"></div>
+      <div class="sw-content">
+        <p class="sw-blurb-copy">Ever have those days when you forget your list by 10:07 AM, want to quit by 1:10 PM, and you're spent by 5?</p>
+        <p class="sw-yeah">Yeah. Same.</p>
+        <p class="sw-blurb-sub">DOS plans your day, catches you when you crash, and never punishes you for being human.</p>
+      </div>
+    </div>
 
-    <div class="mcard" onclick="toggleCard(this)">
-      <div class="mcard-bg" style="background:linear-gradient(135deg,#1a2218,#2c3a28)"></div>
-      <div class="mcard-overlay"></div>
-      <div class="mcard-content">
-        <p class="mc-num">01 //</p>
-        <p class="mc-name">Body</p>
-        <span class="mc-pill">Physiological</span>
-        <p class="mc-teaser">Your brain's capacity relies on energy, arousal, and dopamine.</p>
-        <p class="mc-hint">↓ tap to expand</p>
-        <div class="mc-expand">
-          <p class="mc-label">WHY IT MATTERS</p>
-          <p class="mc-body">You can't "mindset" your way out of a physiological deficit. Whether it's sensory modulation or light therapy, DOS recommends the right lever for the right now to wake your brain up.</p>
-          <p class="mc-close">↑ collapse</p>
+    <!-- (2) 01 SMART CALENDAR -->
+    <div class="sw-card" onclick="toggleSW(this)">
+      <div class="sw-bg" style="background-image:url('smartcal.jpg')"></div>
+      <div class="sw-overlay"></div>
+      <div class="sw-content">
+        <p class="sw-num">01 //</p>
+        <p class="sw-name">The Smart Calendar</p>
+        <p class="sw-hint">↓ tap to learn more</p>
+        <div class="sw-expand">
+          <p class="sw-body">Dump everything in your head — tasks, anxiety, errands, all of it. DOS builds you a realistic, time-blocked day based on how your brain actually works. Not clock time. Cognitive load.</p>
+          <a href="#smartcal" onclick="event.stopPropagation();" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--gold);text-decoration:none;">See it in action ↓</a>
+          <span class="sw-close" onclick="event.stopPropagation();this.closest('.sw-card').classList.remove('active')">  ·  ↑ collapse</span>
         </div>
       </div>
     </div>
 
-    <div class="mcard" onclick="toggleCard(this)">
-      <div class="mcard-bg" style="background:linear-gradient(135deg,#1a1e2a,#2a2c3e)"></div>
-      <div class="mcard-overlay"></div>
-      <div class="mcard-content">
-        <p class="mc-num">02 //</p>
-        <p class="mc-name">Space</p>
-        <span class="mc-pill">Environmental</span>
-        <p class="mc-teaser">Your surroundings are either a tool or a trap.</p>
-        <p class="mc-hint">↓ tap to expand</p>
-        <div class="mc-expand">
-          <p class="mc-label">WHY IT MATTERS</p>
-          <p class="mc-body">Willpower is finite; environment is permanent. DOS identifies the friction points stealing your focus and prompts the smallest environmental change — workspace design, digital blocking — that removes the biggest barrier.</p>
-          <p class="mc-close">↑ collapse</p>
+    <!-- (3) 02 EXECUTIVE OVERDRIVE -->
+    <div class="sw-card" onclick="toggleSW(this)">
+      <div class="sw-bg" style="background-image:url('card-override.png')"></div>
+      <div class="sw-overlay"></div>
+      <div class="sw-content">
+        <p class="sw-num">02 //</p>
+        <p class="sw-name">Executive Overdrive</p>
+        <p class="sw-hint">↓ tap to learn more</p>
+        <div class="sw-expand">
+          <p class="sw-body">When the 1 PM wall hits and nothing moves — DOS offers low-friction moves to get you unstuck. No willpower required. No shame.</p>
+          <a href="#overdrive" onclick="event.stopPropagation();" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--gold);text-decoration:none;">Explore the methods ↓</a>
+          <span class="sw-close" onclick="event.stopPropagation();this.closest('.sw-card').classList.remove('active')">  ·  ↑ collapse</span>
         </div>
       </div>
     </div>
 
-    <div class="mcard" onclick="toggleCard(this)">
-      <div class="mcard-bg" style="background:linear-gradient(135deg,#1e1a18,#322820)"></div>
-      <div class="mcard-overlay"></div>
-      <div class="mcard-content">
-        <p class="mc-num">03 //</p>
-        <p class="mc-name">Action</p>
-        <span class="mc-pill">Behavioral</span>
-        <p class="mc-teaser">Big goals cause paralysis. Small actions build momentum.</p>
-        <p class="mc-hint">↓ tap to expand</p>
-        <div class="mc-expand">
-          <p class="mc-label">WHY IT MATTERS</p>
-          <p class="mc-body">Intentions need to become mechanical movement before the start barrier gets too high to climb. DOS converts your vague intentions into a single, undeniable physical step. We don't do to-do lists. We do execution.</p>
-          <p class="mc-close">↑ collapse</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="mcard" onclick="toggleCard(this)">
-      <div class="mcard-bg" style="background:linear-gradient(135deg,#1a1a20,#28283a)"></div>
-      <div class="mcard-overlay"></div>
-      <div class="mcard-content">
-        <p class="mc-num">04 //</p>
-        <p class="mc-name">Mind</p>
-        <span class="mc-pill">Cognitive</span>
-        <p class="mc-teaser">How you think determines if you keep going or spiral into avoidance.</p>
-        <p class="mc-hint">↓ tap to expand</p>
-        <div class="mc-expand">
-          <p class="mc-label">WHY IT MATTERS</p>
-          <p class="mc-body">The shame spiral is the ultimate productivity killer. When you interpret a pause as a failure, avoidance takes over. DOS detects the onset of avoidance and interrupts the negative self-talk before it turns into a lost afternoon.</p>
-          <p class="mc-close">↑ collapse</p>
+    <!-- (4) 03 SAFETY NET -->
+    <div class="sw-card" onclick="toggleSW(this)">
+      <div class="sw-bg" style="background-image:url('body-double.png')"></div>
+      <div class="sw-overlay"></div>
+      <div class="sw-content">
+        <p class="sw-num">03 //</p>
+        <p class="sw-name">The Safety Net</p>
+        <p class="sw-hint">↓ tap to learn more</p>
+        <div class="sw-expand">
+          <p class="sw-body">We're your neurodivergent friend, not just your software. If you're struggling beyond the app, here are vetted resources for the days when you need more than a system.</p>
+          <a href="#safetynet" onclick="event.stopPropagation();" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--gold);text-decoration:none;">Find your people ↓</a>
+          <span class="sw-close" onclick="event.stopPropagation();this.closest('.sw-card').classList.remove('active')">  ·  ↑ collapse</span>
         </div>
       </div>
     </div>
 
   </div>
-</div>
+</section>
 
-<div class="s5">
-  <div class="s5-left">
-    <p class="s5-tag">03 // THE SAFETY NET</p>
-    <h2 class="s5-h">Systems help.<br>People heal.</h2>
-    <p class="s5-body">We're your neurodivergent friend, not just your software. If you're struggling beyond the app, here are vetted resources to find your people.</p>
-    <div class="s5-links">
-      <div class="s5-link"><span>[ FIND AN ADHD COACH ]</span><span>→</span></div>
-      <div class="s5-link"><span>[ NEURO-AFFIRMING THERAPY ]</span><span>→</span></div>
-      <div class="s5-link"><span>[ SUBSTANCE USE SUPPORT ]</span><span>→</span></div>
+<!-- 3. SMART CALENDAR -->
+<section class="smartcal" id="smartcal">
+  <div class="sc-inner">
+
+    <div class="sc-mockup">
+      <div class="sc-app">
+        <p class="sc-app-header">BRAIN DUMP → YOUR DAY</p>
+        <div class="sc-dump">"meeting at 2, finish the deck, groceries, call mom, reply to slack, anxiety about the presentation, haven't started the report..."</div>
+        <div class="sc-arrow">↓</div>
+        <div class="sc-block"><span class="sc-time">9:00</span><div><div class="sc-task">Deep work — Report</div><div class="sc-note">Open doc first. Section 2.</div></div></div>
+        <div class="sc-block"><span class="sc-time">11:00</span><div><div class="sc-task">Presentation deck</div><div class="sc-note">Slides 4–7. 45 min max.</div></div></div>
+        <div class="sc-block"><span class="sc-time">12:00</span><div><div class="sc-task">Lunch + Slack replies</div><div class="sc-note">Batch. 20 min.</div></div></div>
+        <div class="sc-block"><span class="sc-time">14:00</span><div><div class="sc-task">Meeting</div><div class="sc-note">Buffer 15 min before.</div></div></div>
+        <div class="sc-block"><span class="sc-time">16:30</span><div><div class="sc-task">Errands + call mom</div><div class="sc-note">Low energy. Combine.</div></div></div>
+      </div>
+    </div>
+
+    <div class="sc-right">
+      <p class="section-tag">01 // THE SMART CALENDAR</p>
+      <h2 class="section-headline">Stop negotiating with your to-do list.</h2>
+      <p class="sc-body">Most planners assume you'll have the same energy at 9 AM and 4 PM. DOS knows better. Dump everything in your head and DOS builds you a realistic, time-blocked day based on cognitive load, not just clock time.</p>
+      <div class="sc-result">The result: a schedule that actually survives the first hour.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- 4. EXECUTIVE OVERDRIVE -->
+<section class="overdrive" id="overdrive">
+  <div class="od-header">
+    <p class="section-tag">[ 02 // EXECUTIVE OVERDRIVE ]</p>
+    <h2 class="section-headline">When you hit the wall,<br>DOS hits back.</h2>
+    <p class="section-sub">Stop guessing why you're stuck. DOS helps lower the activation energy required to get moving.</p>
+  </div>
+
+  <div class="od-grid">
+
+    <div class="od-card" onclick="toggleOD(this)">
+      <div class="od-bg" style="background-image:url('Gemini_Generated_Image_.png')"></div>
+      <div class="od-overlay"></div>
+      <div class="od-content">
+        <p class="od-num">01 //</p>
+        <p class="od-name">Body</p>
+        <span class="od-pill">Physiological</span>
+        <p class="od-teaser">Your brain's capacity relies on energy, arousal, and dopamine.</p>
+        <p class="od-hint">↓ tap to expand</p>
+        <div class="od-expand">
+          <p class="od-label">WHY IT MATTERS</p>
+          <p class="od-body">You can't "mindset" your way out of a physiological deficit. Whether it's sensory modulation or light therapy, DOS recommends the right lever for the right now to wake your brain up.</p>
+          <span class="od-close" onclick="event.stopPropagation();this.closest('.od-card').classList.remove('expanded')">↑ collapse</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="od-card" onclick="toggleOD(this)">
+      <div class="od-bg" style="background-image:url('card-buffer.png')"></div>
+      <div class="od-overlay"></div>
+      <div class="od-content">
+        <p class="od-num">02 //</p>
+        <p class="od-name">Space</p>
+        <span class="od-pill">Environmental</span>
+        <p class="od-teaser">Your surroundings are either a tool or a trap.</p>
+        <p class="od-hint">↓ tap to expand</p>
+        <div class="od-expand">
+          <p class="od-label">WHY IT MATTERS</p>
+          <p class="od-body">Willpower is finite; environment is permanent. DOS identifies the friction points stealing your focus and prompts the smallest environmental change — workspace design, digital blocking — that removes the biggest barrier.</p>
+          <span class="od-close" onclick="event.stopPropagation();this.closest('.od-card').classList.remove('expanded')">↑ collapse</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="od-card" onclick="toggleOD(this)">
+      <div class="od-bg" style="background-image:url('hero.png')"></div>
+      <div class="od-overlay"></div>
+      <div class="od-content">
+        <p class="od-num">03 //</p>
+        <p class="od-name">Action</p>
+        <span class="od-pill">Behavioral</span>
+        <p class="od-teaser">Big goals cause paralysis. Small actions build momentum.</p>
+        <p class="od-hint">↓ tap to expand</p>
+        <div class="od-expand">
+          <p class="od-label">WHY IT MATTERS</p>
+          <p class="od-body">Intentions need to become mechanical movement before the start barrier gets too high to climb. DOS converts your vague intentions into a single, undeniable physical step. We don't do to-do lists. We do execution.</p>
+          <span class="od-close" onclick="event.stopPropagation();this.closest('.od-card').classList.remove('expanded')">↑ collapse</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="od-card" onclick="toggleOD(this)">
+      <div class="od-bg" style="background-image:url('Gemini_Generated_Image___1_.png')"></div>
+      <div class="od-overlay"></div>
+      <div class="od-content">
+        <p class="od-num">04 //</p>
+        <p class="od-name">Mind</p>
+        <span class="od-pill">Cognitive</span>
+        <p class="od-teaser">How you think determines if you keep going or spiral into avoidance.</p>
+        <p class="od-hint">↓ tap to expand</p>
+        <div class="od-expand">
+          <p class="od-label">WHY IT MATTERS</p>
+          <p class="od-body">The shame spiral is the ultimate productivity killer. When you interpret a pause as a failure, avoidance takes over. DOS detects the onset of avoidance and interrupts the negative self-talk before it turns into a lost afternoon.</p>
+          <span class="od-close" onclick="event.stopPropagation();this.closest('.od-card').classList.remove('expanded')">↑ collapse</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- 5. SAFETY NET -->
+<section class="safetynet" id="safetynet">
+  <div class="sn-inner">
+    <div class="sn-text">
+      <p class="section-tag">[ 03 // THE SAFETY NET ]</p>
+      <h2 class="section-headline">Systems help.<br>People heal.</h2>
+      <p class="sn-body">We're your neurodivergent friend, not just your software. If you're struggling beyond the app, here are vetted resources to find your people.</p>
+      <div class="sn-links">
+        <a href="#" class="sn-link"><span>[ FIND AN ADHD COACH ]</span><span class="sn-arrow">→</span></a>
+        <a href="#" class="sn-link"><span>[ NEURO-AFFIRMING THERAPY ]</span><span class="sn-arrow">→</span></a>
+        <a href="#" class="sn-link"><span>[ SUBSTANCE USE SUPPORT ]</span><span class="sn-arrow">→</span></a>
+      </div>
+    </div>
+    <div class="sn-photo">
+      <div class="sn-photo-overlay"></div>
+      <div class="sn-photo-tag">[ REAL PEOPLE. REAL SUPPORT. ]</div>
     </div>
   </div>
-  <div class="s5-right">
-    <p class="s5-photo-hint">YOUR PHOTO HERE</p>
-  </div>
-</div>
+</section>
 
-<div class="s6">
-  <p class="s6-tag">[ INITIALIZE ACCESS ]</p>
-  <h2 class="s6-h">Ready when you are.</h2>
-  <p class="s6-sub">No pressure. No spam. Just the build.</p>
-  <div class="s6-form">
-    <input class="s6-input" type="email" placeholder="your@email.com"/>
-    <button class="s6-btn">Join the waitlist</button>
-  </div>
-  <p class="s6-note">No spam. Real updates from your neurodivergent friend.</p>
-</div>
+<!-- 6. CTA / WAITLIST -->
+<section class="cta-section" id="access">
+  <p class="cta-tag">[ INITIALIZE ACCESS ]</p>
+  <h2 class="cta-headline">Ready when you are.</h2>
+  <p class="cta-sub">No pressure. No spam. Just the build.</p>
 
-</div>
+  <form class="cta-form" id="emailForm" action="https://formspree.io/f/mjgaggjg" method="POST">
+    <input type="email" name="email" class="cta-input" placeholder="your@email.com" required>
+    <button type="submit" class="cta-submit">[ INITIALIZE ] →</button>
+  </form>
+  <div class="cta-success" id="ctaSuccess">[ ACCESS INITIALIZED ] — You're in. We'll be in touch.</div>
+  <p class="cta-note">No spam. Real updates from your neurodivergent friend.</p>
+</section>
+
 <script>
-function toggleSwitch(card) {
-  const isExpanded = card.classList.contains('expanded');
-  document.querySelectorAll('.s2-card').forEach(c => {
-    c.classList.remove('expanded');
-    c.style.gridColumn = '';
+/* Nav — turn solid after hero */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > window.innerHeight * 0.85);
+});
+
+/* Switchboard — one active at a time */
+function toggleSW(card){
+  const wasActive = card.classList.contains('active');
+  document.querySelectorAll('.sw-card').forEach(c => c.classList.remove('active'));
+  if(!wasActive) card.classList.add('active');
+}
+
+/* Overdrive — one expanded at a time */
+function toggleOD(card){
+  const wasExpanded = card.classList.contains('expanded');
+  document.querySelectorAll('.od-card').forEach(c => c.classList.remove('expanded'));
+  if(!wasExpanded) card.classList.add('expanded');
+}
+
+/* Email form — Formspree */
+const form = document.getElementById('emailForm');
+const success = document.getElementById('ctaSuccess');
+form.addEventListener('submit', function(e) {
+  e.preventDefault();
+  fetch(this.action, {
+    method: 'POST',
+    body: new FormData(this),
+    headers: { 'Accept': 'application/json' }
+  }).then(() => {
+    form.style.display = 'none';
+    success.style.display = 'inline-block';
+  }).catch(() => {
+    form.style.display = 'none';
+    success.style.display = 'inline-block';
   });
-  if (!isExpanded) {
-    card.classList.add('expanded');
-    card.style.gridColumn = 'span 3';
-  }
-}
-function collapseSwitch(el) {
-  const card = el.closest('.s2-card');
-  card.classList.remove('expanded');
-  card.style.gridColumn = '';
-}
-function toggleCard(card) {
-  const isExpanded = card.classList.contains('expanded');
-  document.querySelectorAll('.mcard').forEach(c => {
-    c.classList.remove('expanded');
-    c.style.gridColumn = '';
-  });
-  if (!isExpanded) {
-    card.classList.add('expanded');
-    card.style.gridColumn = 'span 2';
-  }
-}
+});
 </script>
 </body>
 </html>
