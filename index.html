@@ -4,7 +4,32 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="DOS turns mental noise into clear next steps. Built for your brain. Not their expectations.">
+<meta name="theme-color" content="#2A5343">
 <title>DOS — Daily Operating System</title>
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="apple-touch-icon" href="favicon.svg">
+
+<!-- Open Graph (Facebook / Slack / iMessage / LinkedIn) -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="DOS — Daily Operating System">
+<meta property="og:title" content="Built for your brain. Not their expectations.">
+<meta property="og:description" content="DOS turns mental noise into clear next steps. The daily operating system for neurodivergent brains.">
+<meta property="og:image" content="hero-wide.jpg">
+<meta property="og:image:width" content="2816">
+<meta property="og:image:height" content="1536">
+<meta property="og:image:alt" content="DOS — the daily operating system">
+<meta property="og:url" content="https://dosystems.app">
+<meta property="og:locale" content="en_US">
+
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Built for your brain. Not their expectations.">
+<meta name="twitter:description" content="DOS turns mental noise into clear next steps. The daily operating system for neurodivergent brains.">
+<meta name="twitter:image" content="hero-wide.jpg">
+<meta name="twitter:image:alt" content="DOS — the daily operating system">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -74,12 +99,16 @@ nav.scrolled .nav-link:hover { color: var(--green); }
 }
 .hero-img {
   position: absolute; inset: 0;
-  background: url('photo-01b-hero.jpg') center/cover no-repeat;
+  background: url('hero-wide.jpg') center/cover no-repeat;
   background-color: #1a2218;
 }
 .hero-overlay {
   position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(15,26,20,.92) 0%, rgba(15,26,20,.5) 50%, rgba(15,26,20,.1) 100%);
+  background: linear-gradient(to top,
+    rgba(15,26,20,.95) 0%,
+    rgba(15,26,20,.55) 45%,
+    rgba(15,26,20,.4) 80%,
+    rgba(15,26,20,.6) 100%);
 }
 .hero-content { position: relative; z-index: 2; max-width: 780px; }
 .hero-eyebrow {
@@ -188,8 +217,9 @@ nav.scrolled .nav-link:hover { color: var(--green); }
 }
 .sw-name {
   font-family: 'Playfair Display', serif; font-weight: 700;
-  font-size: clamp(26px, 3vw, 38px);
-  color: var(--white); line-height: 1.15; margin-bottom: 10px;
+  font-size: clamp(38px, 4.4vw, 60px);
+  color: var(--white); line-height: 1.05;
+  letter-spacing: -.02em; margin-bottom: 12px;
 }
 .sw-hint {
   font-family: 'JetBrains Mono', monospace;
@@ -204,8 +234,11 @@ nav.scrolled .nav-link:hover { color: var(--green); }
 .sw-card.active .sw-hint { display: none; }
 .sw-body {
   font-family: 'Inter', sans-serif; font-weight: 300;
-  font-size: 15px; color: rgba(255,255,255,.75);
+  font-size: 15px; color: rgba(255,255,255,.78);
   line-height: 1.75; max-width: 680px; margin-bottom: 14px;
+  /* Matches Overdrive — soft fade at the bottom of body text */
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 75%, rgba(0,0,0,.3) 100%);
+          mask-image: linear-gradient(to bottom, #000 0%, #000 75%, rgba(0,0,0,.3) 100%);
 }
 .sw-close {
   display: inline-block;
@@ -500,8 +533,9 @@ nav.scrolled .nav-link:hover { color: var(--green); }
 }
 .od-name {
   font-family: 'Playfair Display', serif; font-weight: 700;
-  font-size: clamp(32px, 3.4vw, 44px);
-  color: var(--white); line-height: 1.1; margin-bottom: 12px;
+  font-size: clamp(44px, 5.2vw, 72px);
+  color: var(--white); line-height: 1.02;
+  letter-spacing: -.02em; margin-bottom: 14px;
 }
 .od-pill {
   display: inline-block; width: fit-content;
@@ -534,8 +568,11 @@ nav.scrolled .nav-link:hover { color: var(--green); }
 }
 .od-body {
   font-family: 'Inter', sans-serif; font-weight: 300;
-  font-size: 16px; color: rgba(255,255,255,.75);
+  font-size: 16px; color: rgba(255,255,255,.78);
   line-height: 1.75; max-width: 740px;
+  /* Soft fade as text nears the bottom of the card */
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 75%, rgba(0,0,0,.3) 100%);
+          mask-image: linear-gradient(to bottom, #000 0%, #000 75%, rgba(0,0,0,.3) 100%);
 }
 .od-close {
   display: inline-block;
@@ -583,7 +620,7 @@ nav.scrolled .nav-link:hover { color: var(--green); }
 .sn-photo {
   position: relative; min-height: 440px;
   border-radius: 22px; overflow: hidden;
-  background: #2c3028 url('body-double.png') center/cover no-repeat;
+  background: #2c3028 url('hero.jpg') center/cover no-repeat;
 }
 .sn-photo-overlay {
   position: absolute; inset: 0;
@@ -707,6 +744,7 @@ nav.scrolled .nav-link:hover { color: var(--green); }
 
   /* CTA */
   .cta-form { flex-direction: column; }
+  .cta-input { flex: 0 0 auto; width: 100%; height: 48px; }
   .cta-submit { width: 100%; }
 }
 </style>
@@ -755,7 +793,7 @@ nav.scrolled .nav-link:hover { color: var(--green); }
 
     <!-- (1) BLURB -->
     <div class="sw-card blurb">
-      <div class="sw-bg" style="background-image:url('executive_override.jpg')"></div>
+      <div class="sw-bg" style="background-image:url('executive%20override.jpg')"></div>
       <div class="sw-overlay"></div>
       <div class="sw-content">
         <p class="sw-blurb-copy">Ever have those days when you forget your list by 10:07 AM, want to quit by 1:10 PM, and you're spent by 5?</p>
@@ -782,7 +820,7 @@ nav.scrolled .nav-link:hover { color: var(--green); }
 
     <!-- (3) 02 EXECUTIVE OVERDRIVE -->
     <div class="sw-card" onclick="toggleSW(this)">
-      <div class="sw-bg" style="background-image:url('card-override.png')"></div>
+      <div class="sw-bg" style="background-image:url('manzone.jpg')"></div>
       <div class="sw-overlay"></div>
       <div class="sw-content">
         <p class="sw-num">02 //</p>
@@ -798,7 +836,7 @@ nav.scrolled .nav-link:hover { color: var(--green); }
 
     <!-- (4) 03 SAFETY NET -->
     <div class="sw-card" onclick="toggleSW(this)">
-      <div class="sw-bg" style="background-image:url('body-double.png')"></div>
+      <div class="sw-bg" style="background-image:url('photo-02-philosophy.jpg')"></div>
       <div class="sw-overlay"></div>
       <div class="sw-content">
         <p class="sw-num">03 //</p>
@@ -930,7 +968,7 @@ nav.scrolled .nav-link:hover { color: var(--green); }
     </div>
 
     <div class="od-card" onclick="toggleOD(this)">
-      <div class="od-bg" style="background-image:url('card-buffer.png')"></div>
+      <div class="od-bg" style="background-image:url('photo-03-autonomous.jpg')"></div>
       <div class="od-overlay"></div>
       <div class="od-content">
         <p class="od-num">02 //</p>
@@ -947,7 +985,7 @@ nav.scrolled .nav-link:hover { color: var(--green); }
     </div>
 
     <div class="od-card" onclick="toggleOD(this)">
-      <div class="od-bg" style="background-image:url('hero.png')"></div>
+      <div class="od-bg" style="background-image:url('Untitled%20design.png')"></div>
       <div class="od-overlay"></div>
       <div class="od-content">
         <p class="od-num">03 //</p>
@@ -964,7 +1002,7 @@ nav.scrolled .nav-link:hover { color: var(--green); }
     </div>
 
     <div class="od-card" onclick="toggleOD(this)">
-      <div class="od-bg" style="background-image:url('Gemini_Generated_Image___1_.png')"></div>
+      <div class="od-bg" style="background-image:url('Gemini_Generated_Image_%20(1).png')"></div>
       <div class="od-overlay"></div>
       <div class="od-content">
         <p class="od-num">04 //</p>
@@ -1009,7 +1047,7 @@ nav.scrolled .nav-link:hover { color: var(--green); }
   <h2 class="cta-headline">Ready when you are.</h2>
   <p class="cta-sub">No pressure. No spam. Just the build.</p>
 
-  <form class="cta-form" id="emailForm" action="https://formspree.io/f/mjgaggjg" method="POST">
+  <form class="cta-form" id="emailForm" action="https://formspree.io/f/mjgayjqp" method="POST">
     <input type="email" name="email" class="cta-input" placeholder="your@email.com" required>
     <button type="submit" class="cta-submit">[ INITIALIZE ] →</button>
   </form>
