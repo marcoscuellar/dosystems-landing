@@ -7,29 +7,6 @@
 <meta name="theme-color" content="#2A5343">
 <title>DOS — Daily Operating System</title>
 
-<!-- Favicon -->
-<link rel="icon" type="image/svg+xml" href="favicon.svg">
-<link rel="apple-touch-icon" href="favicon.svg">
-
-<!-- Open Graph (Facebook / Slack / iMessage / LinkedIn) -->
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="DOS — Daily Operating System">
-<meta property="og:title" content="Built for your brain. Not their expectations.">
-<meta property="og:description" content="DOS turns mental noise into clear next steps. The daily operating system for neurodivergent brains.">
-<meta property="og:image" content="hero-wide.jpg">
-<meta property="og:image:width" content="2816">
-<meta property="og:image:height" content="1536">
-<meta property="og:image:alt" content="DOS — the daily operating system">
-<meta property="og:url" content="https://dosystems.app">
-<meta property="og:locale" content="en_US">
-
-<!-- Twitter / X -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Built for your brain. Not their expectations.">
-<meta name="twitter:description" content="DOS turns mental noise into clear next steps. The daily operating system for neurodivergent brains.">
-<meta name="twitter:image" content="hero-wide.jpg">
-<meta name="twitter:image:alt" content="DOS — the daily operating system">
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -99,16 +76,21 @@ nav.scrolled .nav-link:hover { color: var(--green); }
 }
 .hero-img {
   position: absolute; inset: 0;
-  background: url('hero-wide.jpg') center/cover no-repeat;
+  background: url('uploads/UErEe.jpg') center/cover no-repeat;
   background-color: #1a2218;
 }
 .hero-overlay {
   position: absolute; inset: 0;
-  background: linear-gradient(to top,
-    rgba(15,26,20,.95) 0%,
-    rgba(15,26,20,.55) 45%,
-    rgba(15,26,20,.4) 80%,
-    rgba(15,26,20,.6) 100%);
+  background:
+    linear-gradient(to top,
+      rgba(15,26,20,.92) 0%,
+      rgba(15,26,20,.5) 45%,
+      rgba(15,26,20,.35) 80%,
+      rgba(15,26,20,.55) 100%),
+    linear-gradient(135deg,
+      rgba(42,83,67,.35) 0%,
+      rgba(42,83,67,.05) 40%,
+      rgba(233,196,106,.18) 100%);
 }
 .hero-content { position: relative; z-index: 2; max-width: 780px; }
 .hero-eyebrow {
@@ -127,6 +109,12 @@ nav.scrolled .nav-link:hover { color: var(--green); }
   font-family: 'Inter', sans-serif; font-weight: 300;
   font-size: 16px; color: rgba(255,255,255,.65);
   max-width: 480px; line-height: 1.65; margin-bottom: 36px;
+}
+.hero-sub strong {
+  font-family: 'Playfair Display', serif; font-weight: 700;
+  font-style: italic;
+  color: var(--white);
+  margin-right: 6px;
 }
 .hero-actions { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
 .btn-gold {
@@ -161,107 +149,138 @@ nav.scrolled .nav-link:hover { color: var(--green); }
   color: var(--green); line-height: 1.12;
   letter-spacing: -.02em; margin-bottom: 16px; max-width: 760px;
 }
+.section-headline em { font-style: italic; }
 .section-sub {
   font-family: 'Inter', sans-serif; font-weight: 300;
   font-size: 16px; color: var(--gray);
   max-width: 520px; line-height: 1.7;
 }
 
-/* ---------- 2. SWITCHBOARD — text left, 2x2 cards right ---------- */
+/* ---------- 2. SYSTEM OVERVIEW — text left, single image right ---------- */
 .switchboard { background: var(--white); padding: 120px 80px; }
 .sw-inner {
   display: grid;
-  grid-template-columns: 1fr 1.15fr;
-  gap: 72px;
-  align-items: stretch;
+  grid-template-columns: 1fr 1.05fr;
+  gap: 80px;
+  align-items: center;
 }
 .sw-left {
   display: flex; flex-direction: column;
-  justify-content: flex-end; /* copy anchored bottom-left */
-  padding-bottom: 12px;
+  justify-content: center;
 }
-.sw-header { margin-bottom: 0; }
-.sw-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-auto-rows: minmax(0, 1fr);
-  gap: 16px;
-}
-.sw-card {
-  position: relative; border-radius: 22px; overflow: hidden;
-  cursor: pointer; aspect-ratio: 1 / 1;
-  transition: all .4s ease;
-  background: #1a2218;
-}
-.sw-card.blurb { cursor: default; }
-.sw-card.active { aspect-ratio: auto; min-height: 420px; grid-column: 1 / -1; }
-.sw-bg {
-  position: absolute; inset: 0;
-  background-size: cover; background-position: center;
-  transition: transform .6s ease;
-}
-.sw-card:not(.blurb):hover .sw-bg { transform: scale(1.04); }
-.sw-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(10,20,15,.94) 0%, rgba(10,20,15,.35) 58%, rgba(10,20,15,.05) 100%);
-}
-.sw-content {
-  position: absolute; inset: 0; z-index: 2;
-  padding: 36px;
-  display: flex; flex-direction: column; justify-content: flex-end;
-}
-.sw-num {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px; letter-spacing: .14em;
-  color: rgba(233,196,106,.65); margin-bottom: 10px;
-}
-.sw-name {
+.sw-yeah-headline {
   font-family: 'Playfair Display', serif; font-weight: 700;
-  font-size: clamp(38px, 4.4vw, 60px);
-  color: var(--white); line-height: 1.05;
-  letter-spacing: -.02em; margin-bottom: 12px;
-}
-.sw-hint {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px; letter-spacing: .08em;
-  color: rgba(255,255,255,.45);
-}
-.sw-expand {
-  display: none; margin-top: 18px;
-  border-top: 1px solid rgba(255,255,255,.12); padding-top: 18px;
-}
-.sw-card.active .sw-expand { display: block; }
-.sw-card.active .sw-hint { display: none; }
-.sw-body {
-  font-family: 'Inter', sans-serif; font-weight: 300;
-  font-size: 15px; color: rgba(255,255,255,.78);
-  line-height: 1.75; max-width: 680px; margin-bottom: 14px;
-  /* Matches Overdrive — soft fade at the bottom of body text */
-  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 75%, rgba(0,0,0,.3) 100%);
-          mask-image: linear-gradient(to bottom, #000 0%, #000 75%, rgba(0,0,0,.3) 100%);
-}
-.sw-close {
-  display: inline-block;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px; letter-spacing: .08em;
-  color: rgba(255,255,255,.5);
-  cursor: pointer; margin-top: 6px;
-}
-.sw-blurb-copy {
-  font-family: 'Inter', sans-serif; font-weight: 400;
-  font-size: 16px; color: rgba(255,255,255,.85);
-  line-height: 1.55; margin-bottom: 10px;
-}
-.sw-yeah {
-  font-family: 'Playfair Display', serif; font-weight: 700;
-  font-style: italic; font-size: clamp(28px, 3.4vw, 42px);
-  color: var(--white); line-height: 1.1; margin: 8px 0;
+  font-style: italic;
+  font-size: clamp(40px, 4.5vw, 60px);
+  color: var(--gold); line-height: 1.05;
+  letter-spacing: -.02em;
+  margin: 28px 0 18px;
 }
 .sw-blurb-sub {
   font-family: 'Inter', sans-serif; font-weight: 300;
-  font-size: 14px; color: rgba(255,255,255,.6);
-  line-height: 1.6;
+  font-size: 15px; color: var(--gray);
+  line-height: 1.7; max-width: 480px; margin-bottom: 32px;
 }
+.sw-pillars {
+  display: flex; flex-direction: column; gap: 14px;
+  max-width: 460px;
+  border-top: 1px solid var(--line); padding-top: 24px;
+}
+.sw-pillar {
+  display: grid; grid-template-columns: 60px 1fr;
+  gap: 16px; align-items: baseline;
+}
+.sw-pillar-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; letter-spacing: .12em;
+  color: var(--gold);
+}
+.sw-pillar-name {
+  font-family: 'Playfair Display', serif; font-weight: 700;
+  font-size: 18px; color: var(--green);
+  line-height: 1.3;
+}
+.sw-pillar-name span {
+  display: block;
+  font-family: 'Inter', sans-serif; font-weight: 300;
+  font-size: 13px; color: var(--gray);
+  line-height: 1.55; margin-top: 4px; letter-spacing: 0;
+}
+
+/* Right-column: photo + three text-only pillar cards */
+.sw-pillar-stack {
+  display: flex; flex-direction: column;
+  gap: 14px;
+}
+.sw-photo {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  border-radius: 20px; overflow: hidden;
+  background: #1a2218 url('uploads/Bxb9R.jpg') center/cover no-repeat;
+  margin-bottom: 4px;
+}
+.sw-photo-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top,
+    rgba(10,20,15,.55) 0%,
+    rgba(10,20,15,.1) 50%,
+    rgba(10,20,15,0) 100%);
+}
+.sw-photo-tag {
+  position: absolute; bottom: 18px; left: 18px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: .14em;
+  color: rgba(243,239,231,.85);
+  background: rgba(42,83,67,.55);
+  padding: 6px 11px; border-radius: 4px;
+  backdrop-filter: blur(4px);
+}
+.sw-pcard {
+  position: relative;
+  display: block;
+  padding: 32px 30px;
+  background: #f9f7f4;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  text-decoration: none;
+  transition: background .25s ease, border-color .25s ease, transform .25s ease;
+}
+.sw-pcard:hover {
+  background: var(--green);
+  border-color: var(--green);
+  transform: translateX(4px);
+}
+.sw-pcard-num {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: .14em;
+  color: var(--gold);
+  margin-bottom: 12px;
+}
+.sw-pcard-name {
+  font-family: 'Playfair Display', serif; font-weight: 700;
+  font-size: clamp(28px, 2.4vw, 36px);
+  color: var(--green);
+  line-height: 1.1; letter-spacing: -.01em;
+  margin-bottom: 8px;
+  transition: color .25s ease;
+}
+.sw-pcard-line {
+  font-family: 'Inter', sans-serif; font-weight: 300; font-style: italic;
+  font-size: 15px; color: var(--gray);
+  line-height: 1.5;
+  transition: color .25s ease;
+}
+.sw-pcard-arrow {
+  position: absolute; top: 30px; right: 30px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 18px; color: var(--green);
+  transition: color .25s ease, transform .25s ease;
+}
+.sw-pcard:hover .sw-pcard-name,
+.sw-pcard:hover .sw-pcard-arrow { color: var(--white); }
+.sw-pcard:hover .sw-pcard-line { color: rgba(255,255,255,.7); }
+.sw-pcard:hover .sw-pcard-arrow { transform: translateX(4px); }
 
 /* ---------- 3. SMART CALENDAR ---------- */
 .smartcal {
@@ -323,12 +342,36 @@ nav.scrolled .nav-link:hover { color: var(--green); }
   text-align: center;
 }
 
-/* Slide 1: BRAIN DUMP */
+/* Slide 1: BRAIN DUMP — warm portrait layout */
+.sc-slide.dump {
+  padding: 38px 22px 22px;
+  background: var(--white);
+}
+.sc-dump-greet {
+  font-family: 'Inter', sans-serif; font-weight: 400;
+  font-size: 12px; color: var(--green);
+  margin-bottom: 10px;
+  text-align: left;
+}
+.sc-dump-headline {
+  font-family: 'Playfair Display', serif; font-weight: 700;
+  font-size: 28px; color: var(--green);
+  line-height: 1.04; letter-spacing: -.02em;
+  margin-bottom: 14px;
+  text-align: left;
+}
+.sc-dump-instructions {
+  font-family: 'Inter', sans-serif; font-weight: 400;
+  font-size: 11px; color: var(--gray);
+  line-height: 1.6; margin-bottom: 16px;
+  text-align: left;
+}
 .sc-dump-box {
   flex: 1; background: #f5f3f0; border-radius: 14px;
-  padding: 14px 14px 18px;
-  display: flex; flex-direction: column; justify-content: flex-start;
+  padding: 14px 14px 12px;
+  display: flex; flex-direction: column;
   border: 1px solid rgba(42,83,67,.06);
+  position: relative;
 }
 .sc-dump-label {
   font-family: 'JetBrains Mono', monospace;
@@ -336,16 +379,42 @@ nav.scrolled .nav-link:hover { color: var(--green); }
   color: var(--gray); margin-bottom: 10px;
 }
 .sc-dump-text {
-  font-family: 'Inter', sans-serif; font-style: italic;
-  font-size: 12px; color: #555; line-height: 1.7;
+  font-family: 'JetBrains Mono', monospace; font-style: normal;
+  font-size: 11px; color: #2c3a32; line-height: 1.7;
+  flex: 1;
 }
+.sc-dump-text .yell { color: var(--green); font-weight: 500; }
 .sc-cursor {
-  display: inline-block; width: 2px; height: 13px;
-  background: var(--green); margin-left: 2px;
+  display: inline-block; width: 2px; height: 12px;
+  background: var(--green); margin-right: 2px;
   vertical-align: middle;
   animation: blink 1s step-end infinite;
 }
 @keyframes blink { 50% { opacity: 0; } }
+.sc-dump-actions {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 12px;
+}
+.sc-dump-pill {
+  width: 28px; height: 28px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 400;
+  background: rgba(42,83,67,.08); color: var(--green);
+  border: none;
+}
+.sc-dump-pill.mic {
+  background: var(--green); color: var(--white);
+  font-size: 12px;
+}
+.sc-dump-cta {
+  margin-top: 14px;
+  width: 100%;
+  padding: 12px 0;
+  background: var(--gold); color: var(--green);
+  border: none; border-radius: 12px;
+  font-family: 'Inter', sans-serif; font-weight: 500;
+  font-size: 13px;
+}
 .sc-dump-hint {
   margin-top: auto; padding-top: 12px;
   font-family: 'JetBrains Mono', monospace;
@@ -353,11 +422,18 @@ nav.scrolled .nav-link:hover { color: var(--green); }
   color: var(--gray); text-align: center;
 }
 
-/* Slide 2: PROCESSING */
+/* Slide 2: SORTING — warm portrait */
+.sc-slide.sort {
+  padding: 38px 22px 22px;
+  background: var(--white);
+}
 .sc-process {
   flex: 1; display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  gap: 22px;
+  align-items: stretch; justify-content: center;
+  gap: 16px;
+  background: #f5f3f0; border-radius: 14px;
+  padding: 20px 16px;
+  border: 1px solid rgba(42,83,67,.06);
 }
 .sc-dots { display: flex; gap: 8px; }
 .sc-dots span {
@@ -377,8 +453,9 @@ nav.scrolled .nav-link:hover { color: var(--green); }
 }
 .sc-process-item {
   display: flex; align-items: center; gap: 10px;
-  padding: 8px 12px;
-  background: #f9f7f4; border-radius: 8px;
+  padding: 10px 12px;
+  background: var(--white); border-radius: 8px;
+  border: 1px solid rgba(42,83,67,.06);
   font-family: 'JetBrains Mono', monospace;
   font-size: 10px; letter-spacing: .04em;
   color: var(--green);
@@ -387,10 +464,17 @@ nav.scrolled .nav-link:hover { color: var(--green); }
   color: var(--gold); font-weight: 500;
 }
 
-/* Slide 3: YOUR DAY */
+/* Slide 3: YOUR DAY — warm portrait */
+.sc-slide.day {
+  padding: 38px 22px 22px;
+  background: var(--white);
+}
 .sc-day {
   flex: 1; display: flex; flex-direction: column;
   gap: 6px; overflow: hidden;
+  background: #f5f3f0; border-radius: 14px;
+  padding: 14px;
+  border: 1px solid rgba(42,83,67,.06);
 }
 .sc-block {
   display: flex; gap: 10px; padding: 8px 10px;
@@ -424,38 +508,41 @@ nav.scrolled .nav-link:hover { color: var(--green); }
   color: var(--green); text-align: center;
 }
 
-/* Slide 4: 1:07 PM INTERVENTION */
-.sc-slide.override { background: linear-gradient(to bottom, #1E3329 0%, #151C19 100%); }
-.sc-slide.override .sc-slide-header { color: rgba(233,196,106,.55); }
-.sc-slide.override .sc-slide-title { color: var(--white); }
+/* Slide 4: RECOVER — warm portrait (was dark override) */
+.sc-slide.override {
+  padding: 38px 22px 22px;
+  background: var(--white);
+}
+.sc-slide.override .sc-dump-headline { color: var(--green); }
 .sc-override-inner {
   flex: 1; display: flex; flex-direction: column;
-  align-items: center; justify-content: center;
-  gap: 16px;
+  align-items: stretch; justify-content: center;
+  gap: 14px;
+  background: #f5f3f0; border-radius: 14px;
+  padding: 22px 18px;
+  border: 1px solid rgba(42,83,67,.06);
 }
 .sc-override-detect {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 9px; letter-spacing: .1em;
-  color: rgba(233,196,106,.55);
+  font-size: 9px; letter-spacing: .12em;
+  color: var(--green);
+  text-align: left;
 }
 .sc-override-step {
   font-family: 'Playfair Display', serif;
-  font-size: 20px; color: var(--white);
-  text-align: center; line-height: 1.2;
-  max-width: 240px;
-}
-.sc-override-btn {
-  padding: 12px 26px;
-  background: var(--gold); color: var(--green);
-  border: none; border-radius: 999px;
-  font-family: 'Inter', sans-serif; font-weight: 500;
-  font-size: 13px; cursor: pointer;
+  font-style: italic;
+  font-size: 22px; color: var(--green);
+  line-height: 1.15;
+  text-align: left;
 }
 .sc-override-meta {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 9px; letter-spacing: .08em;
-  color: rgba(255,255,255,.3);
+  font-size: 9px; letter-spacing: .1em;
+  color: var(--gray);
+  text-align: left;
+  margin-top: auto;
 }
+.sc-override-btn { display: none; }
 
 /* Dots navigation */
 .sc-dots-nav {
@@ -498,88 +585,209 @@ nav.scrolled .nav-link:hover { color: var(--green); }
   background: var(--white); padding: 120px 80px;
   border-top: 1px solid var(--line);
 }
-.od-header { margin-bottom: 56px; }
-.od-grid {
-  display: grid; grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
+
+/* Transition block */
+.od-transition {
+  max-width: 760px; margin: 0 0 96px;
+  text-align: left;
 }
-.od-card {
-  position: relative; border-radius: 22px; overflow: hidden;
-  cursor: pointer; aspect-ratio: 1 / 1;
-  transition: all .4s ease;
-  background: #1a2218;
+.od-trans-question {
+  font-family: 'Playfair Display', serif; font-weight: 700;
+  font-size: clamp(28px, 3.2vw, 40px);
+  color: var(--green); line-height: 1.18;
+  letter-spacing: -.01em; margin-bottom: 28px;
 }
-.od-card.expanded {
-  aspect-ratio: auto; min-height: 520px; grid-column: 1 / -1;
+.od-trans-yeah {
+  font-family: 'Playfair Display', serif; font-style: italic; font-weight: 700;
+  font-size: clamp(38px, 4.6vw, 60px);
+  color: var(--gold); line-height: 1.05;
+  margin-bottom: 36px;
 }
-.od-bg {
+.od-trans-divider {
+  width: 40px; height: 1px;
+  background: rgba(42,83,67,.25);
+  margin: 0 0 32px;
+}
+.od-trans-line {
+  font-family: 'Inter', sans-serif; font-weight: 300;
+  font-size: clamp(18px, 1.6vw, 22px);
+  color: var(--gray); line-height: 1.5;
+  margin-bottom: 4px;
+}
+.od-trans-line.dim {
+  color: var(--gray);
+}
+.od-trans-then {
+  margin-top: 22px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; letter-spacing: .14em;
+  color: var(--green);
+}
+
+/* Stacked cards header */
+.od-header { margin-bottom: 48px; }
+
+/* Overdrive — mirror Smart Calendar structure */
+.od-inner {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: center;
+  max-width: 1200px; margin: 0 auto;
+}
+.od-mockup {
+  background: #f9f7f4; border-radius: 28px; padding: 2.25rem 1.75rem;
+  display: flex; flex-direction: column; align-items: center;
+  border: 1px solid var(--line);
+}
+.od-phone {
+  position: relative;
+  width: 100%; max-width: 340px;
+  aspect-ratio: 9 / 17;
+  background: #1E3329;
+  border-radius: 36px;
+  overflow: hidden;
+  box-shadow: 0 30px 60px -20px rgba(15,26,20,.25), 0 0 0 1px rgba(0,0,0,.04);
+}
+.od-notch {
+  position: absolute; top: 8px; left: 50%;
+  transform: translateX(-50%);
+  width: 60px; height: 16px;
+  background: #0c1410; border-radius: 999px; z-index: 4;
+}
+.od-status {
+  position: absolute; top: 10px; left: 0; right: 0;
+  height: 20px; display: flex; align-items: center;
+  justify-content: space-between; padding: 0 24px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: .06em;
+  color: rgba(243,239,231,.6); z-index: 5;
+}
+.od-slide {
   position: absolute; inset: 0;
-  background-size: cover; background-position: center;
-  transition: transform .6s ease;
+  padding: 50px 24px 30px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  opacity: 0; transition: opacity .5s ease;
+  pointer-events: none;
 }
-.od-card:hover .od-bg { transform: scale(1.04); }
-.od-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(10,20,15,.94) 0%, rgba(10,20,15,.3) 58%, rgba(10,20,15,.05) 100%);
-}
-.od-content {
-  position: absolute; inset: 0; z-index: 2; padding: 36px;
-  display: flex; flex-direction: column; justify-content: flex-end;
-}
-.od-num {
+.od-slide.active { opacity: 1; pointer-events: auto; }
+.od-slide-header {
   font-family: 'JetBrains Mono', monospace;
   font-size: 10px; letter-spacing: .14em;
-  color: rgba(233,196,106,.65); margin-bottom: 10px;
+  color: rgba(233,196,106,.7); margin-bottom: 28px;
+}
+.od-slide-title {
+  font-family: 'Playfair Display', serif; font-weight: 700;
+  font-size: 26px; color: var(--white);
+  line-height: 1.2; letter-spacing: -.01em;
+  margin-bottom: 36px; max-width: 240px;
+}
+.od-slide-btn {
+  display: inline-block; padding: 12px 22px;
+  background: var(--gold); color: var(--green);
+  border-radius: 999px;
+  font-family: 'Inter', sans-serif; font-weight: 500;
+  font-size: 13px;
+}
+.od-dots-nav {
+  display: flex; gap: 8px; margin-top: 20px;
+  justify-content: center;
+}
+.od-dots-nav button {
+  width: 8px; height: 8px; border-radius: 50%;
+  border: none; padding: 0;
+  background: rgba(42,83,67,.2);
+  cursor: pointer; transition: all .3s ease;
+}
+.od-dots-nav button.active {
+  background: var(--green); width: 24px; border-radius: 999px;
+}
+.od-phone-caption {
+  margin-top: 14px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: .12em;
+  color: var(--gray); text-align: center;
+}
+.od-right { display: flex; flex-direction: column; }
+.od-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; letter-spacing: .14em;
+  color: var(--gold); margin-bottom: 14px;
 }
 .od-name {
   font-family: 'Playfair Display', serif; font-weight: 700;
-  font-size: clamp(44px, 5.2vw, 72px);
-  color: var(--white); line-height: 1.02;
-  letter-spacing: -.02em; margin-bottom: 14px;
+  font-size: clamp(38px, 3.6vw, 52px);
+  color: var(--green); line-height: 1.04;
+  letter-spacing: -.02em; margin-bottom: 22px;
 }
-.od-pill {
-  display: inline-block; width: fit-content;
-  background: rgba(233,196,106,.18); color: var(--gold);
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px; letter-spacing: .08em;
-  padding: 5px 14px; border-radius: 999px;
-}
-.od-teaser {
+.od-when {
   font-family: 'Inter', sans-serif; font-weight: 300;
-  font-size: 15px; color: rgba(255,255,255,.6);
-  line-height: 1.6; margin-top: 14px;
+  font-size: 17px; color: var(--gray);
+  line-height: 1.6; margin-bottom: 12px;
 }
-.od-hint {
+.od-arrow {
+  font-family: 'Inter', sans-serif; font-weight: 400;
+  font-size: 17px; color: var(--green);
+  line-height: 1.6;
+}
+
+/* Outro micro line */
+.od-outro {
+  background: #f9f7f4; border-left: 3px solid var(--green);
+  border-radius: 10px; padding: 1rem 1.2rem;
+  font-family: 'Inter', sans-serif; font-size: 14px;
+  color: var(--green); line-height: 1.6; max-width: 520px;
+  margin: 32px 0 0;
+}
+.od-outro strong {
+  display: block;
+  font-family: 'Inter', sans-serif; font-weight: 600;
+  font-style: normal;
+  font-size: 14px; color: var(--green);
+  margin-bottom: 4px;
+}
+
+/* ---------- 4.5 CORE LINE / CENTERPIECE BANDS ---------- */
+.core-line {
+  background: var(--cream);
+  padding: 140px 80px;
+  display: flex; align-items: flex-start; justify-content: flex-start;
+  border-top: 1px solid var(--line);
+}
+.core-line-text {
+  font-family: 'Playfair Display', serif; font-weight: 700;
+  font-size: clamp(40px, 5.4vw, 76px);
+  color: var(--green); line-height: 1.1;
+  letter-spacing: -.02em; text-align: left;
+  max-width: 1100px;
+}
+.core-line-text em {
+  font-style: italic; color: var(--gold);
+}
+.core-line-tag {
   font-family: 'JetBrains Mono', monospace;
-  font-size: 10px; letter-spacing: .08em;
-  color: rgba(255,255,255,.35); margin-top: 14px;
+  font-size: 11px; letter-spacing: .18em;
+  color: var(--green);
+  margin-bottom: 28px;
+  text-align: left;
 }
-.od-expand {
-  display: none; margin-top: 22px;
-  border-top: 1px solid rgba(255,255,255,.1); padding-top: 22px;
+.core-line-sub {
+  margin-top: 36px;
+  max-width: 560px;
 }
-.od-card.expanded .od-expand { display: block; }
-.od-card.expanded .od-hint,
-.od-card.expanded .od-teaser { display: none; }
-.od-label {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px; letter-spacing: .14em;
-  color: rgba(233,196,106,.65); margin-bottom: 10px;
-}
-.od-body {
+.core-line-sub p {
   font-family: 'Inter', sans-serif; font-weight: 300;
-  font-size: 16px; color: rgba(255,255,255,.78);
-  line-height: 1.75; max-width: 740px;
-  /* Soft fade as text nears the bottom of the card */
-  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 75%, rgba(0,0,0,.3) 100%);
-          mask-image: linear-gradient(to bottom, #000 0%, #000 75%, rgba(0,0,0,.3) 100%);
+  font-size: clamp(17px, 1.4vw, 20px);
+  color: var(--gray); line-height: 1.55;
 }
-.od-close {
-  display: inline-block;
+.core-line-then {
+  margin-top: 28px;
   font-family: 'JetBrains Mono', monospace;
-  font-size: 10px; letter-spacing: .08em;
-  color: rgba(255,255,255,.5);
-  cursor: pointer; margin-top: 20px;
+  font-size: 11px; letter-spacing: .14em;
+  color: var(--green);
+}
+@media (max-width: 720px) {
+  .core-line { padding: 88px 24px; }
 }
 
 /* ---------- 5. SAFETY NET ---------- */
@@ -594,12 +802,13 @@ nav.scrolled .nav-link:hover { color: var(--green); }
 .sn-body {
   font-family: 'Inter', sans-serif; font-weight: 300;
   font-size: 16px; color: var(--gray);
-  line-height: 1.8; margin: 18px 0 32px;
+  line-height: 1.8; margin: 18px 0 28px;
   max-width: 440px;
 }
 .sn-links {
   display: flex; flex-direction: column; gap: 10px;
   max-width: 420px;
+  margin-bottom: 32px;
 }
 .sn-link {
   display: flex; align-items: center; justify-content: space-between;
@@ -617,10 +826,55 @@ nav.scrolled .nav-link:hover { color: var(--green); }
   border-color: rgba(233,196,106,.4);
 }
 .sn-link .sn-arrow { color: var(--green); font-size: 16px; }
+
+/* Founder note */
+.sn-founder {
+  display: flex; gap: 16px; align-items: flex-start;
+  max-width: 460px;
+  padding: 20px;
+  background: #f9f7f4;
+  border-radius: 16px;
+  border: 1px solid var(--line);
+}
+.sn-founder-avatar {
+  flex: 0 0 48px;
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  background: var(--green) url('assets/founder/marcos.png') center/cover no-repeat;
+}
+.sn-founder-text {
+  font-family: 'Inter', sans-serif; font-weight: 300;
+  font-size: 13px; color: var(--gray);
+  line-height: 1.65;
+}
+.sn-founder-text strong {
+  display: block;
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 500;
+  font-size: 10px; letter-spacing: .12em;
+  color: var(--green); margin-bottom: 4px;
+}
+.sn-founder-text em {
+  font-style: italic; color: var(--green);
+}
+.sn-founder-link {
+  display: inline-block; margin-top: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: .1em;
+  color: var(--green); text-decoration: none;
+  border-bottom: 1px solid rgba(42,83,67,.3);
+  padding-bottom: 1px;
+  transition: color .2s, border-color .2s;
+}
+.sn-founder-link:hover {
+  color: var(--gold);
+  border-color: var(--gold);
+}
+
 .sn-photo {
   position: relative; min-height: 440px;
   border-radius: 22px; overflow: hidden;
-  background: #2c3028 url('hero.jpg') center/cover no-repeat;
+  background: #2c3028 url('assets/photography/archetype-04-floor.jpg') center/cover no-repeat;
 }
 .sn-photo-overlay {
   position: absolute; inset: 0;
@@ -688,6 +942,48 @@ nav.scrolled .nav-link:hover { color: var(--green); }
   font-size: 12px; color: rgba(255,255,255,.35);
   margin-top: 18px;
 }
+/* ---------- 7. FOOTER ---------- */
+.site-footer {
+  background: var(--green);
+  padding: 80px 80px 40px;
+  border-top: 1px solid rgba(233,196,106,.15);
+}
+.sf-inner { max-width: 760px; }
+.sf-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: .22em;
+  color: rgba(233,196,106,.55); margin-bottom: 22px;
+}
+.sf-blurb {
+  font-family: 'Playfair Display', serif; font-weight: 700;
+  font-size: clamp(24px, 2.6vw, 34px);
+  color: var(--white); line-height: 1.35;
+  letter-spacing: -.01em;
+  margin-bottom: 18px;
+}
+.sf-blurb em { font-style: italic; color: var(--gold); }
+.sf-sign {
+  font-family: 'Inter', sans-serif; font-style: italic;
+  font-size: 14px; color: rgba(255,255,255,.55);
+}
+.sf-rule {
+  height: 1px; background: rgba(255,255,255,.1);
+  margin: 48px 0 22px;
+}
+.sf-meta {
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: .12em;
+  color: rgba(255,255,255,.35);
+}
+.sf-logo {
+  font-family: 'Playfair Display', serif; font-weight: 700;
+  font-size: 18px; color: var(--white); letter-spacing: 0;
+}
+@media (max-width: 720px) {
+  .site-footer { padding: 56px 24px 28px; }
+}
+
 .cta-success {
   display: none; margin-top: 18px; padding: 14px 20px;
   background: rgba(233,196,106,.12);
@@ -697,16 +993,32 @@ nav.scrolled .nav-link:hover { color: var(--green); }
   font-size: 11px; letter-spacing: .06em;
   color: var(--gold); max-width: 520px;
 }
+.cta-footer-blurb {
+  margin-top: 96px;
+  padding-top: 36px;
+  border-top: 1px solid rgba(255,255,255,.12);
+  max-width: 640px;
+}
+.cta-footer-text {
+  font-family: 'Playfair Display', serif; font-weight: 700;
+  font-size: clamp(20px, 2vw, 26px);
+  color: rgba(255,255,255,.78);
+  line-height: 1.5; letter-spacing: -.01em;
+  margin-bottom: 14px;
+}
+.cta-footer-text em {
+  font-style: italic; color: var(--gold);
+}
+.cta-footer-sig {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; letter-spacing: .12em;
+  color: rgba(255,255,255,.45);
+}
 
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 1199px) {
   .switchboard, .smartcal, .overdrive, .safetynet, .cta-section { padding: 96px 48px; }
-  .sc-inner, .sn-inner { gap: 48px; }
-  /* Stack switchboard: copy on top, 2x2 cards below */
-  .sw-inner { grid-template-columns: 1fr; gap: 48px; }
-  .sw-left { justify-content: flex-start; padding-bottom: 0; }
-  /* Overdrive — fall back to 2x2 so cards don't get tiny */
-  .od-grid { grid-template-columns: repeat(2, 1fr); }
+  .sc-inner, .sn-inner, .sw-inner { gap: 48px; }
 }
 
 @media (max-width: 720px) {
@@ -721,22 +1033,21 @@ nav.scrolled .nav-link:hover { color: var(--green); }
     padding: 72px 24px;
   }
 
-  /* Switchboard — single column on iPhone */
-  .sw-grid { grid-template-columns: 1fr; }
-  .sw-card { aspect-ratio: 16 / 11; }
-  .sw-card.active { grid-column: span 1; min-height: 440px; }
-  .sw-content { padding: 28px; }
+  /* System overview — stack */
+  .sw-inner { grid-template-columns: 1fr; gap: 40px; }
+  .sw-image { aspect-ratio: 4 / 3; }
 
   /* Smart Calendar — stack, text above mockup on mobile */
   .sc-inner, .sn-inner { grid-template-columns: 1fr; gap: 40px; }
   .sc-mockup { padding: 1.25rem; order: 2; }
   .sc-right { order: 1; }
 
-  /* Overdrive — single column */
-  .od-grid { grid-template-columns: 1fr; }
-  .od-card { aspect-ratio: 16 / 11; }
-  .od-card.expanded { grid-column: span 1; min-height: 440px; }
-  .od-content { padding: 28px; }
+  /* Overdrive carousel — stack vertical (matches Smart Calendar) */
+  .od-inner { grid-template-columns: 1fr; gap: 40px; }
+  .od-mockup { padding: 1.25rem; order: 2; }
+  .od-right { order: 1; }
+  .od-transition { margin-bottom: 64px; }
+  .od-outro { margin-top: 24px; }
 
   /* Safety Net — photo first then links */
   .sn-photo { min-height: 280px; order: 2; }
@@ -758,104 +1069,64 @@ nav.scrolled .nav-link:hover { color: var(--green); }
     <a href="#overdrive" class="nav-link">[ OVERDRIVE ]</a>
     <a href="#safetynet" class="nav-link">[ SAFETY NET ]</a>
   </div>
-  <a href="#access" class="nav-cta">[ INITIALIZE ACCESS ]</a>
+  <a href="#access" class="nav-cta">Get Started</a>
 </nav>
 
 <!-- 1. HERO -->
-<section class="hero" id="top">
+<section class="hero" id="top" data-screen-label="01 Hero">
   <div class="hero-img"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <div class="hero-eyebrow">DAILY OPERATING SYSTEM</div>
-    <h1 class="hero-headline">Built for your brain.<br><em>Not their expectations.</em></h1>
-    <p class="hero-sub">DOS turns mental noise into clear next steps. Because no one needs another productivity app — you need a system that works with your neurobiology.</p>
+    <h1 class="hero-headline">Built for your brain,<br><em>not their expectations.</em></h1>
+    <p class="hero-sub">Planning your day is easy. Staying in it isn't.</p>
     <div class="hero-actions">
-      <a href="#access" class="btn-gold">Start with clarity →</a>
+      <a href="#access" class="btn-gold">Get Started →</a>
       <a href="#switchboard" class="btn-ghost">See how it works</a>
     </div>
   </div>
   <div class="hero-note">No spam. Real updates from your neurodivergent friend.</div>
 </section>
 
-<!-- 2. SWITCHBOARD / SYSTEM OVERVIEW -->
-<section class="switchboard" id="switchboard">
+<!-- 2. SYSTEM OVERVIEW -->
+<section class="switchboard" id="switchboard" data-screen-label="02 System Overview">
   <div class="sw-inner">
 
     <div class="sw-left">
-      <div class="sw-header">
-        <p class="section-tag">[ SYSTEM OVERVIEW ]</p>
-        <h2 class="section-headline">DOS is an AI-powered daily planning system designed for neurodivergent brains.</h2>
-        <p class="section-sub">Turns mental clutter into a realistic, energy-aware plan you'll actually follow.</p>
-      </div>
+      <p class="section-tag">[ SYSTEM OVERVIEW ]</p>
+      <h2 class="section-headline">Ever have those days when you forget your list by 10:07 AM,
+want to quit by 1:10 PM,
+and you’re spent by 5?</h2>
+      <p class="sw-yeah-headline">Yeah. Same.</p>
+      <p class="sw-blurb-sub">Most tools help you plan your day. DOS helps you get back into it. When things fall apart, you don't need a better plan — you need a way back in.</p>
     </div>
 
-    <div class="sw-grid" id="swGrid">
-
-    <!-- (1) BLURB -->
-    <div class="sw-card blurb">
-      <div class="sw-bg" style="background-image:url('executive%20override.jpg')"></div>
-      <div class="sw-overlay"></div>
-      <div class="sw-content">
-        <p class="sw-blurb-copy">Ever have those days when you forget your list by 10:07 AM, want to quit by 1:10 PM, and you're spent by 5?</p>
-        <p class="sw-yeah">Yeah. Same.</p>
-        <p class="sw-blurb-sub">DOS plans your day, catches you when you crash, and never punishes you for being human.</p>
-      </div>
+    <div class="sw-pillar-stack">
+      <a href="#smartcal" class="sw-pcard">
+        <span class="sw-pcard-num">01 //</span>
+        <h3 class="sw-pcard-name">Dump it out</h3>
+        <p class="sw-pcard-line">No structure. No pressure. Just get it out of your head.</p>
+        <span class="sw-pcard-arrow">→</span>
+      </a>
+      <a href="#smartcal" class="sw-pcard">
+        <span class="sw-pcard-num">02 //</span>
+        <h3 class="sw-pcard-name">We make it manageable</h3>
+        <p class="sw-pcard-line">A simple plan, sized to the energy you actually have.</p>
+        <span class="sw-pcard-arrow">→</span>
+      </a>
+      <a href="#overdrive" class="sw-pcard">
+        <span class="sw-pcard-num">03 //</span>
+        <h3 class="sw-pcard-name">Come back when it breaks</h3>
+        <p class="sw-pcard-line">And it will. That's when DOS steps in.</p>
+        <span class="sw-pcard-arrow">→</span>
+      </a>
     </div>
 
-    <!-- (2) 01 SMART CALENDAR -->
-    <div class="sw-card" onclick="toggleSW(this)">
-      <div class="sw-bg" style="background-image:url('smartcal.jpg')"></div>
-      <div class="sw-overlay"></div>
-      <div class="sw-content">
-        <p class="sw-num">01 //</p>
-        <p class="sw-name">The Smart Calendar</p>
-        <p class="sw-hint">↓ tap to learn more</p>
-        <div class="sw-expand">
-          <p class="sw-body">Dump everything in your head — tasks, anxiety, errands, all of it. DOS builds you a realistic, time-blocked day based on how your brain actually works. Not clock time. Cognitive load.</p>
-          <a href="#smartcal" onclick="event.stopPropagation();" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--gold);text-decoration:none;">See it in action ↓</a>
-          <span class="sw-close" onclick="event.stopPropagation();this.closest('.sw-card').classList.remove('active')">  ·  ↑ collapse</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- (3) 02 EXECUTIVE OVERDRIVE -->
-    <div class="sw-card" onclick="toggleSW(this)">
-      <div class="sw-bg" style="background-image:url('manzone.jpg')"></div>
-      <div class="sw-overlay"></div>
-      <div class="sw-content">
-        <p class="sw-num">02 //</p>
-        <p class="sw-name">Executive Overdrive</p>
-        <p class="sw-hint">↓ tap to learn more</p>
-        <div class="sw-expand">
-          <p class="sw-body">When the 1 PM wall hits and nothing moves — DOS offers low-friction moves to get you unstuck. No willpower required. No shame.</p>
-          <a href="#overdrive" onclick="event.stopPropagation();" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--gold);text-decoration:none;">Explore the methods ↓</a>
-          <span class="sw-close" onclick="event.stopPropagation();this.closest('.sw-card').classList.remove('active')">  ·  ↑ collapse</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- (4) 03 SAFETY NET -->
-    <div class="sw-card" onclick="toggleSW(this)">
-      <div class="sw-bg" style="background-image:url('photo-02-philosophy.jpg')"></div>
-      <div class="sw-overlay"></div>
-      <div class="sw-content">
-        <p class="sw-num">03 //</p>
-        <p class="sw-name">The Safety Net</p>
-        <p class="sw-hint">↓ tap to learn more</p>
-        <div class="sw-expand">
-          <p class="sw-body">We're your neurodivergent friend, not just your software. If you're struggling beyond the app, here are vetted resources for the days when you need more than a system.</p>
-          <a href="#safetynet" onclick="event.stopPropagation();" style="font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;color:var(--gold);text-decoration:none;">Find your people ↓</a>
-          <span class="sw-close" onclick="event.stopPropagation();this.closest('.sw-card').classList.remove('active')">  ·  ↑ collapse</span>
-        </div>
-      </div>
-    </div>
-
-    </div><!-- /.sw-grid -->
-  </div><!-- /.sw-inner -->
+  </div>
 </section>
 
 <!-- 3. SMART CALENDAR -->
-<section class="smartcal" id="smartcal">
+<section class="smartcal" id="smartcal" data-screen-label="03 Smart Calendar">
   <div class="sc-inner">
 
     <div class="sc-mockup">
@@ -867,55 +1138,62 @@ nav.scrolled .nav-link:hover { color: var(--green); }
           <span>DOS</span>
         </div>
 
-        <!-- Slide 1: BRAIN DUMP -->
-        <div class="sc-slide active" data-slide="0">
-          <p class="sc-slide-header">[ STEP 01 ]</p>
-          <h3 class="sc-slide-title">Brain dump</h3>
+        <!-- Slide 1: DUMP IT ALL OUT -->
+        <div class="sc-slide active dump" data-slide="0">
+          <p class="sc-dump-greet">Morning, Marcos.</p>
+          <h3 class="sc-dump-headline">What's on<br>your mind?</h3>
+          <p class="sc-dump-instructions">Dump it all here.<br>Don't clean it up. Don't organize it.<br>If it's easier, use the mic.</p>
           <div class="sc-dump-box">
-            <p class="sc-dump-label">WHAT'S ON YOUR MIND?</p>
-            <p class="sc-dump-text">"meeting at 2, finish the deck, groceries, call mom, reply to slack, anxiety about the presentation, haven't started the report...<span class="sc-cursor"></span></p>
-          </div>
-          <p class="sc-dump-hint">VOICE · TYPE · FROM SLACK</p>
-        </div>
-
-        <!-- Slide 2: PROCESSING -->
-        <div class="sc-slide" data-slide="1">
-          <p class="sc-slide-header">[ STEP 02 ]</p>
-          <h3 class="sc-slide-title">Building your day</h3>
-          <div class="sc-process">
-            <div class="sc-dots"><span></span><span></span><span></span></div>
-            <div class="sc-process-list">
-              <div class="sc-process-item"><span class="sc-process-check">✓</span><span>Analyzing cognitive load</span></div>
-              <div class="sc-process-item"><span class="sc-process-check">✓</span><span>Mapping energy windows</span></div>
-              <div class="sc-process-item"><span class="sc-process-check">·</span><span>Sequencing by difficulty</span></div>
+            <p class="sc-dump-text"><span class="sc-cursor"></span>email john, <span class="yell">OH SHIT</span> I need to finish the report, ugh I gotta go to the gym, I need to call mom, why do I feel behind, ahh damn it I forgot to text them back</p>
+            <div class="sc-dump-actions">
+              <span class="sc-dump-pill">+</span>
+              <span class="sc-dump-pill mic">●</span>
             </div>
           </div>
+          <button class="sc-dump-cta">Continue →</button>
         </div>
 
-        <!-- Slide 3: YOUR DAY -->
-        <div class="sc-slide" data-slide="2">
-          <p class="sc-slide-header">[ TODAY // 9:00 – 17:00 ]</p>
-          <h3 class="sc-slide-title">Your day, time-blocked</h3>
+        <!-- Slide 2: WE SORT IT -->
+        <div class="sc-slide sort" data-slide="1">
+          <p class="sc-dump-greet">A moment, Marcos.</p>
+          <h3 class="sc-dump-headline">We're<br>sorting it.</h3>
+          <p class="sc-dump-instructions">Take a breath.<br>This is the part you don't have to do.<br>We'll hand it back, simple.</p>
+          <div class="sc-process">
+            <div class="sc-process-list">
+              <div class="sc-process-item"><span class="sc-process-check">✓</span><span>Sorting what matters</span></div>
+              <div class="sc-process-item"><span class="sc-process-check">✓</span><span>Pacing it for your day</span></div>
+              <div class="sc-process-item"><span class="sc-process-check">·</span><span>Easing into the hard stuff</span></div>
+            </div>
+          </div>
+          <button class="sc-dump-cta">Almost there →</button>
+        </div>
+
+        <!-- Slide 3: A SIMPLE PLAN -->
+        <div class="sc-slide day" data-slide="2">
+          <p class="sc-dump-greet">Here you go, Marcos.</p>
+          <h3 class="sc-dump-headline">A simple<br>plan.</h3>
+          <p class="sc-dump-instructions">Sized to today's energy.<br>Not your inbox. Not their expectations.<br>Move things around if you need to.</p>
           <div class="sc-day">
-            <div class="sc-block"><span class="sc-time">9:00</span><div><div class="sc-task">Deep work — Report</div><div class="sc-note">Open doc first.</div></div></div>
-            <div class="sc-block"><span class="sc-time">11:00</span><div><div class="sc-task">Presentation deck</div><div class="sc-note">Slides 4–7. 45 min.</div></div></div>
-            <div class="sc-block"><span class="sc-time">12:00</span><div><div class="sc-task">Lunch + Slack</div><div class="sc-note">Batch. 20 min.</div></div></div>
-            <div class="sc-block"><span class="sc-time">14:00</span><div><div class="sc-task">Meeting</div><div class="sc-note">Buffer 15 before.</div></div></div>
-            <div class="sc-block"><span class="sc-time">16:30</span><div><div class="sc-task">Errands + call mom</div><div class="sc-note">Low energy. Combine.</div></div></div>
-            <div class="sc-day-footer">BUILT IN 3 SECONDS</div>
+            <div class="sc-block"><span class="sc-time">9:00</span><div><div class="sc-task">Start the report</div><div class="sc-note">Just open the doc.</div></div></div>
+            <div class="sc-block"><span class="sc-time">11:00</span><div><div class="sc-task">Deck — a few slides</div><div class="sc-note">45 min, then break.</div></div></div>
+            <div class="sc-block"><span class="sc-time">12:00</span><div><div class="sc-task">Lunch + Slack</div><div class="sc-note">Together. 20 min.</div></div></div>
+            <div class="sc-block"><span class="sc-time">14:00</span><div><div class="sc-task">Meeting</div><div class="sc-note">Breathe before.</div></div></div>
+            <div class="sc-block"><span class="sc-time">16:30</span><div><div class="sc-task">Errands · call mom</div><div class="sc-note">Low effort. Combine.</div></div></div>
           </div>
+          <button class="sc-dump-cta">Start the day →</button>
         </div>
 
-        <!-- Slide 4: 1:07 PM OVERRIDE -->
+        <!-- Slide 4: AND IF YOU IGNORE IT? -->
         <div class="sc-slide override" data-slide="3">
-          <p class="sc-slide-header">[ 1:07 PM // OVERRIDE ]</p>
-          <h3 class="sc-slide-title">Something's off.</h3>
+          <p class="sc-dump-greet">It's 1:07, Marcos.</p>
+          <h3 class="sc-dump-headline">And if you<br>ignore it?</h3>
+          <p class="sc-dump-instructions">Nothing breaks.<br>No streaks. No shame.<br>You just come back.</p>
           <div class="sc-override-inner">
-            <p class="sc-override-detect">INACTIVITY DETECTED · 12 MIN</p>
-            <p class="sc-override-step">Open the doc.<br>That's it.</p>
-            <button class="sc-override-btn">I'll do it →</button>
-            <p class="sc-override-meta">STEP 1 OF 6</p>
+            <p class="sc-override-detect">SOFTLY —</p>
+            <p class="sc-override-step">You didn't fail.<br>You paused.</p>
+            <p class="sc-override-meta">PICK UP WHEREVER YOU LEFT</p>
           </div>
+          <button class="sc-dump-cta">Pick it back up →</button>
         </div>
       </div>
 
@@ -932,97 +1210,105 @@ nav.scrolled .nav-link:hover { color: var(--green); }
 
     <div class="sc-right">
       <p class="section-tag">01 // THE SMART CALENDAR</p>
-      <h2 class="section-headline">Stop negotiating with your to-do list.</h2>
-      <p class="sc-body">Most planners assume you'll have the same energy at 9 AM and 4 PM. DOS knows better. Dump everything in your head and DOS builds you a realistic, time-blocked day based on cognitive load, not just clock time.</p>
-      <div class="sc-result">The result: a schedule that actually survives the first hour.</div>
+      <h2 class="section-headline">Start your day without overthinking it.</h2>
+      <p class="sc-body">You don't need a perfect plan. You need one that fits the day you're actually having. Tell DOS what's in your head — it gives you back something simple enough to follow, soft enough to forgive you.</p>
+      <div class="sc-result">Yours, not the app's. And if today gets away from you, you just come back.</div>
     </div>
 
   </div>
 </section>
 
 <!-- 4. EXECUTIVE OVERDRIVE -->
-<section class="overdrive" id="overdrive">
-  <div class="od-header">
-    <p class="section-tag">[ 02 // EXECUTIVE OVERDRIVE ]</p>
-    <h2 class="section-headline">When you hit the wall,<br>DOS hits back.</h2>
-    <p class="section-sub">Stop guessing why you're stuck. DOS helps lower the activation energy required to get moving.</p>
-  </div>
-
-  <div class="od-grid">
-
-    <div class="od-card" onclick="toggleOD(this)">
-      <div class="od-bg" style="background-image:url('Gemini_Generated_Image_.png')"></div>
-      <div class="od-overlay"></div>
-      <div class="od-content">
-        <p class="od-num">01 //</p>
-        <p class="od-name">Body</p>
-        <span class="od-pill">Physiological</span>
-        <p class="od-teaser">Your brain's capacity relies on energy, arousal, and dopamine.</p>
-        <p class="od-hint">↓ tap to expand</p>
-        <div class="od-expand">
-          <p class="od-label">WHY IT MATTERS</p>
-          <p class="od-body">You can't "mindset" your way out of a physiological deficit. Whether it's sensory modulation or light therapy, DOS recommends the right lever for the right now to wake your brain up.</p>
-          <span class="od-close" onclick="event.stopPropagation();this.closest('.od-card').classList.remove('expanded')">↑ collapse</span>
-        </div>
-      </div>
+<!-- 4. EXECUTIVE OVERDRIVE — the real product band + carousel -->
+<section class="core-line" data-screen-label="04a Real Product">
+  <div>
+    <p class="core-line-tag">[ THE REAL PRODUCT ]</p>
+    <p class="core-line-text">Planning is the easy part.<br><em>Staying in it is where things fall apart.</em></p>
+    <div class="core-line-sub">
+      <p>You don't get a dashboard.<br>You don't get overwhelmed.<br>You get one way back in.</p>
     </div>
-
-    <div class="od-card" onclick="toggleOD(this)">
-      <div class="od-bg" style="background-image:url('photo-03-autonomous.jpg')"></div>
-      <div class="od-overlay"></div>
-      <div class="od-content">
-        <p class="od-num">02 //</p>
-        <p class="od-name">Space</p>
-        <span class="od-pill">Environmental</span>
-        <p class="od-teaser">Your surroundings are either a tool or a trap.</p>
-        <p class="od-hint">↓ tap to expand</p>
-        <div class="od-expand">
-          <p class="od-label">WHY IT MATTERS</p>
-          <p class="od-body">Willpower is finite; environment is permanent. DOS identifies the friction points stealing your focus and prompts the smallest environmental change — workspace design, digital blocking — that removes the biggest barrier.</p>
-          <span class="od-close" onclick="event.stopPropagation();this.closest('.od-card').classList.remove('expanded')">↑ collapse</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="od-card" onclick="toggleOD(this)">
-      <div class="od-bg" style="background-image:url('Untitled%20design.png')"></div>
-      <div class="od-overlay"></div>
-      <div class="od-content">
-        <p class="od-num">03 //</p>
-        <p class="od-name">Action</p>
-        <span class="od-pill">Behavioral</span>
-        <p class="od-teaser">Big goals cause paralysis. Small actions build momentum.</p>
-        <p class="od-hint">↓ tap to expand</p>
-        <div class="od-expand">
-          <p class="od-label">WHY IT MATTERS</p>
-          <p class="od-body">Intentions need to become mechanical movement before the start barrier gets too high to climb. DOS converts your vague intentions into a single, undeniable physical step. We don't do to-do lists. We do execution.</p>
-          <span class="od-close" onclick="event.stopPropagation();this.closest('.od-card').classList.remove('expanded')">↑ collapse</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="od-card" onclick="toggleOD(this)">
-      <div class="od-bg" style="background-image:url('Gemini_Generated_Image_%20(1).png')"></div>
-      <div class="od-overlay"></div>
-      <div class="od-content">
-        <p class="od-num">04 //</p>
-        <p class="od-name">Mind</p>
-        <span class="od-pill">Cognitive</span>
-        <p class="od-teaser">How you think determines if you keep going or spiral into avoidance.</p>
-        <p class="od-hint">↓ tap to expand</p>
-        <div class="od-expand">
-          <p class="od-label">WHY IT MATTERS</p>
-          <p class="od-body">The shame spiral is the ultimate productivity killer. When you interpret a pause as a failure, avoidance takes over. DOS detects the onset of avoidance and interrupts the negative self-talk before it turns into a lost afternoon.</p>
-          <span class="od-close" onclick="event.stopPropagation();this.closest('.od-card').classList.remove('expanded')">↑ collapse</span>
-        </div>
-      </div>
-    </div>
-
+    <p class="core-line-then">THAT'S WHERE DOS LIVES →</p>
   </div>
 </section>
 
+<section class="overdrive" id="overdrive" data-screen-label="04 Executive Overdrive">
+
+  <div class="od-header">
+    <p class="section-tag">[ 02 // HIT THE WALL ]</p>
+    <h2 class="section-headline">Four ways back in.</h2>
+    <p class="section-sub">No streaks. No guilt screens. When the day gets away from you, DOS gives you a soft, specific entry point — whichever one fits the moment.</p>
+  </div>
+
+  <div class="od-inner">
+
+    <div class="od-mockup">
+
+      <div class="od-phone" id="odPhone">
+        <div class="od-notch"></div>
+        <div class="od-status"><span>9:41</span><span>DOS</span></div>
+
+        <!-- Slide 1: HELP ME START -->
+        <div class="od-slide active" data-slide="0">
+          <p class="od-slide-header">[ HELP ME START ]</p>
+          <h3 class="od-slide-title">Just one small move.<br>I'll find it for you.</h3>
+          <span class="od-slide-btn">Show me the first step →</span>
+        </div>
+
+        <!-- Slide 2: HOLD THIS FOR ME -->
+        <div class="od-slide" data-slide="1">
+          <p class="od-slide-header">[ HOLD THIS FOR ME ]</p>
+          <h3 class="od-slide-title">Put it down.<br>I've got it.</h3>
+          <span class="od-slide-btn">Park it for now →</span>
+        </div>
+
+        <!-- Slide 3: I NEED A BOOST -->
+        <div class="od-slide" data-slide="2">
+          <p class="od-slide-header">[ I NEED A BOOST ]</p>
+          <h3 class="od-slide-title">Low tank.<br>Let's shrink it.</h3>
+          <span class="od-slide-btn">Give me the smaller version →</span>
+        </div>
+
+        <!-- Slide 4: PICK IT BACK UP -->
+        <div class="od-slide" data-slide="3">
+          <p class="od-slide-header">[ PICK IT BACK UP ]</p>
+          <h3 class="od-slide-title">You paused.<br>You didn't fail.</h3>
+          <span class="od-slide-btn">Step back in →</span>
+        </div>
+      </div>
+
+      <div class="od-dots-nav" id="odDotsNav">
+        <button class="active" data-dot="0" aria-label="Help Me Start"></button>
+        <button data-dot="1" aria-label="Hold This For Me"></button>
+        <button data-dot="2" aria-label="I Need a Boost"></button>
+        <button data-dot="3" aria-label="Pick It Back Up"></button>
+      </div>
+
+      <p class="od-phone-caption">START · HOLD · BOOST · RETURN</p>
+
+    </div>
+
+    <div class="od-right">
+      <p class="od-num" id="odNum">01 // HELP ME START</p>
+      <h3 class="od-name" id="odName">Help Me Start</h3>
+      <p class="od-when" id="odWhen">When the first step feels impossible</p>
+      <p class="od-arrow" id="odArrow">→ DOS hands you something small enough to do</p>
+      <p class="od-outro">
+        <strong>You won't see all of this at once.</strong>
+        DOS only shows you the door that fits the moment — and quietly learns which ones actually help.
+      </p>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- 4.5 CORE LINE -->
+<section class="core-line" data-screen-label="04b Core Line">
+  <p class="core-line-text">You didn't fail. <em>You paused.</em></p>
+</section>
+
 <!-- 5. SAFETY NET -->
-<section class="safetynet" id="safetynet">
+<section class="safetynet" id="safetynet" data-screen-label="05 Safety Net">
   <div class="sn-inner">
     <div class="sn-text">
       <p class="section-tag">[ 03 // THE SAFETY NET ]</p>
@@ -1033,6 +1319,15 @@ nav.scrolled .nav-link:hover { color: var(--green); }
         <a href="#" class="sn-link"><span>[ NEURO-AFFIRMING THERAPY ]</span><span class="sn-arrow">→</span></a>
         <a href="#" class="sn-link"><span>[ SUBSTANCE USE SUPPORT ]</span><span class="sn-arrow">→</span></a>
       </div>
+
+      <div class="sn-founder">
+        <div class="sn-founder-avatar"></div>
+        <div class="sn-founder-text">
+          <strong>A NOTE FROM MARCOS</strong>
+          I built DOS because I needed it. <em>If you're in the thick of it and want to talk — not as a user, just as a human — my door's open.</em>
+          <a href="mailto:hello@dosystems.app" class="sn-founder-link">→ reach out directly</a>
+        </div>
+      </div>
     </div>
     <div class="sn-photo">
       <div class="sn-photo-overlay"></div>
@@ -1042,18 +1337,37 @@ nav.scrolled .nav-link:hover { color: var(--green); }
 </section>
 
 <!-- 6. CTA / WAITLIST -->
-<section class="cta-section" id="access">
-  <p class="cta-tag">[ INITIALIZE ACCESS ]</p>
-  <h2 class="cta-headline">Ready when you are.</h2>
+<section class="cta-section" id="access" data-screen-label="06 CTA">
+  <p class="cta-tag">TRY DOS</p>
+  <h2 class="cta-headline">Start your day.<br>Come back when it gets hard.</h2>
   <p class="cta-sub">No pressure. No spam. Just the build.</p>
 
   <form class="cta-form" id="emailForm" action="https://formspree.io/f/mjgayjqp" method="POST">
     <input type="email" name="email" class="cta-input" placeholder="your@email.com" required>
-    <button type="submit" class="cta-submit">[ INITIALIZE ] →</button>
+    <button type="submit" class="cta-submit">Try DOS →</button>
   </form>
-  <div class="cta-success" id="ctaSuccess">[ ACCESS INITIALIZED ] — You're in. We'll be in touch.</div>
+  <div class="cta-success" id="ctaSuccess">You're in. We'll be in touch.</div>
   <p class="cta-note">No spam. Real updates from your neurodivergent friend.</p>
+
+  <div class="cta-footer-blurb">
+    <p class="cta-footer-text">Built by someone who needed it. <em>Hope it helps.</em></p>
+    <p class="cta-footer-sig">— MARCOS</p>
+  </div>
 </section>
+
+<!-- 7. FOUNDER FOOTER -->
+<footer class="site-footer" data-screen-label="07 Footer">
+  <div class="sf-inner">
+    <p class="sf-tag">[ A NOTE FROM THE FOUNDER ]</p>
+    <p class="sf-blurb">Built by someone who needed it. <em>Hope it helps you as much as it does me.</em></p>
+    <p class="sf-sign">— Marcos</p>
+    <div class="sf-rule"></div>
+    <div class="sf-meta">
+      <span class="sf-logo">DOS</span>
+      <span class="sf-copy">© 2026 — Daily Operating System</span>
+    </div>
+  </div>
+</footer>
 
 <script>
 /* Nav — turn solid after hero */
@@ -1062,19 +1376,46 @@ window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > window.innerHeight * 0.85);
 });
 
-/* Switchboard — one active at a time */
-function toggleSW(card){
-  const wasActive = card.classList.contains('active');
-  document.querySelectorAll('.sw-card').forEach(c => c.classList.remove('active'));
-  if(!wasActive) card.classList.add('active');
-}
+/* Overdrive carousel — mirrors Smart Calendar pattern */
+(function(){
+  const phone = document.getElementById('odPhone');
+  if (!phone) return;
+  const slides = phone.querySelectorAll('.od-slide');
+  const dots = document.querySelectorAll('#odDotsNav button');
+  const numEl = document.getElementById('odNum');
+  const nameEl = document.getElementById('odName');
+  const whenEl = document.getElementById('odWhen');
+  const arrowEl = document.getElementById('odArrow');
 
-/* Overdrive — one expanded at a time */
-function toggleOD(card){
-  const wasExpanded = card.classList.contains('expanded');
-  document.querySelectorAll('.od-card').forEach(c => c.classList.remove('expanded'));
-  if(!wasExpanded) card.classList.add('expanded');
-}
+  const states = [
+    { num: '01 // HELP ME START',     name: 'Help Me Start',     when: 'When the first step feels impossible',           arrow: '→ DOS hands you something small enough to do' },
+    { num: '02 // HOLD THIS FOR ME',  name: 'Hold This For Me',  when: "When your head is too full to carry it",          arrow: '→ DOS parks it until you\u2019re ready' },
+    { num: '03 // I NEED A BOOST',    name: 'I Need a Boost',    when: 'When the tank is empty but the day isn\u2019t',   arrow: '→ DOS shrinks the task to fit' },
+    { num: '04 // PICK IT BACK UP',   name: 'Pick It Back Up',   when: 'When you fell off and want a soft way in',        arrow: '→ DOS meets you where you left off' },
+  ];
+
+  let idx = 0;
+  let timer;
+
+  function go(i){
+    idx = (i + slides.length) % slides.length;
+    slides.forEach((s, k) => s.classList.toggle('active', k === idx));
+    dots.forEach((d, k) => d.classList.toggle('active', k === idx));
+    const s = states[idx];
+    numEl.textContent = s.num;
+    nameEl.textContent = s.name;
+    whenEl.textContent = s.when;
+    arrowEl.textContent = s.arrow;
+  }
+
+  function restart(){
+    clearInterval(timer);
+    timer = setInterval(() => go(idx+1), 5000);
+  }
+
+  dots.forEach((d, i) => d.addEventListener('click', () => { go(i); restart(); }));
+  restart();
+})();
 
 /* Smart Calendar carousel — auto-advance + dot nav */
 (function(){
@@ -1099,7 +1440,6 @@ function toggleOD(card){
   phone.addEventListener('mouseenter', () => { paused = true; });
   phone.addEventListener('mouseleave', () => { paused = false; });
 
-  /* Only start autoplay when visible, to save cycles */
   if ('IntersectionObserver' in window) {
     const io = new IntersectionObserver((entries) => {
       entries.forEach(e => e.isIntersecting ? start() : stop());
