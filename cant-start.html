@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>I can't start</title>
+<style>
+  :root {
+    --bg: #f6f5f1;
+    --fg: #1a1a1a;
+    --muted: #6b6b6b;
+    --accent: #1a1a1a;
+    --card: #ffffff;
+    --border: #e5e3dd;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    line-height: 1.5;
+  }
+
+  main {
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+
+  .screen {
+    width: 100%;
+    max-width: 460px;
+    text-align: center;
+    animation: fade 280ms ease-out;
+  }
+
+  @keyframes fade {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  h1, h2, p {
+    margin: 0 0 16px;
+    font-weight: 400;
+  }
+
+  h1 { font-size: 28px; line-height: 1.3; }
+  h2 { font-size: 22px; line-height: 1.35; }
+
+  .muted { color: var(--muted); font-size: 15px; }
+
+  .step-label {
+    color: var(--muted);
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  button {
+    display: block;
+    width: 100%;
+    padding: 16px 20px;
+    margin-top: 12px;
+    font-size: 16px;
+    font-family: inherit;
+    color: #fff;
+    background: var(--accent);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: opacity 120ms ease;
+  }
+
+  button:hover { opacity: 0.85; }
+
+  button.secondary {
+    background: transparent;
+    color: var(--fg);
+    border: 1px solid var(--border);
+  }
+
+  input[type="text"] {
+    width: 100%;
+    padding: 16px;
+    font-size: 16px;
+    font-family: inherit;
+    color: var(--fg);
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    margin-top: 12px;
+    outline: none;
+  }
+
+  input[type="text"]:focus { border-color: var(--fg); }
+
+  .stack { margin-top: 24px; }
+
+  .step-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 28px 20px;
+    margin-top: 16px;
+  }
+
+  .step-card .step-text {
+    font-size: 22px;
+    line-height: 1.4;
+  }
+</style>
+</head>
+<body>
+<main>
+  <div id="app" class="screen"></div>
+</main>
+
+<script>
+  const app = document.getElementById('app');
+
+  const state = {
+    task: '',
+    steps: [],
+    index: 0,
+    smaller: false,
+  };
+
+  // Smaller fallback versions per category — used by "Make it smaller".
+  const smallerVersions = {
+    writing: [
+      "Just open the document. Don't write yet.",
+      "Type one word. Any word."
+    ],
+    email: [
+      "Just open your inbox. Don't reply yet.",
+      "Read one email. Just one."
+    ],
+    physical: [
+      "Just find your shoes.",
+      "Stand up. That's it."
+    ],
+    thinking: [
+      "Just open a blank note.",
+      "Write one word about it."
+    ],
+    default: [
+      "Just sit where you'll do it.",
+      "Touch the thing you need to use."
+    ],
+  };
+
+  function categorize(task) {
+    const t = task.toLowerCase();
+    if (/\b(report|write|writing|doc|document|essay|article|blog|paper)\b/.test(t)) return 'writing';
+    if (/\b(email|emails|inbox|reply|admin|invoice|form|paperwork)\b/.test(t)) return 'email';
+    if (/\b(gym|run|walk|workout|exercise|errand|errands|shop|grocery|groceries|laundry|clean)\b/.test(t)) return 'physical';
+    if (/\b(think|thinking|figure|plan|decide|idea|ideas|brainstorm)\b/.test(t)) return 'thinking';
+    return 'default';
+  }
+
+  function stepsFor(category) {
+    switch (category) {
+      case 'writing':
+        return ["Open the document", "Write one bad sentence"];
+      case 'email':
+        return ["Open your inbox", "Reply to the easiest one"];
+      case 'physical':
+        return ["Put your shoes on", "Walk outside"];
+      case 'thinking':
+        return ["Open a blank note", "Write what's confusing you"];
+      default:
+        return ["Sit down where you'll do it", "Do the smallest possible piece"];
+    }
+  }
+
+  function clear() { app.innerHTML = ''; }
+
+  function el(tag, opts = {}, children = []) {
+    const node = document.createElement(tag);
+    if (opts.text) node.textContent = opts.text;
+    if (opts.html) node.innerHTML = opts.html;
+    if (opts.class) node.className = opts.class;
+    if (opts.type) node.type = opts.type;
+    if (opts.placeholder) node.placeholder = opts.placeholder;
+    if (opts.onClick) node.addEventListener('click', opts.onClick);
+    children.forEach(c => node.appendChild(c));
+    return node;
+  }
+
+  function renderStart() {
+    clear();
+    app.appendChild(el('h1', { text: "It's okay." }));
+    app.appendChild(el('p', { class: 'muted', text: "Pick the one that's true right now." }));
+    const stack = el('div', { class: 'stack' });
+    stack.appendChild(el('button', { text: "I can't start", onClick: renderAcknowledge }));
+    app.appendChild(stack);
+  }
+
+  function renderAcknowledge() {
+    clear();
+    app.appendChild(el('h2', { text: "Yeah… that happens." }));
+    app.appendChild(el('p', { text: "Starting is the hardest part." }));
+    app.appendChild(el('p', { text: "Let's make it smaller." }));
+    const stack = el('div', { class: 'stack' });
+    stack.appendChild(el('button', { text: "Show me the first step →", onClick: renderTaskInput }));
+    app.appendChild(stack);
+  }
+
+  function renderTaskInput() {
+    clear();
+    app.appendChild(el('h2', { text: "What are you trying to start?" }));
+    app.appendChild(el('p', { class: 'muted', text: "A few words is enough." }));
+
+    const input = el('input', { type: 'text', placeholder: 'e.g. write the report' });
+    input.id = 'task-input';
+    app.appendChild(input);
+
+    const submit = el('button', {
+      text: "Continue",
+      onClick: () => {
+        const value = input.value.trim();
+        if (!value) { input.focus(); return; }
+        state.task = value;
+        state.steps = stepsFor(categorize(value));
+        state.index = 0;
+        state.smaller = false;
+        renderStep();
+      }
+    });
+    app.appendChild(submit);
+
+    input.focus();
+    input.addEventListener('keydown', e => {
+      if (e.key === 'Enter') submit.click();
+    });
+  }
+
+  function renderStep() {
+    clear();
+
+    const total = state.steps.length;
+    const current = state.index;
+
+    app.appendChild(el('div', { class: 'step-label', text: `Step ${current + 1} of ${total}` }));
+
+    const card = el('div', { class: 'step-card' });
+    const text = state.smaller
+      ? (smallerVersions[categorize(state.task)] || smallerVersions.default)[current]
+      : state.steps[current];
+
+    card.appendChild(el('div', { class: 'step-text', text }));
+    app.appendChild(card);
+
+    const stack = el('div', { class: 'stack' });
+    stack.appendChild(el('button', { text: "I did it", onClick: advance }));
+
+    if (!state.smaller) {
+      stack.appendChild(el('button', {
+        class: 'secondary',
+        text: "Make it smaller",
+        onClick: () => { state.smaller = true; renderStep(); }
+      }));
+    }
+
+    app.appendChild(stack);
+  }
+
+  function advance() {
+    state.index += 1;
+    state.smaller = false;
+    if (state.index >= state.steps.length) {
+      renderDone();
+    } else {
+      renderStep();
+    }
+  }
+
+  function renderDone() {
+    clear();
+    app.appendChild(el('h1', { text: "You're in." }));
+    app.appendChild(el('p', { class: 'muted', text: "Keep going." }));
+    const stack = el('div', { class: 'stack' });
+    stack.appendChild(el('button', {
+      class: 'secondary',
+      text: "Start something else",
+      onClick: () => {
+        state.task = ''; state.steps = []; state.index = 0; state.smaller = false;
+        renderStart();
+      }
+    }));
+    app.appendChild(stack);
+  }
+
+  renderStart();
+</script>
+</body>
+</html>
